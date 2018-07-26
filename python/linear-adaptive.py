@@ -88,11 +88,6 @@ dist_fid = np.zeros([N,1])
 
 dp = 5
 
-M1, M2, M3 = meas.straddle(np.array([1,0,0]).transpose())
-
-# Get projectors
-proj_M1, proj_M2, proj_M3, values_M1, values_M2, values_M3 = simulation.projectors(M1,M2,M3)
-
 #for k,n in itertools.product(range(M),range(N)):
 for k in range(M):
     non_physical_count = 0 # Temporary counter for non-physical estimates
@@ -162,15 +157,20 @@ for k in range(M):
         # expansion H = (1/2)(I + V.X) where V is the Bloch vector and
         # X is the vector of Pauli matrices.
         #
-#       V = np.array([np.trace(np.matmul(dens_est_adapt,X)),
-#                     np.trace(np.matmul(dens_est_adapt,Y)),
-#                     np.trace(np.matmul(dens_est_adapt,Z))]).transpose()
-#       
-#       M1, M2, M3 = meas.straddle(V)
-#
-#       # Get projectors
-#       proj_M1, proj_M2, proj_M3, values_M1, values_M2, values_M3 = simulation.projectors(M1,M2,M3)
+        V = np.array([np.trace(np.matmul(dens_est_adapt,X)),
+                      np.trace(np.matmul(dens_est_adapt,Y)),
+                      np.trace(np.matmul(dens_est_adapt,Z))]).transpose()
+        #       
+        #       M1, M2, M3 = meas.straddle(V)
+        #
+        #       # Get projectors
+        #       proj_M1, proj_M2, proj_M3, values_M1, values_M2, values_M3 = simulation.projectors(M1,M2,M3)
         
+        M1, M2, M3 = meas.straddle(V)
+        
+        # Get projectors
+        proj_M1, proj_M2, proj_M3, values_M1, values_M2, values_M3 = simulation.projectors(M1,M2,M3)
+
         # Step 5: Simulate new measurements in the new basis
         #
         # This step simulates data in the new measurement
@@ -180,9 +180,9 @@ for k in range(M):
         # There are only S-S_1 measurements left at this
         # point, because S_1 of them are supposed to have been
         # used up in estimating the basis
-        M1_data = simulation.simulate(dens,proj_M1,values_M1,S)
-        M2_data = simulation.simulate(dens,proj_M2,values_M2,S)
-        M3_data = simulation.simulate(dens,proj_M3,values_M3,S)
+        M1_data = simulation.simulate(dens,proj_M1,values_M1,S-S_1)
+        M2_data = simulation.simulate(dens,proj_M2,values_M2,S-S_1)
+        M3_data = simulation.simulate(dens,proj_M3,values_M3,S-S_1)
 
         # Step 6: Estimate density matrix
         #

@@ -71,7 +71,8 @@ def straddle(V) :
 
     theta = np.arccos(1/np.sqrt(3))
 
-    Y = np.array([1,1,1])
+    
+    Y = np.array([1,1,0])
     Z = Y - np.dot(V,Y) * V
     axis = Z / np.linalg.norm(Z)
     W1 = axis_rot(axis, V, theta)
@@ -100,6 +101,12 @@ def straddle(V) :
     M1 = W1[0]*X + W1[1]*Y + W1[2]*Z
     M2 = W2[0]*X + W2[1]*Y + W2[2]*Z
     M3 = W3[0]*X + W3[1]*Y + W3[2]*Z
+
+
+    #print(M1,"\n\n")
+    #print(M2,"\n\n")
+    #print(M3,"\n\n")
+    #exit()
     
-    # Generate projectors
+    # Return measurements
     return M1, M2, M3
