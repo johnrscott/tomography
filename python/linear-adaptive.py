@@ -47,7 +47,7 @@ x_end = 1
 N = 500  # Number of random density matrices per x value
 S = 500  # Number of samples of each measurement to
          # simulate for each density matrix
-S_1 = 50 # Number of samples of X, Y and Z to use to
+S_1 = 100 # Number of samples of X, Y and Z to use to
          # perform the prelimiary estimate to adapt
          # the basis.
 # ======================================================
@@ -81,7 +81,6 @@ file.write("PURITY, \tOPERATOR, \tTRACE, \t\tFIDELITY, \tNON PHYSICAL\n")
 # This loop runs through different values of the purity parameter x,
 # and tests the ability of the linear estimator in each case
 #
-
 dist_op = np.zeros([N,1])
 dist_trace = np.zeros([N,1])
 dist_fid = np.zeros([N,1])
@@ -220,13 +219,19 @@ for k in range(M):
         X = np.matrix([[0,1],[1,0]])
         Y = np.matrix([[0,-1j],[1j,0]])
         Z = np.matrix([[1,0],[0,-1]])
-        M1 = (1/2) * (I + W1[0]*X + W1[1]*Y + W1[2]*Z)
-        M2 = (1/2) * (I + W2[0]*X + W2[1]*Y + W2[2]*Z)
-        M3 = (1/2) * (I + W3[0]*X + W3[1]*Y + W3[2]*Z)
+        M1 = W1[0]*X + W1[1]*Y + W1[2]*Z
+        M2 = W2[0]*X + W2[1]*Y + W2[2]*Z
+        M3 = W3[0]*X + W3[1]*Y + W3[2]*Z
 
         # Generate projectors
-        proj_M1, proj_M2, proj_M3, values_A, values_B, values_C = simulation.projectors(M1,M2,M3)
-
+        proj_M1, proj_M2, proj_M3, values_M1, values_M2, values_M3 = simulation.projectors(M1,M2,M3)
+        #print("\nM1:",M1)
+        #print("\nM2:",M2)
+        #print("\nM3:",M3)
+        #print(values_M1)
+        #print(values_M2)
+        #print(values_M3)
+        
         # Step 5: Simulate new measurements in the new basis
         #
         # This step simulates data in the new measurement
@@ -236,9 +241,9 @@ for k in range(M):
         # There are only S-S_1 measurements left at this
         # point, because S_1 of them are supposed to have been
         # used up in estimating the basis
-        M1_data = simulation.simulate(dens,proj_X,values_X,S-S_1)
-        M2_data = simulation.simulate(dens,proj_Y,values_Y,S-S_1)
-        M3_data = simulation.simulate(dens,proj_Z,values_Z,S-S_1)
+        M1_data = simulation.simulate(dens,proj_M1,values_M1,S-S_1)
+        M2_data = simulation.simulate(dens,proj_M2,values_M2,S-S_1)
+        M3_data = simulation.simulate(dens,proj_M3,values_M3,S-S_1)
 
         # Step 6: Estimate density matrix
         #
@@ -248,7 +253,11 @@ for k in range(M):
         dens_est = estimation.linear_estimate_adapt(M1_data, M2_data, M3_data,
                                                     M1, M2, M3)
 
-        
+        #print("\nThe original density matrix was:\n")
+        #print(dens)
+        #print("\nThe estimate is:\n")
+        #print(dens_est)
+        #exit()
         # Step 4: Compute and the distances
         #
         # Compute distances between the estimated
