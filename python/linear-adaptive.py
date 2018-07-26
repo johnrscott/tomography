@@ -36,6 +36,7 @@ import cProfile
 import pstats
 from progress import *
 from mpmath import chop
+import meas
 
 pr = cProfile.Profile()
 pr.enable()
@@ -87,36 +88,10 @@ dist_fid = np.zeros([N,1])
 
 dp = 5
 
-# Rotate v about unit vector u
-# by angle p
-def axis_rot(u,v,p) :
-    #print(u)
-    #u = np.array([0,0,1])
-    #print("|u|",np.linalg.norm(u))
-    #print("p",p)
-    
-    # Rotation of one vector about unit axis (u_x, u_y, u_z) by angle p
-    r11 = cos(p) + u[0]**2 * (1 - cos(p))
-    r22 = cos(p) + u[1]**2 * (1 - cos(p))
-    r33 = cos(p) + u[2]**2 * (1 - cos(p))
-    r12 = u[0] * u[1] * (1 - cos(p)) - u[2] * sin(p)
-    r21 = u[0] * u[1] * (1 - cos(p)) + u[2] * sin(p)
-    r13 = u[0] * u[2] * (1 - cos(p)) + u[1] * sin(p)
-    r31 = u[0] * u[2] * (1 - cos(p)) - u[1] * sin(p)
-    r23 = u[1] * u[2] * (1 - cos(p)) - u[0] * sin(p)
-    r32 = u[1] * u[2] * (1 - cos(p)) + u[0] * sin(p)
-    
-    Ru = np.array([[r11,r12,r13],[r21,r22,r23],[r31,r32,r33]])
-    #print('\n',Ru)
-    I = np.identity(3)
-    RuT = np.matrix.getH(np.asmatrix(Ru))
-    #print('\n',RuT)
-    #print(np.matmul(Ru, RuT))
-    if((np.matmul(Ru, RuT) - I).max() > 1e-10) : print("Rotation matrix incorrect"); exit()
-    
-    # Perform rotation
-    w = np.matmul(Ru, v)
-    return w
+M1, M2, M3 = meas.straddle(np.array([1,0,0]).transpose())
+
+# Get projectors
+proj_M1, proj_M2, proj_M3, values_M1, values_M2, values_M3 = simulation.projectors(M1,M2,M3)
 
 #for k,n in itertools.product(range(M),range(N)):
 for k in range(M):
@@ -187,50 +162,14 @@ for k in range(M):
         # expansion H = (1/2)(I + V.X) where V is the Bloch vector and
         # X is the vector of Pauli matrices.
         #
-        V = np.array([np.trace(np.matmul(dens_est_adapt,X)),
-                      np.trace(np.matmul(dens_est_adapt,Y)),
-                      np.trace(np.matmul(dens_est_adapt,Z))]).transpose()
-        
-        theta = np.arccos(1/np.sqrt(3))
-
-        Y = np.array([1,1,1])
-        Z = Y - np.dot(V,Y) * V
-        axis = Z / np.linalg.norm(Z)
-        W1 = axis_rot(axis, V, theta)
-
-        # Rotate by 120 degrees
-        p = (2 * np.pi)/3
-
-        # Normalise V to get the axis of rotation
-        u = V / np.linalg.norm(V)
-        
-        # Obtain the other measurement axes
-        W2 = axis_rot(u, W1, p)
-        W3 = axis_rot(u, W1, 2*p)
-        
-        # Check inner products between basis Bloch vectors
-        # They should be orthonormal
-        #print("\nW1.W2", np.dot(W1,W2))
-        #print("W1.W3", np.dot(W1,W3))
-        #print("W2.W3", np.dot(W2,W3))
-        
-        # Generate the measurement matrices
-        I = np.matrix([[1,0],[0,1]])
-        X = np.matrix([[0,1],[1,0]])
-        Y = np.matrix([[0,-1j],[1j,0]])
-        Z = np.matrix([[1,0],[0,-1]])
-        M1 = W1[0]*X + W1[1]*Y + W1[2]*Z
-        M2 = W2[0]*X + W2[1]*Y + W2[2]*Z
-        M3 = W3[0]*X + W3[1]*Y + W3[2]*Z
-
-        # Generate projectors
-        proj_M1, proj_M2, proj_M3, values_M1, values_M2, values_M3 = simulation.projectors(M1,M2,M3)
-        #print("\nM1:",M1)
-        #print("\nM2:",M2)
-        #print("\nM3:",M3)
-        #print(values_M1)
-        #print(values_M2)
-        #print(values_M3)
+#       V = np.array([np.trace(np.matmul(dens_est_adapt,X)),
+#                     np.trace(np.matmul(dens_est_adapt,Y)),
+#                     np.trace(np.matmul(dens_est_adapt,Z))]).transpose()
+#       
+#       M1, M2, M3 = meas.straddle(V)
+#
+#       # Get projectors
+#       proj_M1, proj_M2, proj_M3, values_M1, values_M2, values_M3 = simulation.projectors(M1,M2,M3)
         
         # Step 5: Simulate new measurements in the new basis
         #
@@ -241,17 +180,17 @@ for k in range(M):
         # There are only S-S_1 measurements left at this
         # point, because S_1 of them are supposed to have been
         # used up in estimating the basis
-        M1_data = simulation.simulate(dens,proj_M1,values_M1,S-S_1)
-        M2_data = simulation.simulate(dens,proj_M2,values_M2,S-S_1)
-        M3_data = simulation.simulate(dens,proj_M3,values_M3,S-S_1)
+        M1_data = simulation.simulate(dens,proj_M1,values_M1,S)
+        M2_data = simulation.simulate(dens,proj_M2,values_M2,S)
+        M3_data = simulation.simulate(dens,proj_M3,values_M3,S)
 
         # Step 6: Estimate density matrix
         #
         # Compute linear estimator using
         # the M1, M2, M3 measurements
         #
-        dens_est = estimation.linear_estimate_adapt(M1_data, M2_data, M3_data,
-                                                    M1, M2, M3)
+        dens_est = estimation.linear_estimate(M1_data, M2_data, M3_data,
+                                              M1, M2, M3)
 
         #print("\nThe original density matrix was:\n")
         #print(dens)
