@@ -12,6 +12,7 @@ integer :: S  ! Number of samples of each measurement to
 ! counters
 integer :: j, k, ierr
 
+real :: rand
 real(kind=dp) :: x_start ! Specify purity parameter x range
 real(kind=dp) :: x_end, pur, non_physical_count
 
@@ -21,7 +22,7 @@ real(kind=dp), dimension(2) :: outcomes_x, outcomes_y, outcomes_z
 
 complex(kind=dp), dimension(2,2,2) :: proj_x, proj_y, proj_z
 complex(kind=dp), dimension(4,2,2) :: operators
-complex(kind=dp), dimension(2,2) :: I, X, Y, Z
+complex(kind=dp), dimension(2,2) :: I, X, Y, Z, r_unitary
 
 M = 2000
 x_start = 0
@@ -59,6 +60,11 @@ write(15,*) "PURITY, \tOPERATOR, \tTRACE, \t\tFIDELITY, \tNON PHYSICAL"
 !! Preliminaries: define measurement operators
 
 ! I
+I=0.0_dp
+X=0.0_dp
+y=0.0_dp
+z=0.0_dp
+
 I(1,1)=(1,0)
 I(2,2)=(1,0)
 
@@ -70,24 +76,6 @@ Y(2,1)=(0,1)
 
 Z(1,1)=(1,0)
 Z(2,2)=-(1,0)
-
-
-!! I
-!operators(1,1,1)=(1, 0)
-!operators(1,2,2)=(1,0)
-!! X
-!operators(2,1,2)=(1,0)
-!operators(2,2,1)=(1,0)
-!! Y
-!operators(3,1,2)=-(0,1)
-!operators(3,2,1)=(0,1)
-!! Z
-!operators(4,1,1)=(1,0)
-!operators(4,2,2)=-(1,0)
-
-! transpose as column majored
-
-!allocate( (proj1 proj2) (rows) (cols))
 
 proj_x=0.0_dp
 proj_y=0.0_dp
@@ -104,29 +92,29 @@ outcomes_z=0.0_dp
 !call printvectors(x)
 call makeprojectors(x , proj_x, outcomes_x)
 
-write(*,*) "projector 1 for x value", outcomes_X(1)
-call printvectors(proj_x(1,:,:))
-print*, " projector 2 for x value", outcomes_x(2)
-call printvectors(proj_x(2,:,:))
+write(15,*) "projector 1 for x value", outcomes_X(1)
+call printvectors(proj_x(1,:,:), f=15)
+write(15,*) " projector 2 for x value", outcomes_x(2)
+call printvectors(proj_x(2,:,:), f=15)
 
 
 !! y
 !call printvectors(y)
 call makeprojectors(y, proj_y, outcomes_y)
 
-write(*,*) "projector 1 for y", outcomes_y(1)
-call printvectors(proj_y(1,:,:))
-print*, " projector 2 for y", outcomes_y(2)
-call printvectors(proj_y(2,:,:))
+write(15,*) "projector 1 for y", outcomes_y(1)
+call printvectors(proj_y(1,:,:), f=15)
+write(15,*) " projector 2 for y", outcomes_y(2)
+call printvectors(proj_y(2,:,:), f=15)
 
 !! z
 !call printvectors(z)
 call makeprojectors(z, proj_z, outcomes_z)
 
-write(*,*) "projector 1 for z", outcomes_z(1)
-call printvectors(proj_z(1,:,:))
-print*, " projector 2 for z", outcomes_z(2)
-call printvectors(proj_z(2,:,:))
+write(15,*) "projector 1 for z", outcomes_z(1)
+call printvectors(proj_z(1,:,:), f=15)
+write(15,*) " projector 2 for z", outcomes_z(2)
+call printvectors(proj_z(2,:,:), f=15)
 
 !!!!!!!!!!!!!!! end of projectors 
 
@@ -135,12 +123,15 @@ pur=0.0_dp
 
 do j=1, m
 	non_physical_count = 0.0_dp
-	
 	do k=1, n
 		pur=x_start + j*(x_end-x_start)/real(m,kind=dp)	
-	end do
+        
+        end do
 end do
 
+rand=0.0
+r_unitary=randunitary()
+call printvectors(r_unitary, 'random unitary is')
 deallocate(non_physical)
 end program enmtest 
  
