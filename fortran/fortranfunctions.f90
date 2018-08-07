@@ -7,17 +7,22 @@
 !!
 !! At the moment the function only works for 2x2 A.
 !!
+
 module functions
 implicit none
 
 integer, parameter :: dp1=selected_real_kind(15,300)
 
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 contains
 
-subroutine checklapack(a, proj, outcome)
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+subroutine makeprojectors(a, proj, outcome)
 implicit none 
 
-integer :: n
+integer :: n, j, k
 integer :: lda, ldvl, ldvr
 integer, parameter   :: lwmax = 1000 
 
@@ -70,12 +75,12 @@ stop
 end if
 
 !     pRINT EIGENVALUES.
-write(*,*)'eIGENVALUES', 1, n, w, 1 
+!write(*,*)'eIGENVALUES', 1, n, w, 1 
 !call printvectors((w))
 
 
 !     pRINT LEFT EIGENVECTORS.
-write(*,*) 'lEFT EIGENVECTORS'!, n, n, real(vl), ldvl 
+!write(*,*) 'lEFT EIGENVECTORS'!, n, n, real(vl), ldvl 
 !call printvectors(vl)
 
 !     pRINT RIGHT EIGENVECTORS.
@@ -94,18 +99,25 @@ write(*,*) 'lEFT EIGENVECTORS'!, n, n, real(vl), ldvl
 !print*, ' vectors * vectors.T'
 !write(*,*) (vl(1,:)*vl(1,:))
 
-projectors=matmul(vl,transpose(vl))
+! projectors=matmul(vl,transpose(vl))
 
-!write(*,*) projectors(1,:)
+do j=1,2
+write(*,*)w(j)
+write(*,*) vl(j,:)
+!proj(j,:,:)=spread(vl(j,:),dim=2,ncopies=2)*spread(vl(:,j),dim=1,ncopies=2)
+proj(j,:,:) = outerproduct(vl(j,:),conjg(vl(j,:)))
+!write(*,*) proj(j,:,:)
+end do
+!write(*,*) vl(2,:)
 
 ! make 
-proj(1,1,:)=projectors(1,:)
+!proj(1,:,:)=(:,:)
 outcome(1)=w(1)
 
-proj(2,2,:)=projectors(2,:)
+!proj(2,:,:)=projectors(:,:)
 outcome(2)=w(2)
 
-end subroutine checklapack
+end subroutine makeprojectors
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11 
 subroutine printvectors(vect)
@@ -124,11 +136,27 @@ write(*,*)
 9998 format( 11(:,1x,'(',F6.2,',',F6.2,')'))
 end subroutine printvectors
 
-
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 subroutine make_projector() 
 print*, "This is make_projector"
-
 end subroutine make_projector
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+function outerproduct(a,b)
+complex(kind=dp1), dimension(2,2) :: outerprod, outerproduct
+complex(kind=dp1), dimension(:), intent(in) :: a, b
+integer :: n, j ,k
+
+n=size(a)
+!allocate(outerproduct(n,n))
+
+do j=1,n
+	do k=1, n
+		outerproduct(j,k)=a(j)*b(k)
+	end do
+end do
+end function outerproduct
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 end module functions
 

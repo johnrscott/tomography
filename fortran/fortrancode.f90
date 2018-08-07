@@ -13,17 +13,17 @@ integer :: S  ! Number of samples of each measurement to
 integer :: j, k, ierr
 
 real(kind=dp) :: x_start ! Specify purity parameter x range
-real(kind=dp) :: x_end
+real(kind=dp) :: x_end, pur, non_physical_count
 
 real(kind=dp), allocatable, dimension(:) :: non_physical
+real(kind=dp), allocatable, dimension(:,:) :: dist
 real(kind=dp), dimension(2) :: outcomes_x, outcomes_y, outcomes_z
 
 complex(kind=dp), dimension(2,2,2) :: proj_x, proj_y, proj_z
-!real(kind=dp), allocatable, dimension(:,:) ::  
 complex(kind=dp), dimension(4,2,2) :: operators
 complex(kind=dp), dimension(2,2) :: I, X, Y, Z
 
-M = 20
+M = 2000
 x_start = 0
 x_end = 1
 N = 500
@@ -31,8 +31,11 @@ S = 500
 ! simulate for each density matrix 
 ! ======================================================
 
-allocate(non_physical(0:M-1))
+allocate(non_physical(M))
+allocate(dist(3,n))
+
 non_physical=0.0_dp
+dist=0.0_dp
 
 !! Get an output file ready
 open(unit=15, file='linear_test_1_fortran.dat', status='replace', iostat=ierr)
@@ -56,7 +59,7 @@ write(15,*) "PURITY, \tOPERATOR, \tTRACE, \t\tFIDELITY, \tNON PHYSICAL"
 !! Preliminaries: define measurement operators
 
 ! I
-I(1,1)=(1, 0)
+I(1,1)=(1,0)
 I(2,2)=(1,0)
 
 X(1,2)=(1,0)
@@ -83,9 +86,6 @@ Z(2,2)=-(1,0)
 !operators(4,2,2)=-(1,0)
 
 ! transpose as column majored
-x=transpose(x)
-y=transpose(y)
-z=transpose(z)
 
 !allocate( (proj1 proj2) (rows) (cols))
 
@@ -97,14 +97,12 @@ outcomes_x=0.0_dp
 outcomes_y=0.0_dp
 outcomes_z=0.0_dp
 
-
-print*,"This is the function", n
-write(*,*) non_physical
-call make_projector()
+! from fortran functions
+!call make_projector()
 
 ! X
-call printvectors(x)
-call checklapack(x, proj_x, outcomes_x)
+!call printvectors(x)
+call makeprojectors(x , proj_x, outcomes_x)
 
 write(*,*) "projector 1 for x value", outcomes_X(1)
 call printvectors(proj_x(1,:,:))
@@ -113,8 +111,8 @@ call printvectors(proj_x(2,:,:))
 
 
 !! y
-call printvectors(y)
-call checklapack(y, proj_y, outcomes_y)
+!call printvectors(y)
+call makeprojectors(y, proj_y, outcomes_y)
 
 write(*,*) "projector 1 for y", outcomes_y(1)
 call printvectors(proj_y(1,:,:))
@@ -122,8 +120,8 @@ print*, " projector 2 for y", outcomes_y(2)
 call printvectors(proj_y(2,:,:))
 
 !! z
-call printvectors(z)
-call checklapack(z, proj_z, outcomes_z)
+!call printvectors(z)
+call makeprojectors(z, proj_z, outcomes_z)
 
 write(*,*) "projector 1 for z", outcomes_z(1)
 call printvectors(proj_z(1,:,:))
@@ -132,7 +130,16 @@ call printvectors(proj_z(2,:,:))
 
 !!!!!!!!!!!!!!! end of projectors 
 
+! previously called x...
+pur=0.0_dp
 
+do j=1, m
+	non_physical_count = 0.0_dp
+	
+	do k=1, n
+		pur=x_start + j*(x_end-x_start)/real(m,kind=dp)	
+	end do
+end do
 
 deallocate(non_physical)
 end program enmtest 
