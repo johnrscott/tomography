@@ -69,9 +69,11 @@ def axis_rot(u,v,p) :
 #
 def straddle(V) :
 
+    # Normalise V
+    V = V / np.linalg.norm(V)
+    
     theta = np.arccos(1/np.sqrt(3))
 
-    
     Y = np.array([1,1,0])
     Z = Y - np.dot(V,Y) * V
     axis = Z / np.linalg.norm(Z)
@@ -80,12 +82,9 @@ def straddle(V) :
     # Rotate by 120 degrees
     p = (2 * np.pi)/3
 
-    # Normalise V to get the axis of rotation
-    u = V / np.linalg.norm(V)
-
     # Obtain the other measurement axes
-    W2 = axis_rot(u, W1, p)
-    W3 = axis_rot(u, W1, 2*p)
+    W2 = axis_rot(V, W1, p)
+    W3 = axis_rot(V, W1, 2*p)
 
     # Check inner products between basis Bloch vectors
     # They should be orthonormal
