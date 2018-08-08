@@ -1,6 +1,6 @@
 CC = g++
 LDLIBS = -I../ -L/usr/local/lib/ -lnlopt
-CFLAGS = -std=c++11 -O3 -c 
+CFLAGS = -std=c++11 -O3 -c
 LFLAGS = -std=c++11 -O3
 BINARY = enm-test
 
@@ -20,7 +20,7 @@ stats.o: stats.cpp stats.h
 	$(CC) $(CFLAGS) stats.cpp $(LDLIBS)
 
 proj.o: proj.cpp proj.h
-	$(CC) $(CFLAGS) proj.cpp $(LDLIBS)
+	$(CC) $(CFLAGS) -DDEBUG proj.cpp $(LDLIBS)
 
 progress.o: progress.cpp progress.h
 	$(CC) $(CFLAGS) progress.cpp $(LDLIBS)

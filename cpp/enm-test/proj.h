@@ -15,7 +15,7 @@
 *
 ************************************************************/
 
-//#define DEBUG_PRINT_PROJECTORS
+#define DEBUG_PRINT_PROJECTORS
 
 #include <iostream>
 #include "Eigen/Dense"
