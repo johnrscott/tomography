@@ -8,8 +8,8 @@
 !! At the moment the function only works for 2x2 A.
 
 module functions
+use olis_fstdlib
 implicit none
-
 ! private set precision for reals and complx
 integer, parameter, private :: dp=selected_real_kind(15,300)
 real(kind=dp), parameter :: pi=4*atan(1.0_dp)
@@ -23,8 +23,10 @@ end type projector
 type operator
 	! each operator has a matrix
 	! and projector, outcome values
+	! and data 
 	complex(kind=dp), dimension(2,2) :: matrix
 	type (projector), dimension(2) :: proj
+	real(kind=dp), dimension(:), allocatable :: data
 end type operator
 
 type basisvects
@@ -32,8 +34,31 @@ type basisvects
 	! for the three basis vectors
 	complex(kind=dp), dimension(3) :: x,y,z
 end type basisvects
+
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 contains
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+subroutine constructoperators(ops, basisvects, samples)
+type(operator), dimension(3) :: ops
+complex(kind=dp), dimension(3,3), intent(in) :: basisvects
+integer, intent(in) :: samples
+integer :: j, k
+
+do j=1,size(ops)
+	write(15,*) "Op",j
+	call makeops(ops(j),basisvects(j,:))
+	call printvectors(ops(j)%matrix, 'Op matrix', 15)
+	do k=1,2
+		write(15,*) "projectors", k
+		write(15,*) "outcome", ops(j)%proj(k)%outcome
+		call printvectors(ops(j)%proj(k)%matrix, 'Projector matrix', 15)
+	end do
+	! allocate the 3 basis vectors data arrays for sampling results
+	allocate(ops(j)%data(samples))
+end do			
+end subroutine constructoperators
+
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -79,55 +104,55 @@ integer :: info, lwork
 real(kind=dp), allocatable, dimension(:) ::  rwork
 real(kind=dp), dimension(2) :: outcome
 
-a=op%matrix
+	a=op%matrix
 
-! use size of input matrix
-n=size(a,1)
-ldvl=size(a,1)
-ldvr=size(a,1)
-lda=size(a,1)
+	! use size of input matrix
+	n=size(a,1)
+	ldvl=size(a,1)
+	ldvr=size(a,1)
+	lda=size(a,1)
 
-! eigen vectors, eigen vals & temp arrays
-allocate(vl( ldvl, n ))
-allocate(vr( ldvr, n ))
-allocate(w( n ))
-allocate( work( lwmax ))
-allocate(rwork(2*n))
+	! eigen vectors, eigen vals & temp arrays
+	allocate(vl( ldvl, n ))
+	allocate(vr( ldvr, n ))
+	allocate(w( n ))
+	allocate( work( lwmax ))
+	allocate(rwork(2*n))
 
-allocate(projectors(n,n))
+	allocate(projectors(n,n))
 
-!     .. eXECUTABLE sTATEMENTS ..
-!     qUERY THE OPTIMAL WORKSPACE.
-lwork = -1
-call zgeev( 'V', 'N', n, a, lda, w, vl, ldvl, vr, ldvr, work, lwork, rwork, info )
-lwork = min( lwmax, int( work( 1 ) ) )
+	!     .. eXECUTABLE sTATEMENTS ..
+	!     qUERY THE OPTIMAL WORKSPACE.
+	lwork = -1
+	call zgeev( 'V', 'N', n, a, lda, w, vl, ldvl, vr, ldvr, work, lwork, rwork, info )
+	lwork = min( lwmax, int( work( 1 ) ) )
 
-!     sOLVE EIGENPROBLEM.
-call zgeev( 'v', 'n', n, a, lda, w, vl, ldvl, vr, ldvr, work, lwork, rwork, info )
+	!     sOLVE EIGENPROBLEM.
+	call zgeev( 'v', 'n', n, a, lda, w, vl, ldvl, vr, ldvr, work, lwork, rwork, info )
 
-!     cHECK FOR CONVERGENCE.
-if( info.gt.0 ) then
-write(*,*)'tHE ALGORITHM FAILED TO COMPUTE EIGENVALUES.'
-stop
-end if
+	!     cHECK FOR CONVERGENCE.
+	if( info.gt.0 ) then
+	write(*,*)'tHE ALGORITHM FAILED TO COMPUTE EIGENVALUES.'
+	stop
+	end if
 
-!for the 2 eigen vectors construct projectors
-! assign matching eigen vals
-do j=1,2
-proj(j,:,:) = outerproduct(vl(j,:),conjg(vl(j,:)))
-outcome(j)=w(j)
-end do
+	!for the 2 eigen vectors construct projectors
+	! assign matching eigen vals
+	do j=1,2
+	proj(j,:,:) = outerproduct(vl(j,:),conjg(vl(j,:)))
+	outcome(j)=w(j)
+	end do
 
-do j=1,2
-	op%proj(j)%matrix(:,:)=proj(j,:,:)
-	op%proj(j)%outcome=outcome(j)
-end do
-deallocate(vl)
-deallocate(vr)
-deallocate(w)
-deallocate(work)
-deallocate(rwork)
-deallocate(projectors)
+	do j=1,2
+		op%proj(j)%matrix(:,:)=proj(j,:,:)
+		op%proj(j)%outcome=outcome(j)
+	end do
+	deallocate(vl)
+	deallocate(vr)
+	deallocate(w)
+	deallocate(work)
+	deallocate(rwork)
+	deallocate(projectors)
 end subroutine makeprojector
 
 
@@ -142,111 +167,92 @@ complex(kind=dp) :: glob, a, b
 complex(kind=dp), dimension(3) :: imagphases
 complex(kind=dp), dimension(2,2) :: rand_unitary
 
-!places a random number arg 
-xi=0.0_dp
-alpsichi=0.0_dp
-! 3 numbers between 0 & 2Pi
-! 1 number between 0 & 1
-call random_number(xi)
-call random_number(alpsichi)
-alpsichi=alpsichi*2.0_dp*pi
+	!places a random number arg 
+	xi=0.0_dp
+	alpsichi=0.0_dp
+	! 3 numbers between 0 & 2Pi
+	! 1 number between 0 & 1
+	call random_number(xi)
+	call random_number(alpsichi)
+	alpsichi=alpsichi*2.0_dp*pi
 
-!print*, 'alpha', char(9), 'psi', char(9),'chi',char(9),' xi'
-!print*, alpsichi, xi 
+	!print*, 'alpha', char(9), 'psi', char(9),'chi',char(9),' xi'
+	!print*, alpsichi, xi 
 
-! convert to imaginary nums
-do i=1,3
-imagphases(i)=complex(0.0_dp,alpsichi(i))
-end do
+	! convert to imaginary nums
+	do i=1,3
+	imagphases(i)=complex(0.0_dp,alpsichi(i))
+	end do
 
-phi=asin(sqrt(xi))
+	phi=asin(sqrt(xi))
 
-! matrix elements
-glob=0.0_dp
-glob=exp(imagphases(1))
-print*, glob
-a=exp(imagphases(2)) * cos(phi) 
-b=exp(imagphases(3)) * sin(phi)
+	! matrix elements
+	glob=0.0_dp
+	glob=exp(imagphases(1))
+	!print*, glob
+	a=exp(imagphases(2)) * cos(phi) 
+	b=exp(imagphases(3)) * sin(phi)
 
-!print*, 'a', a, 'b', b
-!print*, '-conjg(b)', -conjg(b), 'conjg(a)', conjg(a)
-rand_unitary=0.0_dp
-rand_unitary=reshape((/a,b,-conjg(b), conjg(a)/), shape(rand_unitary))
-call printvectors(rand_unitary, 'no')
-rand_unitary=glob*rand_unitary
-!write(*,*) imagphases
-call printvectors(rand_unitary,desc='unitary')
+	!print*, 'a', a, 'b', b
+	!print*, '-conjg(b)', -conjg(b), 'conjg(a)', conjg(a)
+	rand_unitary=0.0_dp
+	rand_unitary=reshape((/a,b,-conjg(b), conjg(a)/), shape(rand_unitary))
+	!call printvectors(rand_unitary, 'no')
+	rand_unitary=glob*rand_unitary
+	!write(*,*) imagphases
+	!call printvectors(rand_unitary,desc='unitary')
 
-print*, 'check unitary'
+	!print*, 'check unitary'
 
-call printvectors(matmul(rand_unitary,conjg(transpose(rand_unitary))), 'what is this?')
+	!call printvectors(matmul(rand_unitary,conjg(transpose(rand_unitary))), 'what is this?')
 
 end function rand_unitary
 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 function rand_density(purity)
 complex(kind=dp), dimension(2,2) :: rand_density, unitary
 real(kind=dp), dimension(2,2) :: temp
 real(kind=dp), intent(in) :: purity
 
-rand_density=0.0_dp
-rand_density(1,1)=cmplx(purity, 0.0_dp); rand_density(2,2)=cmplx(1.0_dp-purity, 0.0_dp)
+	rand_density=0.0_dp
+	rand_density(1,1)=cmplx(purity, 0.0_dp); rand_density(2,2)=cmplx(1.0_dp-purity, 0.0_dp)
 
-unitary=rand_unitary()
-rand_density=matmul(unitary,(matmul(rand_density,conjg(transpose(unitary)))))
+	unitary=rand_unitary()
+	rand_density=matmul(unitary,(matmul(rand_density,conjg(transpose(unitary)))))
 
 end function rand_density
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11 
-subroutine printvectors(vect, desc, f)
-implicit none
-integer :: i, j, m, n
-integer, intent(in), optional :: f 
-character(len=*), intent(in), optional :: desc
-complex(kind=dp), dimension(:,:), intent(in) :: vect
-n=size(vect,1)
-m=size(vect,1)
 
-if (present(f)) then
-        if (present(desc)) then
-        write(f,*) desc
-        else 
-        write(f,*)
-        endif 
-do i=1, m
-        write(f,9998) (vect (i,j), j=1,n)
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+subroutine simulate(dens,ops, samples)
+
+type(operator), dimension(3) :: ops
+
+integer :: i,j, k, samples
+real(kind=dp) :: r
+real(kind=dp), dimension(2) :: p
+complex(kind=dp), dimension(2,2) :: dens
+!complex(kind=dp), dimension(2,2,2) :: proj
+do i=1,size(ops)
+    do j=1, 2
+        ! from oli's std lib
+        p(j) = abs(complextrace(dens,ops(i)%proj(j)%matrix(:,:))) 
+    end do
+    do k=1,samples
+        call random_number(r)
+        if (r .lt. p(1)) then
+            ops(i)%data(k)=ops(i)%proj(1)%outcome
+            !print*, r,'outcome 1 ', 'p1',p(1), 'p2', p(2)
+        elseif (r.gt.p(1)) then
+            ops(i)%data(k)=ops(i)%proj(2)%outcome
+            !print*, r, 'outcome 2 ', 'p1', p(1), 'p2', p(2)
+        end if
+        ! write the outcome in
+        
+        if (abs(1.0_dp-(p(1)+p(2))) > 1e-4_dp ) stop 'err'
+    end do
 end do
-write(f,*)
-else     
-        if (present(desc)) then
-        write(*,*) desc
-        else 
-        write(*,*)
-        endif 
-do i=1, m
-        write(*,9998) (vect (i,j), j=1,n)
-end do
-write(*,*)
-end if
-
-9998 format( 11(:,1x,'(',F6.2,',',F6.2,')'))
-end subroutine printvectors
-
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-function outerproduct(a,b)
-implicit none
-complex(kind=dp), dimension(2,2) :: outerproduct
-complex(kind=dp), dimension(:), intent(in) :: a, b
-integer :: n, j ,k
-
-! the return value is the function name
-n=size(a)
-do j=1,n
-	do k=1, n
-		outerproduct(j,k)=a(j)*b(k)
-	end do
-end do
-end function outerproduct
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+end subroutine simulate 
 
 
 end module functions

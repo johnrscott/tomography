@@ -1,5 +1,6 @@
 program enmtest
 use functions
+use olis_fstdlib
 implicit none
 
 integer, parameter :: dp=selected_real_kind(15,300)
@@ -12,7 +13,6 @@ integer :: S  ! Number of samples of each measurement to
 ! counters
 integer :: j, k, ierr
 ! for random seed
-integer :: values(1:8), seedsize
 integer, dimension(:), allocatable :: seed
 
 real :: rand
@@ -39,14 +39,7 @@ type(operator), dimension(3) :: op
 !type(basisvects) :: pauli, stradle_v
 complex(kind=dp), dimension(3,3) :: pauli, strad_vects
 
-
-!!!!! random seed
-call date_and_time(values=values)
-call random_seed(size=seedsize)
-allocate(seed(1:seedsize))
-seed(:) = values(8)
-call random_seed(put=seed)
-
+call randseed(seed)
 
 M = 2000
 x_start = 0
@@ -97,17 +90,9 @@ pauli(3,:)=(/(0,0),(0,0),(1,0)/)
 !call makeops(op(2),pauli%y)
 !call makeops(op(3),pauli%z)
 
+call constructoperators(op,pauli,s)
 
-do j=1,size(op)
-	write(15,*) "Op",j
-	call makeops(op(j),pauli(j,:))
-	call printvectors(op(j)%matrix, 'Op matrix', 15)
-	do k=1,2
-		write(15,*) "projectors", k
-		write(15,*) "outcome", op(j)%proj(k)%outcome
-		call printvectors(op(j)%proj(k)%matrix, 'Projector matrix', 15)
-	end do
-end do						
+!end do						
 !!!!!!!!!!!!!!! end of projectors 
 
 ! to reiterate, ops(1,2,3) have % matrix
@@ -118,13 +103,21 @@ end do
 ! previously called x...
 pur=0.0_dp
 
-do j=1, m
+
+do j=1,1! m
 	non_physical_count = 0.0_dp
-	do k=1, n
+	do k=1, 1!n
+		! purity 
 		pur=x_start + j*(x_end-x_start)/real(m,kind=dp)	
-        
-        end do
+       		! random density matrix 
+		dens=rand_density(pur) 
+        call simulate(dens,op,s)
+    end do
+    !write(*,*) op(1)%data(:)
 end do
+
+write(*,*) size(op(1)%data)
+
 
 rand=0.0
 r_unitary=rand_unitary()
