@@ -1,0 +1,37 @@
+ Distances between estimated and original density matrices
+ using various distances. Go to the end of the file for the running time.
+ Number of purity values tried =         2000
+ Number of density matrices per purity parameter =          500
+ Total number of measurements for each of X, Y and Z =          500
+
+ PURITY, \tOPERATOR, \tTRACE, \t\tFIDELITY, \tNON PHYSICAL
+ projector 1 for x value  0.99999999999999956     
+
+ (  0.50,  0.00) (  0.50, -0.00)
+ (  0.50,  0.00) (  0.50,  0.00)
+
+  projector 2 for x value -0.99999999999999989     
+
+ (  0.50,  0.00) ( -0.50,  0.00)
+ ( -0.50,  0.00) (  0.50,  0.00)
+
+ projector 1 for y  0.99999999999999956     
+
+ (  0.50,  0.00) ( -0.00, -0.50)
+ ( -0.00,  0.50) (  0.50,  0.00)
+
+  projector 2 for y -0.99999999999999989     
+
+ (  0.50,  0.00) (  0.00,  0.50)
+ (  0.00, -0.50) (  0.50,  0.00)
+
+ projector 1 for z   1.0000000000000000     
+
+ (  1.00,  0.00) (  0.00,  0.00)
+ (  0.00,  0.00) (  0.00,  0.00)
+
+  projector 2 for z  -1.0000000000000000     
+
+ (  0.00,  0.00) (  0.00,  0.00)
+ (  0.00,  0.00) (  1.00,  0.00)
+
