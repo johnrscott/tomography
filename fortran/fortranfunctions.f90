@@ -252,6 +252,9 @@ function linear_estimate(ops)
     linear_estimate=(means(1)*paulix+means(2)*pauliy+means(3)*pauliz + ident)/2.0_dp
 end function linear_estimate
 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+! computes the largest singular value of the matrix a-b
 function distance_op(a,b)
     real(kind=dp) :: distance_op
     complex(kind=dp), dimension(2,2) :: a,b, c
@@ -263,7 +266,16 @@ call complexsvd(c,sigma)
    distance_op=sigma(1)
 end function distance_op
 
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+! Hilbert-schmidt norm or Frobenius norm
+function distance_trace(a,b)
+    real(kind=dp) :: distance_trace
+    complex(kind=dp), dimension(:,:) :: a,b
+   !print*, 'matrixtrace norm',  matrixnorm(a-b)
+   ! from oli's std lib
+   distance_trace=matrixnorm(a-b)
+end function distance_trace
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 

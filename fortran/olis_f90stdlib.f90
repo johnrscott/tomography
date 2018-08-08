@@ -212,4 +212,22 @@ end if
 print*, s
 end subroutine complexsvd
 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+!matrix norms
+function matrixnorm(c)
+    complex(kind=dp), dimension(:,:) :: c
+    real(kind=dp) :: matrixnorm, zlange
+    ! temp
+    real(kind=dp), dimension(:), allocatable :: work
+    integer :: m,n,lda, lwmax=1000 
+ 
+    m=size(c,1)
+    n=size(c,2)
+    lda=m
+    allocate(work(lwmax))
+    matrixnorm= zlange('F', m,n,c,lda,work )
+end function matrixnorm
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 end module olis_fstdlib
