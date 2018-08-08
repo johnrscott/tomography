@@ -4,7 +4,7 @@ implicit none
 integer, parameter, private :: dp=selected_real_kind(15,300)
 contains
 
-	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 subroutine randseed(seed)
 !!!!! random seed
 integer :: values(1:8), seedsize
@@ -72,20 +72,85 @@ end subroutine randseed
   end function outerproduct
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-function complextrace(a,b)
-        complex(kind=dp), dimension(:,:) :: a,b
-        complex(kind=dp), dimension(:,:), allocatable :: c
+function complextrace(a)
+        complex(kind=dp), dimension(:,:) :: a
         complex(kind=dp) :: complextrace 
         integer :: i
 
-        allocate(c(size(a),size(a)))
         complextrace=0.0_dp
-        c=matmul(a,b)
-        do i=1, size(a)
-                complextrace=complextrace+c(i,i)
+        do i=1, size(a,1)
+                complextrace=complextrace+a(i,i)
         end do
 end function complextrace
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+subroutine complexeigenvects(a, w, vl)
+! matrix a in, eigenvals, eigenvects out
+implicit none 
+
+integer :: n, j
+integer :: lda, ldvl, ldvr
+integer, parameter   :: lwmax = 1000 
+
+! matrix in is a
+complex(kind=dp), dimension(:,:), intent(in) :: a
+
+! left & right vectors
+complex(kind=dp), allocatable, dimension(:,:) :: vl, vr
+! eigen values are w
+complex(kind=dp), allocatable, dimension(:) :: w, work 
+
+! temp scalars
+integer :: info, lwork
+
+!temp arrays
+real(kind=dp), allocatable, dimension(:) ::  rwork
+
+! use size of input matrix
+n=size(a,1)
+ldvl=size(a,1)
+ldvr=size(a,1)
+lda=size(a,1)
+
+! eigen vectors, eigen vals & temp arrays
+!allocate(vl( ldvl, n ))
+allocate(vr( ldvr, n ))
+!allocate(w( n ))
+allocate( work( lwmax ))
+allocate(rwork(2*n))
+
+!     .. eXECUTABLE sTATEMENTS ..
+!     qUERY THE OPTIMAL WORKSPACE.
+lwork = -1
+call zgeev( 'V', 'N', n, a, lda, w, vl, ldvl, vr, ldvr, work, lwork, rwork, info )
+lwork = min( lwmax, int( work( 1 ) ) )
+
+!     sOLVE EIGENPROBLEM.
+call zgeev( 'v', 'n', n, a, lda, w, vl, ldvl, vr, ldvr, work, lwork, rwork, info )
+
+!     cHECK FOR CONVERGENCE.
+if( info.gt.0 ) then
+write(*,*)'tHE ALGORITHM FAILED TO COMPUTE EIGENVALUES.'
+stop
+end if
+
+!for the 2 eigen vectors construct projectors
+      
+
+deallocate(vr)
+deallocate(work)
+deallocate(rwork)
+
+end subroutine complexeigenvects
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+subroutine complexsvd()
+
+
+
+
+
+end subroutine complexsvd
 
 end module olis_fstdlib

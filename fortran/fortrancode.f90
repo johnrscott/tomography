@@ -110,10 +110,9 @@ call constructoperators(op,pauli,s)
 ! previously called x...
 pur=0.0_dp
 
-
 do j=1,1! m
 	non_physical_count = 0.0_dp
-	do k=1, 1!n
+	do k=1,1
 		! purity 
 		pur=x_start + j*(x_end-x_start)/real(m,kind=dp)	
        	
@@ -127,6 +126,11 @@ do j=1,1! m
         call printvectors(dens, 'Density matrix')
         call printvectors(dens_est, 'Estimated Density matrix')
 
+        ! dist is a (3,n) array
+        ! dist(1) is operator dist
+        ! dist(2) is trace dist
+        ! dist(3) is fidelity dist
+    
     end do
     !write(*,*) op(1)%data(:)
 end do
@@ -136,12 +140,12 @@ write(*,*) size(op(1)%data)
 
 rand=0.0
 r_unitary=rand_unitary()
-call printvectors(r_unitary, 'random unitary is')
+!call printvectors(r_unitary, 'random unitary is')
 
 !dens=rand_density(pur)
-call printvectors(dens, 'rand density')
+!call printvectors(dens, 'rand density')
 
-print*, linear_estimate(op)
+!print*, linear_estimate(op)
 
 deallocate(non_physical)
 end program enmtest 

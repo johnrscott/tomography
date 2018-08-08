@@ -56,6 +56,7 @@ do j=1,size(ops)
 	end do
 	! allocate the 3 basis vectors data arrays for sampling results
 	allocate(ops(j)%data(samples))
+    print*, 'allocated ops data'
 end do			
 end subroutine constructoperators
 
@@ -85,23 +86,17 @@ implicit none
 type(operator) :: op
 integer :: n, j
 integer :: lda, ldvl, ldvr
-integer, parameter   :: lwmax = 1000 
 
 ! matrix in is a
 complex(kind=dp), dimension(2,2) :: a
 complex(kind=dp), allocatable, dimension(:,:) :: projectors
 
 ! left & right vectors
-complex(kind=dp), allocatable, dimension(:,:) :: vl, vr
+complex(kind=dp), allocatable, dimension(:,:) :: vl
 ! eigen values are w
-complex(kind=dp), allocatable, dimension(:) :: w, work 
+complex(kind=dp), allocatable, dimension(:) :: w 
 complex(kind=dp), dimension(2,2,2) :: proj
 
-! temp scalars
-integer :: info, lwork
-
-!temp arrays
-real(kind=dp), allocatable, dimension(:) ::  rwork
 real(kind=dp), dimension(2) :: outcome
 
 	a=op%matrix
@@ -109,34 +104,18 @@ real(kind=dp), dimension(2) :: outcome
 	! use size of input matrix
 	n=size(a,1)
 	ldvl=size(a,1)
-	ldvr=size(a,1)
-	lda=size(a,1)
 
 	! eigen vectors, eigen vals & temp arrays
 	allocate(vl( ldvl, n ))
-	allocate(vr( ldvr, n ))
-	allocate(w( n ))
-	allocate( work( lwmax ))
-	allocate(rwork(2*n))
-
+    allocate(w(n))
 	allocate(projectors(n,n))
+    w=0.0_dp
+    vl=0.0_dp
+    !!!! end 
 
-	!     .. eXECUTABLE sTATEMENTS ..
-	!     qUERY THE OPTIMAL WORKSPACE.
-	lwork = -1
-	call zgeev( 'V', 'N', n, a, lda, w, vl, ldvl, vr, ldvr, work, lwork, rwork, info )
-	lwork = min( lwmax, int( work( 1 ) ) )
-
-	!     sOLVE EIGENPROBLEM.
-	call zgeev( 'v', 'n', n, a, lda, w, vl, ldvl, vr, ldvr, work, lwork, rwork, info )
-
-	!     cHECK FOR CONVERGENCE.
-	if( info.gt.0 ) then
-	write(*,*)'tHE ALGORITHM FAILED TO COMPUTE EIGENVALUES.'
-	stop
-	end if
-
-	!for the 2 eigen vectors construct projectors
+    call complexeigenvects(a,w, vl) 
+	
+    !for the 2 eigen vectors construct projectors
 	! assign matching eigen vals
 	do j=1,2
 	proj(j,:,:) = outerproduct(vl(j,:),conjg(vl(j,:)))
@@ -147,12 +126,6 @@ real(kind=dp), dimension(2) :: outcome
 		op%proj(j)%matrix(:,:)=proj(j,:,:)
 		op%proj(j)%outcome=outcome(j)
 	end do
-	deallocate(vl)
-	deallocate(vr)
-	deallocate(w)
-	deallocate(work)
-	deallocate(rwork)
-	deallocate(projectors)
 end subroutine makeprojector
 
 
@@ -233,10 +206,11 @@ real(kind=dp) :: r
 real(kind=dp), dimension(2) :: p
 complex(kind=dp), dimension(2,2) :: dens
 !complex(kind=dp), dimension(2,2,2) :: proj
+
 do i=1,size(ops)
     do j=1, 2
         ! from oli's std lib
-        p(j) = abs(complextrace(dens,ops(i)%proj(j)%matrix(:,:))) 
+        p(j) = abs(complextrace(matmul(dens,ops(i)%proj(j)%matrix))) 
     end do
     do k=1,samples
         call random_number(r)
@@ -260,8 +234,6 @@ function linear_estimate(ops)
     type(operator), dimension(3) :: ops
     complex(kind=dp), dimension(2,2) :: paulix,pauliy,pauliz, ident, linear_estimate
     real(kind=dp), dimension(3) :: means
-    !real(kind=dp) :: linear_estimate
-    !real(kind=dp), dimension(:) ::
     integer :: i
     
     ! I
@@ -280,7 +252,16 @@ function linear_estimate(ops)
     linear_estimate=(means(1)*paulix+means(2)*pauliy+means(3)*pauliz + ident)/2.0_dp
 end function linear_estimate
 
+function distance_op(a,b)
+    real(kind=dp) :: distance_op
+    complex(kind=dp), dimension(2,2) :: a,b
 
+end function distance_op
 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 end module functions
 
