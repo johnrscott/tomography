@@ -125,7 +125,9 @@ do j=1,1! m
         dens_est=linear_estimate(op)
         call printvectors(dens, 'Density matrix')
         call printvectors(dens_est, 'Estimated Density matrix')
-
+        
+        !dist(1,1)=
+        print*, distance_op(dens_est,dens)
         ! dist is a (3,n) array
         ! dist(1) is operator dist
         ! dist(2) is trace dist

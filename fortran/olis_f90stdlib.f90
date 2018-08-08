@@ -145,12 +145,71 @@ end subroutine complexeigenvects
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-subroutine complexsvd()
+subroutine complexsvd(a, s)
+! matrix a in, eigenvals, eigenvects out
+implicit none 
 
+integer :: n, j
+integer :: lda, ldu, ldvt
+integer, parameter   :: lwmax = 1000 
 
+! matrix in is a
+complex(kind=dp), dimension(:,:), intent(inout) :: a
+real(kind=dp), dimension(:) :: s
+! left & right vectors
+complex(kind=dp), allocatable, dimension(:,:) :: u, vt
+! eigen values are w
+complex(kind=dp), allocatable, dimension(:) ::  work 
 
+! temp scalars
+integer :: info, lwork
 
+!temp arrays
+real(kind=dp), allocatable, dimension(:) ::  rwork
 
+! use size of input matrix
+n=size(a,1)
+ldu=size(a,1)
+ldvt=size(a,1)
+lda=size(a,1)
+
+! eigen vectors, eigen vals & temp arrays
+allocate(u( ldu, n ))
+allocate(vt( ldvt, n ))
+!allocate(w( n ))
+allocate( work( lwmax ))
+allocate(rwork(2*n))
+
+!no left and right col vectors
+! rows m =size(a,1)
+! cols n= size(a,2)
+! a is matrix
+! lda =size(a,1)
+! s vector svd
+! u matrix
+! ldu = m 
+! vt matrix hermitian conjg
+! ldvt = n 
+! work 
+! lwork
+! rwork
+call printvectors(a, 'dens -dens_est')
+
+! quiery the workspace size
+lwork = -1
+call zgesvd('S','N', n, n, a, lda, s, u, ldu, vt, ldvt, work, lwork, rwork, info )
+
+! do svd
+lwork = min( lwmax, int( work( 1 ) ) )
+call zgesvd('S','N', n, n, a, lda, s, u, ldu, vt, ldvt,  work, lwork, rwork, info )
+
+!     cHECK FOR CONVERGENCE.
+if( info.gt.0 ) then
+write(*,*)'tHE ALGORITHM FAILED TO COMPUTE EIGENVALUES.'
+stop
+end if
+
+print*, s
 end subroutine complexsvd
 
 end module olis_fstdlib

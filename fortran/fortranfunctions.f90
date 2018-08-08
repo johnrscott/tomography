@@ -254,8 +254,13 @@ end function linear_estimate
 
 function distance_op(a,b)
     real(kind=dp) :: distance_op
-    complex(kind=dp), dimension(2,2) :: a,b
-
+    complex(kind=dp), dimension(2,2) :: a,b, c
+    real(kind=dp), dimension(2) :: sigma
+    sigma=0.0_dp
+    c=a-b
+call complexsvd(c,sigma)
+   print*,'sigma is', sigma
+   distance_op=sigma(1)
 end function distance_op
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
