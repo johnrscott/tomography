@@ -74,7 +74,7 @@ file = open("linear_adaptive_1_python.dat", "w")
 file.write("Distances between estimated and original density matrices using various distances:\n\n")
 file.write("Number of purity values tried = "+str(M)+"\n")
 file.write("Number of density matrices per purity parameter = "+str(N)+"\n")
-file.write("Total number of measurements for each of X, Y and Z = "+str(S)+"\n\n");
+file.write("Total number of measurements = "+str(S)+"\n\n");
 file.write("PURITY, \tOPERATOR, \tTRACE, \t\tFIDELITY, \tNON PHYSICAL\n")
 
 # Define x -- put a loop here ----------------------------------------- LOOP for x between 0 and 1

@@ -1,4 +1,4 @@
-Distances between estimated and original density matrices using various distances:
+Distances between estimated and original density matrices using various distances.Go to the end of the file for the running time.
 
 Number of purity values tried = 2000
 Number of density matrices per purity parameter = 500

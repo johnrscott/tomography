@@ -3,6 +3,9 @@
 Tested both the cpp and python programs in the case of a diagonal density matrix (i.e. no random unitary generation). The output of estimation errors measured using various distances are similar, meaning the norms are probably right. The results are in linear_test_no_random_unitary*. When the random unitaries are included the output distribution is different -- so something is up with the generation of random unitaries. However, implementing both random unitaries in exactly the same way (from the paper '2009 Ozols - How to generate a random unitary matrix') the output distributions look very similar -- those results are in linear_test_with_randomies*. Compared to the case without random unitaries, only the fidelity looks substantially different (flat in the case of no random unitaries, and U shaped when random unitaries are included).
 ** 26th July 2018 -- Tested the adaptive linear estimator
 The plot linear_adaptive_python_1.dat looks wrong. I need to consolidate the code and then debug it properly. But I think it's nearly correct. The next thing to try is the linear estimator with an arbitrary basis that is fixed, to see if the shape comes out similar. The plot linear_adaptive_python_3.dat tests the new functions with just the XYZ basis -- it looks the same as before which is goot. Plot linear_adaptive_python_4.dat uses another basis to check the shape looks the same (it does
+** 7th Aug 2018 -- Comparing straddled basis with XYZ
+The files linear_xyz_python.dat and linear_adapt_python.dat contain results 
+
 * ENM estimator tests
 ** 19th July 2018 -- Tested the ENM routine for first time
 *** enm_test_with_random_unitaries_cpp_1.dat. 
