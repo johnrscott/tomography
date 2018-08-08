@@ -25,8 +25,8 @@ real(kind=dp), dimension(2) :: outcomes_x, outcomes_y, outcomes_z
 
 complex(kind=dp), dimension(2,2,2) :: proj_x, proj_y, proj_z
 complex(kind=dp), dimension(4,2,2) :: operators
-complex(kind=dp), dimension(2,2) :: I, X, Y, Z, r_unitary, dens
-
+complex(kind=dp), dimension(2,2) :: I, X, Y, Z, paulix, pauliz, pauliy
+complex(kind=dp), dimension(2,2) :: r_unitary, dens, dens_est 
 ! operator has a %matrix and
 ! %proj which has -> %matrix & %outcome
 !
@@ -80,6 +80,13 @@ I=0.0_dp
 I(1,1)=(1,0)
 I(2,2)=(1,0)
 
+! pauli matrices 
+paulix=0.0_dp; pauliy=0.0_dp; pauliz=0.0_dp
+paulix(1,2)=(1.0_dp, 0.0_dp);	paulix(2,1)=(1.0_dp,0.0_dp)
+pauliy(1,2)=-(0.0_dp,1.0_dp);	pauliy(2,1)=(0.0_dp,1.0_dp)
+pauliz(1,1)=(1.0_dp,0.0_dp);	pauliz(2,2)=-(1.0_dp,0.0_dp)
+
+
 ! the pauli basis vectors, keep static here
 pauli(1,:)=(/(1,0),(0,0),(0,0)/)
 pauli(2,:)=(/(0,0),(1,0),(0,0)/)
@@ -109,9 +116,17 @@ do j=1,1! m
 	do k=1, 1!n
 		! purity 
 		pur=x_start + j*(x_end-x_start)/real(m,kind=dp)	
-       		! random density matrix 
+       	
+        ! random density matrix 
 		dens=rand_density(pur) 
+        
+        ! for s samples 
         call simulate(dens,op,s)
+        
+        dens_est=linear_estimate(op)
+        call printvectors(dens, 'Density matrix')
+        call printvectors(dens_est, 'Estimated Density matrix')
+
     end do
     !write(*,*) op(1)%data(:)
 end do
@@ -123,9 +138,10 @@ rand=0.0
 r_unitary=rand_unitary()
 call printvectors(r_unitary, 'random unitary is')
 
-dens=rand_density(pur)
+!dens=rand_density(pur)
 call printvectors(dens, 'rand density')
 
+print*, linear_estimate(op)
 
 deallocate(non_physical)
 end program enmtest 

@@ -254,6 +254,33 @@ do i=1,size(ops)
 end do
 end subroutine simulate 
 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+function linear_estimate(ops)
+    type(operator), dimension(3) :: ops
+    complex(kind=dp), dimension(2,2) :: paulix,pauliy,pauliz, ident, linear_estimate
+    real(kind=dp), dimension(3) :: means
+    !real(kind=dp) :: linear_estimate
+    !real(kind=dp), dimension(:) ::
+    integer :: i
+    
+    ! I
+    Ident=0.0_dp
+    Ident(1,1)=(1,0); Ident(2,2)=(1,0)
+
+    ! pauli matrices 
+    paulix=0.0_dp; pauliy=0.0_dp; pauliz=0.0_dp
+    paulix(1,2)=(1.0_dp, 0.0_dp);	paulix(2,1)=(1.0_dp,0.0_dp)
+    pauliy(1,2)=-(0.0_dp,1.0_dp);	pauliy(2,1)=(0.0_dp,1.0_dp)
+    pauliz(1,1)=(1.0_dp,0.0_dp);	pauliz(2,2)=-(1.0_dp,0.0_dp)
+
+    do i=1,size(ops)
+        means(i)=sum(ops(i)%data(:))/real(size(ops(i)%data(:)), kind=dp)
+    end do
+    linear_estimate=(means(1)*paulix+means(2)*pauliy+means(3)*pauliz + ident)/2.0_dp
+end function linear_estimate
+
+
 
 end module functions
 
