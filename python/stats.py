@@ -63,13 +63,13 @@ def distance_trace(A,B):
     distance = np.linalg.norm(A - B,'fro')
     return distance
     
-def distance_fid(A,B):
-    values_A,vectors_A = np.linalg.eig(A)
-    B_new = np.matmul(np.matmul(np.linalg.inv(vectors_A), B), vectors_A)
-    A_new = np.diag(np.sqrt(values_A))
-    D = np.matmul(np.matmul(A_new, B_new), np.asmatrix(A_new))
-    values_D = np.linalg.eigvals(D)
-    #fidelity = np.sum(np.linalg.eigvals(D))
+def distance_fid(A,B):                                                    # Note: to diagonalise, get svd. Square the singular values to get the eigenvalues. The singular vectors are the eigenvectors
+    values_A,vectors_A = np.linalg.eig(A)                                 # Diagonalise A. Put eigenvectors as columns of P.
+    B_new = np.matmul(np.matmul(np.linalg.inv(vectors_A), B), vectors_A)  # Change the basis of B: Let T = Inv(P) * B * P
+    A_new = np.diag(np.sqrt(values_A))                                    # Get A^(1/2) in the new basis: S, with sqare-rooted eigenvalues of A on the diagonal 
+    D = np.matmul(np.matmul(A_new, B_new), np.asmatrix(A_new))            # Get the product R = S * T * S
+    values_D = np.linalg.eigvals(D)                                       # Diagonalise R.
+    #fidelity = np.sum(np.linalg.eigvals(D))                              # The fidelity is the sum of the square roots of the eigenvalues of R
     fidelity = np.sum(np.sqrt(values_D))
 
     #C = sc.linalg.sqrtm(A) 
