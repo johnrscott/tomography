@@ -1,8 +1,72 @@
-module olis_fstdlib
+module olis_f90stdlib
 implicit none
 
 integer, parameter, private :: dp=selected_real_kind(15,300)
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! make temp arrays for complex_eigenvects
+integer, private :: lda, ldvl, ldvr
+integer, parameter, private   :: lwmax = 1000 
+
+! temp scalars
+integer, private :: info, lwork
+
+!temp arrays
+real(kind=dp), allocatable, dimension(:), private ::  rwork_eigen, rwork_svd
+complex(kind=dp), allocatable, dimension(:), private :: work_eigen, work_svd
+
+
+
+
+
+! make temp arrays for complex_svd
+
+
 contains
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+subroutine alloc_complex_eigenvects(matrix, eigenvals, u, v)
+! complex diag
+complex(kind=dp), dimension(:,:), intent(in) :: matrix
+complex(kind=dp), dimension(:,:), allocatable, intent(inout) :: u,v
+complex(kind=dp), dimension(:), allocatable, intent(inout) :: eigenvals
+integer :: n
+
+n=size(matrix,1)
+
+! u, v and eigenvals
+allocate(u(n,n))
+allocate(v(n,n))
+allocate(eigenvals(n))
+
+! temp work arrays
+allocate( work_eigen( lwmax ))
+allocate(rwork_eigen(2*size(matrix,1)))
+
+print*, 'Allocated temp work arrays for DIAG'
+end subroutine alloc_complex_eigenvects
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+subroutine alloc_complex_svd(matrix, sigma, u, vt)
+! complex SVD
+complex(kind=dp), dimension(:,:), intent(in) :: matrix
+complex(kind=dp), dimension(:,:), allocatable, intent(inout) :: u,vt
+real(kind=dp), dimension(:), allocatable, intent(inout) :: sigma 
+integer :: n,m
+m=size(matrix,1)
+n=size(matrix,2)
+
+allocate(u(m,n))
+allocate(vt( m, n ))
+! need to check which is smallest
+allocate(sigma(n))
+
+allocate( work_svd( lwmax ))
+allocate(rwork_svd(2*size(matrix,1)))
+
+print*, 'Allocated temp work arrays for SVD'
+end subroutine alloc_complex_svd
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 subroutine randseed(seed)
@@ -84,50 +148,37 @@ function complextrace(a)
 end function complextrace
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-subroutine complexeigenvects(a, w, vl, vr)
+
+subroutine complex_eigenvects(a, w, vl, vr)
 ! matrix a in, eigenvals, eigenvects out
-implicit none 
-
-integer :: n
-integer :: lda, ldvl, ldvr
-integer, parameter   :: lwmax = 1000 
-
+implicit none
 ! matrix in is a
-complex(kind=dp), dimension(:,:), intent(in) :: a
+!!!!!!!!!!!!!!!!!!!!!!! matrix a is overwritten WATCH OUT!
+complex(kind=dp), dimension(:,:), allocatable :: a
 
 ! left & right vectors
 complex(kind=dp), dimension(:,:), allocatable :: vl
 complex(kind=dp), dimension(:,:), allocatable :: vr
 ! eigen values are w
-complex(kind=dp), allocatable, dimension(:) :: w, work 
+complex(kind=dp), allocatable, dimension(:) :: w 
 
-! temp scalars
-integer :: info, lwork
-
-!temp arrays
-real(kind=dp), allocatable, dimension(:) ::  rwork
+integer :: n, m
 
 ! use size of input matrix
 n=size(a,1)
-ldvl=size(a,1)
-ldvr=size(a,1)
-lda=size(a,1)
+m=size(a,2)
 
-! eigen vectors, eigen vals & temp arrays
-!allocate(vl( ldvl, n ))
-!allocate(vr( ldvr, n ))
-!allocate(w( n ))
-allocate( work( lwmax ))
-allocate(rwork(2*n))
+lda=n
+ldvl=n
+ldvr=m
 
-!     .. eXECUTABLE sTATEMENTS ..
 !     qUERY THE OPTIMAL WORKSPACE.
 lwork = -1
-call zgeev( 'V', 'N', n, a, lda, w, vl, ldvl, vr, ldvr, work, lwork, rwork, info )
-lwork = min( lwmax, int( work( 1 ) ) )
+call zgeev( 'V', 'v', n, a, lda, w, vl, ldvl, vr, ldvr, work_eigen, lwork, rwork_eigen, info )
+lwork = min( lwmax, int( work_eigen( 1 ) ) )
 
 !     sOLVE EIGENPROBLEM.
-call zgeev( 'v', 'n', n, a, lda, w, vl, ldvl, vr, ldvr, work, lwork, rwork, info )
+call zgeev( 'v', 'v', n, a, lda, w, vl, ldvl, vr, ldvr, work_eigen, lwork, rwork_eigen, info )
 
 !     cHECK FOR CONVERGENCE.
 if( info.gt.0 ) then
@@ -135,51 +186,48 @@ write(*,*)'tHE ALGORITHM FAILED TO COMPUTE EIGENVALUES.'
 stop
 end if
 
-!for the 2 eigen vectors construct projectors
-      
-
-deallocate(vr)
-deallocate(work)
-deallocate(rwork)
-
-end subroutine complexeigenvects
+end subroutine complex_eigenvects
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-subroutine complexsvd(a, s)
+subroutine complex_svd(a, sigma, u, vt)
 ! matrix a in, eigenvals, eigenvects out
+! A = U * sigma * V **H
 implicit none 
 
-integer :: n, j
+integer :: n, m, i
 integer :: lda, ldu, ldvt
 integer, parameter   :: lwmax = 1000 
 
 ! matrix in is a
-complex(kind=dp), dimension(:,:), intent(inout) :: a
-real(kind=dp), dimension(:) :: s
+complex(kind=dp), dimension(:,:), allocatable, intent(inout) :: a
+! singular values sigma
+real(kind=dp), dimension(:), allocatable :: sigma
 ! left & right vectors
-complex(kind=dp), allocatable, dimension(:,:) :: u, vt
+complex(kind=dp), dimension(:,:), allocatable :: u, vt
 ! eigen values are w
-complex(kind=dp), allocatable, dimension(:) ::  work 
+!complex(kind=dp), allocatable, dimension(:) ::  work 
 
 ! temp scalars
-integer :: info, lwork
+!integer :: info, lwork
 
 !temp arrays
-real(kind=dp), allocatable, dimension(:) ::  rwork
+!real(kind=dp), allocatable, dimension(:) ::  rwork
 
 ! use size of input matrix
+! might have got n & m the wrong way round
 n=size(a,1)
+m=size(a,2)
 ldu=size(a,1)
 ldvt=size(a,1)
 lda=size(a,1)
 
 ! eigen vectors, eigen vals & temp arrays
-allocate(u( ldu, n ))
-allocate(vt( ldvt, n ))
+!allocate(u( ldu, n ))
+!allocate(vt( ldvt, n ))
 !allocate(w( n ))
-allocate( work( lwmax ))
-allocate(rwork(2*n))
+!allocate( work( lwmax ))
+!allocate(rwork(2*n))
 
 !no left and right col vectors
 ! rows m =size(a,1)
@@ -198,11 +246,11 @@ call printvectors(a, 'dens -dens_est')
 
 ! quiery the workspace size
 lwork = -1
-call zgesvd('S','N', n, n, a, lda, s, u, ldu, vt, ldvt, work, lwork, rwork, info )
+call zgesvd('S','S', m, n, a, lda, sigma, u, ldu, vt, ldvt, work_svd, lwork, rwork_svd, info )
 
 ! do svd
-lwork = min( lwmax, int( work( 1 ) ) )
-call zgesvd('S','N', n, n, a, lda, s, u, ldu, vt, ldvt,  work, lwork, rwork, info )
+lwork = min( lwmax, int( work_svd( 1 ) ) )
+call zgesvd('S','S', m, n, a, lda, sigma, u, ldu, vt, ldvt,  work_svd, lwork, rwork_svd, info )
 
 !     cHECK FOR CONVERGENCE.
 if( info.gt.0 ) then
@@ -210,8 +258,12 @@ write(*,*)'tHE ALGORITHM FAILED TO COMPUTE EIGENVALUES.'
 stop
 end if
 
-print*, s
-end subroutine complexsvd
+! write singular vals back to matrix a
+a=0.0_dp
+do i =1, n
+    a(i,i)=sigma(i)
+end do
+end subroutine complex_svd
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -231,4 +283,4 @@ function matrixnorm(c)
 end function matrixnorm
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
-end module olis_fstdlib
+end module olis_f90stdlib
