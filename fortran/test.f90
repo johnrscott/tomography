@@ -18,14 +18,24 @@ program test
     call alloc_complex_eigenvects(a, eigenvals, u_diag, v_diag)
     call alloc_complex_svd(a, sigma, u_svd, vt_svd) 
     a=0.0_dp
+    a(1,1)=(0.0_dp,0.0_dp)
     a(1,2)=(1.0_dp,0.0_dp)
-    a(1,1)=(1.0_dp,0.0_dp)
     a(2,1)=(1.0_dp, 0.0_dp)
+    a(2,2)=(0.0_dp,0.0_dp)
     b=a
 
+    !!!!! 
+    !
+    ! can now call complex_eigenvects(matrix, eigenvals, 
+    !                                   left eigenvects, right eigenvects)
+    !
+    ! can now call complex_svd(matrix, singular vals, u, v**H)
+    !
+    !!!!
     call printvectors(b, 'my matrix happens to be X')
     ! return diag matrix and u and v**H
     call complex_eigenvects(b,eigenvals,u_diag,v_diag)
+    v_diag=c_inv2(u_diag)
 
     call printvectors(a, 'old matrix')
     call printvectors(b, 'new matrix')
@@ -33,8 +43,11 @@ program test
     call printvectors(v_diag, 'v')
     write(*,*) 'eigen vals', eigenvals
 
-    call printvectors(matmul(u_diag,(matmul(b,v_diag))), 'matmul u, (a,v)')
 
+    ! do u * eigen vals * u inv to get back to a 
+    call printvectors(matmul(((u_diag)),(matmul(b,c_inv2(u_diag)))), 'matmul u, (a,v)')
+    print*,
+    call printvectors(matmul(u_diag,v_diag), 'uu-1')
     ! now test SVD
     
     print*, '--------------------------------------------'

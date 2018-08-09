@@ -185,7 +185,9 @@ if( info.gt.0 ) then
 write(*,*)'tHE ALGORITHM FAILED TO COMPUTE EIGENVALUES.'
 stop
 end if
-
+!if (n==2) then
+!    vr=c_inv2(vl)
+!end if
 end subroutine complex_eigenvects
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -206,13 +208,6 @@ real(kind=dp), dimension(:), allocatable :: sigma
 ! left & right vectors
 complex(kind=dp), dimension(:,:), allocatable :: u, vt
 ! eigen values are w
-!complex(kind=dp), allocatable, dimension(:) ::  work 
-
-! temp scalars
-!integer :: info, lwork
-
-!temp arrays
-!real(kind=dp), allocatable, dimension(:) ::  rwork
 
 ! use size of input matrix
 ! might have got n & m the wrong way round
@@ -223,25 +218,11 @@ ldvt=size(a,1)
 lda=size(a,1)
 
 ! eigen vectors, eigen vals & temp arrays
-!allocate(u( ldu, n ))
-!allocate(vt( ldvt, n ))
-!allocate(w( n ))
-!allocate( work( lwmax ))
-!allocate(rwork(2*n))
 
 !no left and right col vectors
-! rows m =size(a,1)
-! cols n= size(a,2)
-! a is matrix
-! lda =size(a,1)
-! s vector svd
-! u matrix
-! ldu = m 
-! vt matrix hermitian conjg
-! ldvt = n 
-! work 
-! lwork
-! rwork
+! rows m =size(a,1) ! cols n= size(a,2) ! a is matrix ! lda =size(a,1)
+! s vector svd ! u matrix ! ldu = m  ! vt matrix hermitian conjg
+! ldvt = n  ! work ! lwork! rwork
 call printvectors(a, 'dens -dens_est')
 
 ! quiery the workspace size
@@ -267,7 +248,21 @@ end subroutine complex_svd
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+function c_inv2(m_in)
+    implicit none
+    complex(kind=dp), dimension(2,2), intent(in) :: m_in 
+    complex(kind=dp), dimension(2,2) :: c_inv2
+    complex(kind=dp) :: det
+    c_inv2(1,1)=m_in(2,2)
+    c_inv2(1,2)=-m_in(1,2)
+    c_inv2(2,1)=-m_in(2,1)
+    c_inv2(2,2)=m_in(1,1)
+    det=m_in(1,1)*m_in(2,2) - m_in(1,2)*m_in(2,1)
+    c_inv2=c_inv2/det
+end function c_inv2
+
 !matrix norms
+! Frobenieus norm
 function matrixnorm(c)
     complex(kind=dp), dimension(:,:) :: c
     real(kind=dp) :: matrixnorm, zlange
