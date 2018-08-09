@@ -112,7 +112,7 @@ pur=0.0_dp
 
 do j=1,1! m
 	non_physical_count = 0.0_dp
-	do k=1,1
+	do k=1,1 !n
 		! purity 
 		pur=x_start + j*(x_end-x_start)/real(m,kind=dp)	
        	
@@ -125,11 +125,14 @@ do j=1,1! m
         dens_est=linear_estimate(op)
         call printvectors(dens, 'Density matrix')
         call printvectors(dens_est, 'Estimated Density matrix')
-
+        
         ! dist is a (3,n) array
         ! dist(1) is operator dist
         ! dist(2) is trace dist
         ! dist(3) is fidelity dist
+        dist(1,k)= distance_op(dens,dens_est)
+        dist(2,k)= distance_trace(dens,dens_est) 
+   !     dist(3,k)= distance_fidelity(dens,dens_est)
     
     end do
     !write(*,*) op(1)%data(:)
