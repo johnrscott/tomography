@@ -92,7 +92,7 @@ complex(kind=dp), dimension(2,2) :: a
 complex(kind=dp), allocatable, dimension(:,:) :: projectors
 
 ! left & right vectors
-complex(kind=dp), allocatable, dimension(:,:) :: vl
+complex(kind=dp), allocatable, dimension(:,:) :: vl, vr
 ! eigen values are w
 complex(kind=dp), allocatable, dimension(:) :: w 
 complex(kind=dp), dimension(2,2,2) :: proj
@@ -104,16 +104,18 @@ real(kind=dp), dimension(2) :: outcome
 	! use size of input matrix
 	n=size(a,1)
 	ldvl=size(a,1)
+    ldvr=size(a,2)
 
 	! eigen vectors, eigen vals & temp arrays
 	allocate(vl( ldvl, n ))
+    allocate(vr(ldvr,n))
     allocate(w(n))
 	allocate(projectors(n,n))
     w=0.0_dp
     vl=0.0_dp
     !!!! end 
 
-    call complexeigenvects(a,w, vl) 
+    call complexeigenvects(a,w, vl, vr) 
 	
     !for the 2 eigen vectors construct projectors
 	! assign matching eigen vals
@@ -253,6 +255,19 @@ function linear_estimate(ops)
 end function linear_estimate
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+! fidelity distance trace(op1**0.5 * op2 * op1**0.5)**0.5
+function distance_fidelity(a,b)
+real(kind=dp) :: distance_fidelity
+complex(kind=dp), dimension(:,:) :: a,b 
+! diag variables
+!real(kind=dp), dimension(:) :: w
+
+
+!call complexeigenvects(a,w,vl)
+end function distance_fidelity
+
+
 
 ! computes the largest singular value of the matrix a-b
 function distance_op(a,b)

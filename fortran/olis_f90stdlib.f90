@@ -84,11 +84,11 @@ function complextrace(a)
 end function complextrace
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-subroutine complexeigenvects(a, w, vl)
+subroutine complexeigenvects(a, w, vl, vr)
 ! matrix a in, eigenvals, eigenvects out
 implicit none 
 
-integer :: n, j
+integer :: n
 integer :: lda, ldvl, ldvr
 integer, parameter   :: lwmax = 1000 
 
@@ -96,7 +96,8 @@ integer, parameter   :: lwmax = 1000
 complex(kind=dp), dimension(:,:), intent(in) :: a
 
 ! left & right vectors
-complex(kind=dp), allocatable, dimension(:,:) :: vl, vr
+complex(kind=dp), dimension(:,:), allocatable :: vl
+complex(kind=dp), dimension(:,:), allocatable :: vr
 ! eigen values are w
 complex(kind=dp), allocatable, dimension(:) :: w, work 
 
@@ -114,7 +115,7 @@ lda=size(a,1)
 
 ! eigen vectors, eigen vals & temp arrays
 !allocate(vl( ldvl, n ))
-allocate(vr( ldvr, n ))
+!allocate(vr( ldvr, n ))
 !allocate(w( n ))
 allocate( work( lwmax ))
 allocate(rwork(2*n))
