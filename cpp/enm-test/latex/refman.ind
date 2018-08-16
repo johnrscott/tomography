@@ -1,0 +1,38 @@
+\begin{theindex}
+
+  \item {atext}
+    \subitem {plot}, \hyperpage{5}
+  \item {ax2}
+    \subitem {plot}, \hyperpage{5}
+
+  \indexspace
+
+  \item {current}
+    \subitem {plot}, \hyperpage{5}
+
+  \indexspace
+
+  \item {M}
+    \subitem {plot}, \hyperpage{6}
+
+  \indexspace
+
+  \item {N}
+    \subitem {plot}, \hyperpage{6}
+
+  \indexspace
+
+  \item {plot}, \hyperpage{5}
+    \subitem {atext}, \hyperpage{5}
+    \subitem {ax2}, \hyperpage{5}
+    \subitem {current}, \hyperpage{5}
+    \subitem {M}, \hyperpage{6}
+    \subitem {N}, \hyperpage{6}
+    \subitem {S}, \hyperpage{6}
+
+  \indexspace
+
+  \item {S}
+    \subitem {plot}, \hyperpage{6}
+
+\end{theindex}

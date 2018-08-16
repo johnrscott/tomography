@@ -1,10 +1,15 @@
 redblack.lo: ../../util/redblack.c /usr/include/stdc-predef.h \
- /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h /usr/include/stdlib.h \
+ /usr/local/lib/gcc/x86_64-pc-linux-gnu/7.1.0/include/stddef.h \
+ /usr/local/include/c++/7.1.0/stdlib.h \
+ /usr/local/include/c++/7.1.0/cstdlib \
+ /usr/local/include/c++/7.1.0/x86_64-pc-linux-gnu/bits/c++config.h \
+ /usr/local/include/c++/7.1.0/x86_64-pc-linux-gnu/bits/os_defines.h \
  /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
- /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+ /usr/local/include/c++/7.1.0/x86_64-pc-linux-gnu/bits/cpu_defines.h \
+ /usr/include/stdlib.h /usr/include/x86_64-linux-gnu/bits/waitflags.h \
  /usr/include/x86_64-linux-gnu/bits/waitstatus.h /usr/include/endian.h \
  /usr/include/x86_64-linux-gnu/bits/endian.h \
  /usr/include/x86_64-linux-gnu/bits/byteswap.h \
@@ -16,18 +21,23 @@ redblack.lo: ../../util/redblack.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/select.h \
  /usr/include/x86_64-linux-gnu/bits/sigset.h \
  /usr/include/x86_64-linux-gnu/bits/time.h \
- /usr/include/x86_64-linux-gnu/bits/select2.h \
  /usr/include/x86_64-linux-gnu/sys/sysmacros.h \
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
- /usr/include/x86_64-linux-gnu/bits/stdlib.h ../../util/redblack.h
+ /usr/local/include/c++/7.1.0/bits/std_abs.h ../../util/redblack.h
 
 /usr/include/stdc-predef.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h:
+/usr/local/lib/gcc/x86_64-pc-linux-gnu/7.1.0/include/stddef.h:
 
-/usr/include/stdlib.h:
+/usr/local/include/c++/7.1.0/stdlib.h:
+
+/usr/local/include/c++/7.1.0/cstdlib:
+
+/usr/local/include/c++/7.1.0/x86_64-pc-linux-gnu/bits/c++config.h:
+
+/usr/local/include/c++/7.1.0/x86_64-pc-linux-gnu/bits/os_defines.h:
 
 /usr/include/features.h:
 
@@ -38,6 +48,10 @@ redblack.lo: ../../util/redblack.c /usr/include/stdc-predef.h \
 /usr/include/x86_64-linux-gnu/gnu/stubs.h:
 
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
+
+/usr/local/include/c++/7.1.0/x86_64-pc-linux-gnu/bits/cpu_defines.h:
+
+/usr/include/stdlib.h:
 
 /usr/include/x86_64-linux-gnu/bits/waitflags.h:
 
@@ -69,8 +83,6 @@ redblack.lo: ../../util/redblack.c /usr/include/stdc-predef.h \
 
 /usr/include/x86_64-linux-gnu/bits/time.h:
 
-/usr/include/x86_64-linux-gnu/bits/select2.h:
-
 /usr/include/x86_64-linux-gnu/sys/sysmacros.h:
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
@@ -81,6 +93,6 @@ redblack.lo: ../../util/redblack.c /usr/include/stdc-predef.h \
 
 /usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
 
-/usr/include/x86_64-linux-gnu/bits/stdlib.h:
+/usr/local/include/c++/7.1.0/bits/std_abs.h:
 
 ../../util/redblack.h:

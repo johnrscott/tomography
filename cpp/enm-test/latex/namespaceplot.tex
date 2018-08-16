@@ -1,0 +1,92 @@
+\hypertarget{namespaceplot}{\section{plot Namespace Reference}
+\label{namespaceplot}\index{plot@{plot}}
+}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+tuple \hyperlink{namespaceplot_a76604754d04d25d2ed09918540a6c70a}{data\+\_\+file} = open(sys.\+argv\mbox{[}1\mbox{]}, 'r')
+\item 
+tuple \hyperlink{namespaceplot_aa802f761d87c652c2b2d42d1df226cbe}{av\+\_\+distances} = np.\+array(\mbox{[}0,0,0\mbox{]})
+\item 
+list \hyperlink{namespaceplot_a3362f4ff1c2209b383471820c80e44e6}{non\+\_\+physical} = \mbox{[}$\,$\mbox{]}
+\item 
+list \hyperlink{namespaceplot_a2072124cc6ba55a01872b4b2c30b24e1}{x\+\_\+values} = \mbox{[}$\,$\mbox{]}
+\item 
+tuple \hyperlink{namespaceplot_a77186a44a4f6367fb7f0bb74ff404e18}{line\+M} = data\+\_\+file.\+readline()
+\item 
+list \hyperlink{namespaceplot_a61ca36fd897e468faeff5efacb7c8982}{M} = \hyperlink{namespaceplot_a77186a44a4f6367fb7f0bb74ff404e18}{line\+M}\mbox{[}1\mbox{]}
+\item 
+tuple \hyperlink{namespaceplot_a36ffd57cec3771249d4084c61ddf66c5}{line\+N} = data\+\_\+file.\+readline()
+\item 
+list \hyperlink{namespaceplot_aa0f86ba798722938f2b4e9b107b1fecb}{N} = \hyperlink{namespaceplot_a36ffd57cec3771249d4084c61ddf66c5}{line\+N}\mbox{[}1\mbox{]}
+\item 
+tuple \hyperlink{namespaceplot_a5ea77f461a65df196d3e8b9cb1f6907c}{line\+S} = data\+\_\+file.\+readline()
+\item 
+list \hyperlink{namespaceplot_a58c46b78fd9b0e96570078d06843cf55}{S} = \hyperlink{namespaceplot_a5ea77f461a65df196d3e8b9cb1f6907c}{line\+S}\mbox{[}1\mbox{]}
+\item 
+tuple \hyperlink{namespaceplot_ac521044b45248b4566a26825505c17ed}{current} = line.\+split(',')
+\item 
+tuple \hyperlink{namespaceplot_ac6d7b09f45c20812fc30774900d5a5ec}{line\+T} = data\+\_\+file.\+readline()
+\item 
+list \hyperlink{namespaceplot_a761ebcb8af2efb55c60cf9431dfb87a5}{total\+\_\+time} = \hyperlink{namespaceplot_ac6d7b09f45c20812fc30774900d5a5ec}{line\+T}\mbox{[}1\mbox{]}
+\item 
+tuple \hyperlink{namespaceplot_a1b4b1cb4d1fa8a5a42231982413b9a90}{ax2} = ax1.\+twinx()
+\item 
+tuple \hyperlink{namespaceplot_a73adf0d804e9c50fb4c9a8d30e6112f3}{atext}
+\end{DoxyCompactItemize}
+
+
+\subsection{Variable Documentation}
+\hypertarget{namespaceplot_a73adf0d804e9c50fb4c9a8d30e6112f3}{\index{plot@{plot}!atext@{atext}}
+\index{atext@{atext}!plot@{plot}}
+\subsubsection[{atext}]{\setlength{\rightskip}{0pt plus 5cm}tuple plot.\+atext}}\label{namespaceplot_a73adf0d804e9c50fb4c9a8d30e6112f3}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+1 = AnchoredText(\textcolor{stringliteral}{"Number of purity parameters: "} + str(M) + \textcolor{stringliteral}{"\(\backslash\)n"}
+2                      +\textcolor{stringliteral}{"Density matrices: "}+ str(N) + \textcolor{stringliteral}{"\(\backslash\)n"}
+3                      +\textcolor{stringliteral}{"Samples per measurement: "} + str(S) + \textcolor{stringliteral}{"\(\backslash\)n"}
+4                      +\textcolor{stringliteral}{"Total running time:  "} + str(total\_time),
+5                      loc=2)
+\end{DoxyCode}
+\hypertarget{namespaceplot_aa802f761d87c652c2b2d42d1df226cbe}{\index{plot@{plot}!av\+\_\+distances@{av\+\_\+distances}}
+\index{av\+\_\+distances@{av\+\_\+distances}!plot@{plot}}
+\subsubsection[{av\+\_\+distances}]{\setlength{\rightskip}{0pt plus 5cm}tuple plot.\+av\+\_\+distances = np.\+array(\mbox{[}0,0,0\mbox{]})}}\label{namespaceplot_aa802f761d87c652c2b2d42d1df226cbe}
+\hypertarget{namespaceplot_a1b4b1cb4d1fa8a5a42231982413b9a90}{\index{plot@{plot}!ax2@{ax2}}
+\index{ax2@{ax2}!plot@{plot}}
+\subsubsection[{ax2}]{\setlength{\rightskip}{0pt plus 5cm}tuple plot.\+ax2 = ax1.\+twinx()}}\label{namespaceplot_a1b4b1cb4d1fa8a5a42231982413b9a90}
+\hypertarget{namespaceplot_ac521044b45248b4566a26825505c17ed}{\index{plot@{plot}!current@{current}}
+\index{current@{current}!plot@{plot}}
+\subsubsection[{current}]{\setlength{\rightskip}{0pt plus 5cm}tuple plot.\+current = line.\+split(',')}}\label{namespaceplot_ac521044b45248b4566a26825505c17ed}
+\hypertarget{namespaceplot_a76604754d04d25d2ed09918540a6c70a}{\index{plot@{plot}!data\+\_\+file@{data\+\_\+file}}
+\index{data\+\_\+file@{data\+\_\+file}!plot@{plot}}
+\subsubsection[{data\+\_\+file}]{\setlength{\rightskip}{0pt plus 5cm}tuple plot.\+data\+\_\+file = open(sys.\+argv\mbox{[}1\mbox{]}, 'r')}}\label{namespaceplot_a76604754d04d25d2ed09918540a6c70a}
+\hypertarget{namespaceplot_a77186a44a4f6367fb7f0bb74ff404e18}{\index{plot@{plot}!line\+M@{line\+M}}
+\index{line\+M@{line\+M}!plot@{plot}}
+\subsubsection[{line\+M}]{\setlength{\rightskip}{0pt plus 5cm}tuple plot.\+line\+M = data\+\_\+file.\+readline()}}\label{namespaceplot_a77186a44a4f6367fb7f0bb74ff404e18}
+\hypertarget{namespaceplot_a36ffd57cec3771249d4084c61ddf66c5}{\index{plot@{plot}!line\+N@{line\+N}}
+\index{line\+N@{line\+N}!plot@{plot}}
+\subsubsection[{line\+N}]{\setlength{\rightskip}{0pt plus 5cm}tuple plot.\+line\+N = data\+\_\+file.\+readline()}}\label{namespaceplot_a36ffd57cec3771249d4084c61ddf66c5}
+\hypertarget{namespaceplot_a5ea77f461a65df196d3e8b9cb1f6907c}{\index{plot@{plot}!line\+S@{line\+S}}
+\index{line\+S@{line\+S}!plot@{plot}}
+\subsubsection[{line\+S}]{\setlength{\rightskip}{0pt plus 5cm}tuple plot.\+line\+S = data\+\_\+file.\+readline()}}\label{namespaceplot_a5ea77f461a65df196d3e8b9cb1f6907c}
+\hypertarget{namespaceplot_ac6d7b09f45c20812fc30774900d5a5ec}{\index{plot@{plot}!line\+T@{line\+T}}
+\index{line\+T@{line\+T}!plot@{plot}}
+\subsubsection[{line\+T}]{\setlength{\rightskip}{0pt plus 5cm}tuple plot.\+line\+T = data\+\_\+file.\+readline()}}\label{namespaceplot_ac6d7b09f45c20812fc30774900d5a5ec}
+\hypertarget{namespaceplot_a61ca36fd897e468faeff5efacb7c8982}{\index{plot@{plot}!M@{M}}
+\index{M@{M}!plot@{plot}}
+\subsubsection[{M}]{\setlength{\rightskip}{0pt plus 5cm}list plot.\+M = {\bf line\+M}\mbox{[}1\mbox{]}}}\label{namespaceplot_a61ca36fd897e468faeff5efacb7c8982}
+\hypertarget{namespaceplot_aa0f86ba798722938f2b4e9b107b1fecb}{\index{plot@{plot}!N@{N}}
+\index{N@{N}!plot@{plot}}
+\subsubsection[{N}]{\setlength{\rightskip}{0pt plus 5cm}list plot.\+N = {\bf line\+N}\mbox{[}1\mbox{]}}}\label{namespaceplot_aa0f86ba798722938f2b4e9b107b1fecb}
+\hypertarget{namespaceplot_a3362f4ff1c2209b383471820c80e44e6}{\index{plot@{plot}!non\+\_\+physical@{non\+\_\+physical}}
+\index{non\+\_\+physical@{non\+\_\+physical}!plot@{plot}}
+\subsubsection[{non\+\_\+physical}]{\setlength{\rightskip}{0pt plus 5cm}list plot.\+non\+\_\+physical = \mbox{[}$\,$\mbox{]}}}\label{namespaceplot_a3362f4ff1c2209b383471820c80e44e6}
+\hypertarget{namespaceplot_a58c46b78fd9b0e96570078d06843cf55}{\index{plot@{plot}!S@{S}}
+\index{S@{S}!plot@{plot}}
+\subsubsection[{S}]{\setlength{\rightskip}{0pt plus 5cm}list plot.\+S = {\bf line\+S}\mbox{[}1\mbox{]}}}\label{namespaceplot_a58c46b78fd9b0e96570078d06843cf55}
+\hypertarget{namespaceplot_a761ebcb8af2efb55c60cf9431dfb87a5}{\index{plot@{plot}!total\+\_\+time@{total\+\_\+time}}
+\index{total\+\_\+time@{total\+\_\+time}!plot@{plot}}
+\subsubsection[{total\+\_\+time}]{\setlength{\rightskip}{0pt plus 5cm}list plot.\+total\+\_\+time = {\bf line\+T}\mbox{[}1\mbox{]}}}\label{namespaceplot_a761ebcb8af2efb55c60cf9431dfb87a5}
+\hypertarget{namespaceplot_a2072124cc6ba55a01872b4b2c30b24e1}{\index{plot@{plot}!x\+\_\+values@{x\+\_\+values}}
+\index{x\+\_\+values@{x\+\_\+values}!plot@{plot}}
+\subsubsection[{x\+\_\+values}]{\setlength{\rightskip}{0pt plus 5cm}list plot.\+x\+\_\+values = \mbox{[}$\,$\mbox{]}}}\label{namespaceplot_a2072124cc6ba55a01872b4b2c30b24e1}
