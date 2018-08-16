@@ -2,13 +2,13 @@ CC = g++
 LDLIBS = -I../ -L/usr/local/lib/ -lnlopt
 CFLAGS = -std=c++11 -O3 -c
 LFLAGS = -std=c++11 -O3
-BINARY = enm-test
+BINARY = linear-adaptive
 
-enm-test: enm-test.o simulation.o estimation.o stats.o proj.o progress.o enm-test.h
-	$(CC) $(LFLAGS) -o $(BINARY) enm-test.o simulation.o estimation.o stats.o proj.o progress.o $(LDLIBS)
+linear-adaptive: linear-adaptive.o simulation.o estimation.o stats.o proj.o progress.o meas.o linear-adaptive.h
+	$(CC) $(LFLAGS) -o $(BINARY) linear-adaptive.o simulation.o estimation.o stats.o proj.o progress.o meas.o $(LDLIBS)
 
-enm-test.o: enm-test.cpp simulation.h 
-	$(CC) $(CFLAGS) enm-test.cpp $(LDLIBS)
+linear-adaptive.o: linear-adaptive.cpp simulation.h 
+	$(CC) $(CFLAGS) linear-adaptive.cpp $(LDLIBS)
 
 simulation.o: simulation.cpp simulation.h
 	$(CC) $(CFLAGS) simulation.cpp $(LDLIBS)
@@ -25,6 +25,8 @@ proj.o: proj.cpp proj.h
 progress.o: progress.cpp progress.h
 	$(CC) $(CFLAGS) progress.cpp $(LDLIBS)
 
+meas.o: meas.cpp meas.h
+	$(CC) $(CFLAGS) meas.cpp $(LDLIBS)
 
 clean:
 	rm -f $(BINARY) *.o 
