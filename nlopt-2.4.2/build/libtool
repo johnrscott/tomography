@@ -1,8 +1,8 @@
-#! /bin/bash
+#! /bin/sh
 
 # libtool - Provide generalized library-building support services.
 # Generated automatically by config.status (nlopt) 2.4.2
-# Libtool was configured on host it057415:
+# Libtool was configured on host HP-jrs:
 # NOTE: Changes made to this file will be lost: look at ltmain.sh.
 #
 #   Copyright (C) 1996, 1997, 1998, 1999, 2000, 2001, 2003, 2004, 2005,
@@ -65,7 +65,7 @@ pic_mode=default
 fast_install=needless
 
 # Shell to use when invoking shell scripts.
-SHELL="/bin/bash"
+SHELL="/bin/sh"
 
 # An echo program that protects backslashes.
 ECHO="printf %s\\n"
@@ -275,10 +275,10 @@ finish_eval=""
 hardcode_into_libs=yes
 
 # Compile-time system search path for libraries.
-sys_lib_search_path_spec="/usr/lib/gcc/x86_64-linux-gnu/5 /usr/lib/x86_64-linux-gnu /usr/lib /lib/x86_64-linux-gnu /lib "
+sys_lib_search_path_spec="/usr/local/lib/gcc/x86_64-pc-linux-gnu/7.1.0 /usr/local/lib/x86_64-linux-gnu /usr/local/lib64 /lib/x86_64-linux-gnu /lib64 /usr/lib/x86_64-linux-gnu /usr/lib "
 
 # Run-time system search path for libraries.
-sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib/x86_64-linux-gnu/libfakeroot /lib/i386-linux-gnu /usr/lib/i386-linux-gnu /lib/i686-linux-gnu /usr/lib/i686-linux-gnu /usr/lib/i386-linux-gnu/mesa /usr/local/lib /lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu/mesa-egl /usr/lib/x86_64-linux-gnu/mesa /lib32 /usr/lib32 /libx32 /usr/libx32 "
+sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib/x86_64-linux-gnu/libfakeroot /usr/lib/i386-linux-gnu/mesa /lib/i386-linux-gnu /usr/lib/i386-linux-gnu /lib/i686-linux-gnu /usr/lib/i686-linux-gnu /usr/local/lib /lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu/mesa-egl /usr/lib/x86_64-linux-gnu/mesa /lib32 /usr/lib32 /usr/local/lib "
 
 # Whether dlopen is supported.
 dlopen_support=unknown
@@ -10227,17 +10227,17 @@ file_list_spec=""
 hardcode_action=immediate
 
 # The directories searched by this compiler when creating a shared library.
-compiler_lib_search_dirs="/usr/lib/gcc/x86_64-linux-gnu/5 /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu /usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib /lib/x86_64-linux-gnu /lib/../lib /usr/lib/x86_64-linux-gnu /usr/lib/../lib /usr/lib/gcc/x86_64-linux-gnu/5/../../.."
+compiler_lib_search_dirs="/usr/local/lib/gcc/x86_64-pc-linux-gnu/7.1.0 /usr/local/lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../../x86_64-linux-gnu /usr/local/lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../../../lib64 /lib/x86_64-linux-gnu /lib/../lib64 /usr/lib/x86_64-linux-gnu /usr/local/lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../.."
 
 # Dependencies to place before and after the objects being linked to
 # create a shared library.
-predep_objects="/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/5/crtbeginS.o"
-postdep_objects="/usr/lib/gcc/x86_64-linux-gnu/5/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu/crtn.o"
+predep_objects="/usr/lib/x86_64-linux-gnu/crti.o /usr/local/lib/gcc/x86_64-pc-linux-gnu/7.1.0/crtbeginS.o"
+postdep_objects="/usr/local/lib/gcc/x86_64-pc-linux-gnu/7.1.0/crtendS.o /usr/lib/x86_64-linux-gnu/crtn.o"
 predeps=""
 postdeps="-lstdc++ -lm -lgcc_s -lc -lgcc_s"
 
 # The library search path used internally by the compiler when linking
 # a shared library.
-compiler_lib_search_path="-L/usr/lib/gcc/x86_64-linux-gnu/5 -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/5/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/5/../../.."
+compiler_lib_search_path="-L/usr/local/lib/gcc/x86_64-pc-linux-gnu/7.1.0 -L/usr/local/lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../../x86_64-linux-gnu -L/usr/local/lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../../../lib64 -L/lib/x86_64-linux-gnu -L/lib/../lib64 -L/usr/lib/x86_64-linux-gnu -L/usr/local/lib/gcc/x86_64-pc-linux-gnu/7.1.0/../../.."
 
 # ### END LIBTOOL TAG CONFIG: CXX

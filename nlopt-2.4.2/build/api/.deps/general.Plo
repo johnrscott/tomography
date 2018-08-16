@@ -1,11 +1,14 @@
 general.lo: ../../api/general.c /usr/include/stdc-predef.h \
- /usr/include/math.h /usr/include/features.h \
- /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+ /usr/local/include/c++/7.1.0/math.h /usr/local/include/c++/7.1.0/cmath \
+ /usr/local/include/c++/7.1.0/x86_64-pc-linux-gnu/bits/c++config.h \
+ /usr/local/include/c++/7.1.0/x86_64-pc-linux-gnu/bits/os_defines.h \
+ /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
- /usr/include/x86_64-linux-gnu/bits/math-vector.h \
- /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
+ /usr/local/include/c++/7.1.0/x86_64-pc-linux-gnu/bits/cpu_defines.h \
+ /usr/local/include/c++/7.1.0/bits/cpp_type_traits.h \
+ /usr/local/include/c++/7.1.0/ext/type_traits.h /usr/include/math.h \
  /usr/include/x86_64-linux-gnu/bits/huge_val.h \
  /usr/include/x86_64-linux-gnu/bits/huge_valf.h \
  /usr/include/x86_64-linux-gnu/bits/huge_vall.h \
@@ -14,10 +17,9 @@ general.lo: ../../api/general.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/mathdef.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
  /usr/include/x86_64-linux-gnu/bits/mathinline.h \
- /usr/lib/gcc/x86_64-linux-gnu/5/include/float.h \
- ../../api/nlopt-internal.h ../../api/nlopt.h \
- /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h ../../util/nlopt-util.h \
- /usr/include/stdlib.h /usr/include/x86_64-linux-gnu/bits/waitflags.h \
+ /usr/local/include/c++/7.1.0/bits/std_abs.h /usr/include/stdlib.h \
+ /usr/local/lib/gcc/x86_64-pc-linux-gnu/7.1.0/include/stddef.h \
+ /usr/include/x86_64-linux-gnu/bits/waitflags.h \
  /usr/include/x86_64-linux-gnu/bits/waitstatus.h /usr/include/endian.h \
  /usr/include/x86_64-linux-gnu/bits/endian.h \
  /usr/include/x86_64-linux-gnu/bits/byteswap.h \
@@ -29,17 +31,17 @@ general.lo: ../../api/general.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/select.h \
  /usr/include/x86_64-linux-gnu/bits/sigset.h \
  /usr/include/x86_64-linux-gnu/bits/time.h \
- /usr/include/x86_64-linux-gnu/bits/select2.h \
  /usr/include/x86_64-linux-gnu/sys/sysmacros.h \
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
- /usr/include/x86_64-linux-gnu/bits/stdlib.h ../config.h \
- ../../api/nlopt.h /usr/include/unistd.h \
- /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+ /usr/local/lib/gcc/x86_64-pc-linux-gnu/7.1.0/include/float.h \
+ ../../api/nlopt-internal.h ../../api/nlopt.h ../../util/nlopt-util.h \
+ /usr/local/include/c++/7.1.0/stdlib.h \
+ /usr/local/include/c++/7.1.0/cstdlib ../config.h ../../api/nlopt.h \
+ /usr/include/unistd.h /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h /usr/include/getopt.h \
- /usr/include/x86_64-linux-gnu/bits/unistd.h \
  /usr/include/x86_64-linux-gnu/sys/syscall.h \
  /usr/include/x86_64-linux-gnu/asm/unistd.h \
  /usr/include/x86_64-linux-gnu/asm/unistd_64.h \
@@ -47,7 +49,13 @@ general.lo: ../../api/general.c /usr/include/stdc-predef.h \
 
 /usr/include/stdc-predef.h:
 
-/usr/include/math.h:
+/usr/local/include/c++/7.1.0/math.h:
+
+/usr/local/include/c++/7.1.0/cmath:
+
+/usr/local/include/c++/7.1.0/x86_64-pc-linux-gnu/bits/c++config.h:
+
+/usr/local/include/c++/7.1.0/x86_64-pc-linux-gnu/bits/os_defines.h:
 
 /usr/include/features.h:
 
@@ -59,9 +67,13 @@ general.lo: ../../api/general.c /usr/include/stdc-predef.h \
 
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
-/usr/include/x86_64-linux-gnu/bits/math-vector.h:
+/usr/local/include/c++/7.1.0/x86_64-pc-linux-gnu/bits/cpu_defines.h:
 
-/usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h:
+/usr/local/include/c++/7.1.0/bits/cpp_type_traits.h:
+
+/usr/local/include/c++/7.1.0/ext/type_traits.h:
+
+/usr/include/math.h:
 
 /usr/include/x86_64-linux-gnu/bits/huge_val.h:
 
@@ -79,17 +91,11 @@ general.lo: ../../api/general.c /usr/include/stdc-predef.h \
 
 /usr/include/x86_64-linux-gnu/bits/mathinline.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/5/include/float.h:
-
-../../api/nlopt-internal.h:
-
-../../api/nlopt.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h:
-
-../../util/nlopt-util.h:
+/usr/local/include/c++/7.1.0/bits/std_abs.h:
 
 /usr/include/stdlib.h:
+
+/usr/local/lib/gcc/x86_64-pc-linux-gnu/7.1.0/include/stddef.h:
 
 /usr/include/x86_64-linux-gnu/bits/waitflags.h:
 
@@ -121,8 +127,6 @@ general.lo: ../../api/general.c /usr/include/stdc-predef.h \
 
 /usr/include/x86_64-linux-gnu/bits/time.h:
 
-/usr/include/x86_64-linux-gnu/bits/select2.h:
-
 /usr/include/x86_64-linux-gnu/sys/sysmacros.h:
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
@@ -133,7 +137,17 @@ general.lo: ../../api/general.c /usr/include/stdc-predef.h \
 
 /usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
 
-/usr/include/x86_64-linux-gnu/bits/stdlib.h:
+/usr/local/lib/gcc/x86_64-pc-linux-gnu/7.1.0/include/float.h:
+
+../../api/nlopt-internal.h:
+
+../../api/nlopt.h:
+
+../../util/nlopt-util.h:
+
+/usr/local/include/c++/7.1.0/stdlib.h:
+
+/usr/local/include/c++/7.1.0/cstdlib:
 
 ../config.h:
 
@@ -148,8 +162,6 @@ general.lo: ../../api/general.c /usr/include/stdc-predef.h \
 /usr/include/x86_64-linux-gnu/bits/confname.h:
 
 /usr/include/getopt.h:
-
-/usr/include/x86_64-linux-gnu/bits/unistd.h:
 
 /usr/include/x86_64-linux-gnu/sys/syscall.h:
 

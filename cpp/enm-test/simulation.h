@@ -36,15 +36,14 @@
 typedef Eigen::Matrix<std::complex<double>,
 		      Eigen::Dynamic,
 		      Eigen::Dynamic> MatrixXc;
-
-// Function: Generate random unitary
-//
-// The method is to parametrise the unitary
-// group and then select the right distribution
-// for the parameters. See '2009 Ozols - How to
-// generate a random unitary matrix', page 5, for
-// more details.
-//
+/// Function: Generate random unitary
+///
+/// The method is to parametrise the unitary
+/// group and then select the right distribution
+/// for the parameters. See '2009 Ozols - How to
+/// generate a random unitary matrix', page 5, for
+/// more details.
+///
 MatrixXc random_unitary(std::mt19937 & generator);
 
 // Function: random_density(x)

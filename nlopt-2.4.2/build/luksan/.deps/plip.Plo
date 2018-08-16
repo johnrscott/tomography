@@ -1,6 +1,6 @@
 plip.lo: ../../luksan/plip.c /usr/include/stdc-predef.h \
- /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/limits.h \
- /usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/syslimits.h \
+ /usr/local/lib/gcc/x86_64-pc-linux-gnu/7.1.0/include-fixed/limits.h \
+ /usr/local/lib/gcc/x86_64-pc-linux-gnu/7.1.0/include-fixed/syslimits.h \
  /usr/include/limits.h /usr/include/features.h \
  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -11,8 +11,14 @@ plip.lo: ../../luksan/plip.c /usr/include/stdc-predef.h \
  /usr/include/linux/limits.h \
  /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
  /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
- /usr/include/x86_64-linux-gnu/bits/stdio_lim.h /usr/include/stdlib.h \
- /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+ /usr/local/include/c++/7.1.0/stdlib.h \
+ /usr/local/include/c++/7.1.0/cstdlib \
+ /usr/local/include/c++/7.1.0/x86_64-pc-linux-gnu/bits/c++config.h \
+ /usr/local/include/c++/7.1.0/x86_64-pc-linux-gnu/bits/os_defines.h \
+ /usr/local/include/c++/7.1.0/x86_64-pc-linux-gnu/bits/cpu_defines.h \
+ /usr/include/stdlib.h \
+ /usr/local/lib/gcc/x86_64-pc-linux-gnu/7.1.0/include/stddef.h \
  /usr/include/x86_64-linux-gnu/bits/waitflags.h \
  /usr/include/x86_64-linux-gnu/bits/waitstatus.h /usr/include/endian.h \
  /usr/include/x86_64-linux-gnu/bits/endian.h \
@@ -25,14 +31,14 @@ plip.lo: ../../luksan/plip.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/select.h \
  /usr/include/x86_64-linux-gnu/bits/sigset.h \
  /usr/include/x86_64-linux-gnu/bits/time.h \
- /usr/include/x86_64-linux-gnu/bits/select2.h \
  /usr/include/x86_64-linux-gnu/sys/sysmacros.h \
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-bsearch.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
- /usr/include/x86_64-linux-gnu/bits/stdlib.h /usr/include/math.h \
- /usr/include/x86_64-linux-gnu/bits/math-vector.h \
- /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
+ /usr/local/include/c++/7.1.0/bits/std_abs.h \
+ /usr/local/include/c++/7.1.0/math.h /usr/local/include/c++/7.1.0/cmath \
+ /usr/local/include/c++/7.1.0/bits/cpp_type_traits.h \
+ /usr/local/include/c++/7.1.0/ext/type_traits.h /usr/include/math.h \
  /usr/include/x86_64-linux-gnu/bits/huge_val.h \
  /usr/include/x86_64-linux-gnu/bits/huge_valf.h \
  /usr/include/x86_64-linux-gnu/bits/huge_vall.h \
@@ -41,14 +47,14 @@ plip.lo: ../../luksan/plip.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/mathdef.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
  /usr/include/x86_64-linux-gnu/bits/mathinline.h /usr/include/string.h \
- /usr/include/x86_64-linux-gnu/bits/string3.h ../../luksan/luksan.h \
- ../../api/nlopt.h ../../util/nlopt-util.h ../config.h
+ ../../luksan/luksan.h ../../api/nlopt.h ../../util/nlopt-util.h \
+ ../config.h
 
 /usr/include/stdc-predef.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/limits.h:
+/usr/local/lib/gcc/x86_64-pc-linux-gnu/7.1.0/include-fixed/limits.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed/syslimits.h:
+/usr/local/lib/gcc/x86_64-pc-linux-gnu/7.1.0/include-fixed/syslimits.h:
 
 /usr/include/limits.h:
 
@@ -74,9 +80,19 @@ plip.lo: ../../luksan/plip.c /usr/include/stdc-predef.h \
 
 /usr/include/x86_64-linux-gnu/bits/stdio_lim.h:
 
+/usr/local/include/c++/7.1.0/stdlib.h:
+
+/usr/local/include/c++/7.1.0/cstdlib:
+
+/usr/local/include/c++/7.1.0/x86_64-pc-linux-gnu/bits/c++config.h:
+
+/usr/local/include/c++/7.1.0/x86_64-pc-linux-gnu/bits/os_defines.h:
+
+/usr/local/include/c++/7.1.0/x86_64-pc-linux-gnu/bits/cpu_defines.h:
+
 /usr/include/stdlib.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h:
+/usr/local/lib/gcc/x86_64-pc-linux-gnu/7.1.0/include/stddef.h:
 
 /usr/include/x86_64-linux-gnu/bits/waitflags.h:
 
@@ -108,8 +124,6 @@ plip.lo: ../../luksan/plip.c /usr/include/stdc-predef.h \
 
 /usr/include/x86_64-linux-gnu/bits/time.h:
 
-/usr/include/x86_64-linux-gnu/bits/select2.h:
-
 /usr/include/x86_64-linux-gnu/sys/sysmacros.h:
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
@@ -120,13 +134,17 @@ plip.lo: ../../luksan/plip.c /usr/include/stdc-predef.h \
 
 /usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
 
-/usr/include/x86_64-linux-gnu/bits/stdlib.h:
+/usr/local/include/c++/7.1.0/bits/std_abs.h:
+
+/usr/local/include/c++/7.1.0/math.h:
+
+/usr/local/include/c++/7.1.0/cmath:
+
+/usr/local/include/c++/7.1.0/bits/cpp_type_traits.h:
+
+/usr/local/include/c++/7.1.0/ext/type_traits.h:
 
 /usr/include/math.h:
-
-/usr/include/x86_64-linux-gnu/bits/math-vector.h:
-
-/usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h:
 
 /usr/include/x86_64-linux-gnu/bits/huge_val.h:
 
@@ -145,8 +163,6 @@ plip.lo: ../../luksan/plip.c /usr/include/stdc-predef.h \
 /usr/include/x86_64-linux-gnu/bits/mathinline.h:
 
 /usr/include/string.h:
-
-/usr/include/x86_64-linux-gnu/bits/string3.h:
 
 ../../luksan/luksan.h:
 

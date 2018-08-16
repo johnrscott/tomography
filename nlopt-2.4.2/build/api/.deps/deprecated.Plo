@@ -1,8 +1,9 @@
 deprecated.lo: ../../api/deprecated.c /usr/include/stdc-predef.h \
- ../../api/nlopt.h /usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h
+ ../../api/nlopt.h \
+ /usr/local/lib/gcc/x86_64-pc-linux-gnu/7.1.0/include/stddef.h
 
 /usr/include/stdc-predef.h:
 
 ../../api/nlopt.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/5/include/stddef.h:
+/usr/local/lib/gcc/x86_64-pc-linux-gnu/7.1.0/include/stddef.h:

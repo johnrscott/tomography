@@ -1,0 +1,89 @@
+\hypertarget{simulation_8h}{\section{simulation.\+h File Reference}
+\label{simulation_8h}\index{simulation.\+h@{simulation.\+h}}
+}
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$iomanip$>$}\\*
+{\ttfamily \#include $<$cstdlib$>$}\\*
+{\ttfamily \#include $<$ctime$>$}\\*
+{\ttfamily \#include $<$chrono$>$}\\*
+{\ttfamily \#include $<$random$>$}\\*
+{\ttfamily \#include \char`\"{}Eigen/\+Dense\char`\"{}}\\*
+{\ttfamily \#include $<$cmath$>$}\\*
+Include dependency graph for simulation.\+h\+:
+This graph shows which files directly or indirectly include this file\+:
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{simulation_8h_a3bd4884fb6b1844510e98e9abd6835e5}{D\+E\+B\+U\+G\+\_\+\+P\+R\+I\+N\+T\+\_\+\+R\+A\+N\+D\+O\+M\+\_\+\+D\+E\+N\+S\+I\+T\+Y}
+\item 
+\#define \hyperlink{simulation_8h_a8a6488e041f4c1e82646a7bfff7e066a}{D\+E\+B\+U\+G\+\_\+\+P\+R\+I\+N\+T\+\_\+\+M\+E\+A\+S\+U\+R\+E\+M\+E\+N\+T\+S}
+\item 
+\#define \hyperlink{simulation_8h_a525335710b53cb064ca56b936120431e}{\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+E\+S}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef Eigen\+::\+Matrix\\*
+$<$ std\+::complex$<$ double $>$\\*
+, Eigen\+::\+Dynamic, \\*
+Eigen\+::\+Dynamic $>$ \hyperlink{simulation_8h_ae4c6729274148361e940502083363cec}{Matrix\+Xc}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{enm-test_8h_ae4c6729274148361e940502083363cec}{Matrix\+Xc} \hyperlink{simulation_8h_a4559ba184ebff4b73adeaa04ecdb9850}{random\+\_\+unitary} (std\+::mt19937 \&generator)
+\item 
+\hyperlink{enm-test_8h_ae4c6729274148361e940502083363cec}{Matrix\+Xc} \hyperlink{simulation_8h_a0b8021c4b2e3daa2e3a726766e8cc57b}{random\+\_\+density} (double x, std\+::mt19937 \&generator)
+\item 
+int \hyperlink{simulation_8h_a02cea4b14014b30c16df780794cd03cc}{simulate} (\hyperlink{enm-test_8h_ae4c6729274148361e940502083363cec}{Matrix\+Xc} dens, const \hyperlink{enm-test_8h_ae4c6729274148361e940502083363cec}{Matrix\+Xc} proj\mbox{[}$\,$\mbox{]}, const double meas\mbox{[}$\,$\mbox{]}, int S, double sim\+\_\+dat\mbox{[}$\,$\mbox{]}, std\+::mt19937 \&generator)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{simulation_8h_a525335710b53cb064ca56b936120431e}{\index{simulation.\+h@{simulation.\+h}!\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+E\+S@{\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+E\+S}}
+\index{\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+E\+S@{\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+E\+S}!simulation.\+h@{simulation.\+h}}
+\subsubsection[{\+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+E\+S}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+U\+S\+E\+\_\+\+M\+A\+T\+H\+\_\+\+D\+E\+F\+I\+N\+E\+S}}\label{simulation_8h_a525335710b53cb064ca56b936120431e}
+\hypertarget{simulation_8h_a8a6488e041f4c1e82646a7bfff7e066a}{\index{simulation.\+h@{simulation.\+h}!D\+E\+B\+U\+G\+\_\+\+P\+R\+I\+N\+T\+\_\+\+M\+E\+A\+S\+U\+R\+E\+M\+E\+N\+T\+S@{D\+E\+B\+U\+G\+\_\+\+P\+R\+I\+N\+T\+\_\+\+M\+E\+A\+S\+U\+R\+E\+M\+E\+N\+T\+S}}
+\index{D\+E\+B\+U\+G\+\_\+\+P\+R\+I\+N\+T\+\_\+\+M\+E\+A\+S\+U\+R\+E\+M\+E\+N\+T\+S@{D\+E\+B\+U\+G\+\_\+\+P\+R\+I\+N\+T\+\_\+\+M\+E\+A\+S\+U\+R\+E\+M\+E\+N\+T\+S}!simulation.\+h@{simulation.\+h}}
+\subsubsection[{D\+E\+B\+U\+G\+\_\+\+P\+R\+I\+N\+T\+\_\+\+M\+E\+A\+S\+U\+R\+E\+M\+E\+N\+T\+S}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+E\+B\+U\+G\+\_\+\+P\+R\+I\+N\+T\+\_\+\+M\+E\+A\+S\+U\+R\+E\+M\+E\+N\+T\+S}}\label{simulation_8h_a8a6488e041f4c1e82646a7bfff7e066a}
+\hypertarget{simulation_8h_a3bd4884fb6b1844510e98e9abd6835e5}{\index{simulation.\+h@{simulation.\+h}!D\+E\+B\+U\+G\+\_\+\+P\+R\+I\+N\+T\+\_\+\+R\+A\+N\+D\+O\+M\+\_\+\+D\+E\+N\+S\+I\+T\+Y@{D\+E\+B\+U\+G\+\_\+\+P\+R\+I\+N\+T\+\_\+\+R\+A\+N\+D\+O\+M\+\_\+\+D\+E\+N\+S\+I\+T\+Y}}
+\index{D\+E\+B\+U\+G\+\_\+\+P\+R\+I\+N\+T\+\_\+\+R\+A\+N\+D\+O\+M\+\_\+\+D\+E\+N\+S\+I\+T\+Y@{D\+E\+B\+U\+G\+\_\+\+P\+R\+I\+N\+T\+\_\+\+R\+A\+N\+D\+O\+M\+\_\+\+D\+E\+N\+S\+I\+T\+Y}!simulation.\+h@{simulation.\+h}}
+\subsubsection[{D\+E\+B\+U\+G\+\_\+\+P\+R\+I\+N\+T\+\_\+\+R\+A\+N\+D\+O\+M\+\_\+\+D\+E\+N\+S\+I\+T\+Y}]{\setlength{\rightskip}{0pt plus 5cm}\#define D\+E\+B\+U\+G\+\_\+\+P\+R\+I\+N\+T\+\_\+\+R\+A\+N\+D\+O\+M\+\_\+\+D\+E\+N\+S\+I\+T\+Y}}\label{simulation_8h_a3bd4884fb6b1844510e98e9abd6835e5}
+
+
+\subsection{Typedef Documentation}
+\hypertarget{simulation_8h_ae4c6729274148361e940502083363cec}{\index{simulation.\+h@{simulation.\+h}!Matrix\+Xc@{Matrix\+Xc}}
+\index{Matrix\+Xc@{Matrix\+Xc}!simulation.\+h@{simulation.\+h}}
+\subsubsection[{Matrix\+Xc}]{\setlength{\rightskip}{0pt plus 5cm}typedef Eigen\+::\+Matrix$<$std\+::complex$<$double$>$, Eigen\+::\+Dynamic, Eigen\+::\+Dynamic$>$ {\bf Matrix\+Xc}}}\label{simulation_8h_ae4c6729274148361e940502083363cec}
+
+
+\subsection{Function Documentation}
+\hypertarget{simulation_8h_a0b8021c4b2e3daa2e3a726766e8cc57b}{\index{simulation.\+h@{simulation.\+h}!random\+\_\+density@{random\+\_\+density}}
+\index{random\+\_\+density@{random\+\_\+density}!simulation.\+h@{simulation.\+h}}
+\subsubsection[{random\+\_\+density}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix\+Xc} random\+\_\+density (
+\begin{DoxyParamCaption}
+\item[{double}]{x, }
+\item[{std\+::mt19937 \&}]{generator}
+\end{DoxyParamCaption}
+)}}\label{simulation_8h_a0b8021c4b2e3daa2e3a726766e8cc57b}
+\hypertarget{simulation_8h_a4559ba184ebff4b73adeaa04ecdb9850}{\index{simulation.\+h@{simulation.\+h}!random\+\_\+unitary@{random\+\_\+unitary}}
+\index{random\+\_\+unitary@{random\+\_\+unitary}!simulation.\+h@{simulation.\+h}}
+\subsubsection[{random\+\_\+unitary}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix\+Xc} random\+\_\+unitary (
+\begin{DoxyParamCaption}
+\item[{std\+::mt19937 \&}]{generator}
+\end{DoxyParamCaption}
+)}}\label{simulation_8h_a4559ba184ebff4b73adeaa04ecdb9850}
+Function\+: Generate random unitary
+
+The method is to parametrise the unitary group and then select the right distribution for the parameters. See '2009 Ozols -\/ How to generate a random unitary matrix', page 5, for more details. \hypertarget{simulation_8h_a02cea4b14014b30c16df780794cd03cc}{\index{simulation.\+h@{simulation.\+h}!simulate@{simulate}}
+\index{simulate@{simulate}!simulation.\+h@{simulation.\+h}}
+\subsubsection[{simulate}]{\setlength{\rightskip}{0pt plus 5cm}int simulate (
+\begin{DoxyParamCaption}
+\item[{{\bf Matrix\+Xc}}]{dens, }
+\item[{const {\bf Matrix\+Xc}}]{proj\mbox{[}$\,$\mbox{]}, }
+\item[{const double}]{meas\mbox{[}$\,$\mbox{]}, }
+\item[{int}]{S, }
+\item[{double}]{sim\+\_\+dat\mbox{[}$\,$\mbox{]}, }
+\item[{std\+::mt19937 \&}]{generator}
+\end{DoxyParamCaption}
+)}}\label{simulation_8h_a02cea4b14014b30c16df780794cd03cc}

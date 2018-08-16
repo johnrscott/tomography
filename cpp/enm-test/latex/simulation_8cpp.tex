@@ -1,0 +1,46 @@
+\hypertarget{simulation_8cpp}{\section{simulation.\+cpp File Reference}
+\label{simulation_8cpp}\index{simulation.\+cpp@{simulation.\+cpp}}
+}
+{\ttfamily \#include \char`\"{}simulation.\+h\char`\"{}}\\*
+Include dependency graph for simulation.\+cpp\+:
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{enm-test_8h_ae4c6729274148361e940502083363cec}{Matrix\+Xc} \hyperlink{simulation_8cpp_a4559ba184ebff4b73adeaa04ecdb9850}{random\+\_\+unitary} (std\+::mt19937 \&generator)
+\item 
+\hyperlink{enm-test_8h_ae4c6729274148361e940502083363cec}{Matrix\+Xc} \hyperlink{simulation_8cpp_a0b8021c4b2e3daa2e3a726766e8cc57b}{random\+\_\+density} (double x, std\+::mt19937 \&generator)
+\item 
+int \hyperlink{simulation_8cpp_a02cea4b14014b30c16df780794cd03cc}{simulate} (\hyperlink{enm-test_8h_ae4c6729274148361e940502083363cec}{Matrix\+Xc} dens, const \hyperlink{enm-test_8h_ae4c6729274148361e940502083363cec}{Matrix\+Xc} proj\mbox{[}$\,$\mbox{]}, const double meas\mbox{[}$\,$\mbox{]}, int S, double sim\+\_\+dat\mbox{[}$\,$\mbox{]}, std\+::mt19937 \&generator)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{simulation_8cpp_a0b8021c4b2e3daa2e3a726766e8cc57b}{\index{simulation.\+cpp@{simulation.\+cpp}!random\+\_\+density@{random\+\_\+density}}
+\index{random\+\_\+density@{random\+\_\+density}!simulation.\+cpp@{simulation.\+cpp}}
+\subsubsection[{random\+\_\+density}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix\+Xc} random\+\_\+density (
+\begin{DoxyParamCaption}
+\item[{double}]{x, }
+\item[{std\+::mt19937 \&}]{generator}
+\end{DoxyParamCaption}
+)}}\label{simulation_8cpp_a0b8021c4b2e3daa2e3a726766e8cc57b}
+\hypertarget{simulation_8cpp_a4559ba184ebff4b73adeaa04ecdb9850}{\index{simulation.\+cpp@{simulation.\+cpp}!random\+\_\+unitary@{random\+\_\+unitary}}
+\index{random\+\_\+unitary@{random\+\_\+unitary}!simulation.\+cpp@{simulation.\+cpp}}
+\subsubsection[{random\+\_\+unitary}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix\+Xc} random\+\_\+unitary (
+\begin{DoxyParamCaption}
+\item[{std\+::mt19937 \&}]{generator}
+\end{DoxyParamCaption}
+)}}\label{simulation_8cpp_a4559ba184ebff4b73adeaa04ecdb9850}
+Function\+: Generate random unitary
+
+The method is to parametrise the unitary group and then select the right distribution for the parameters. See '2009 Ozols -\/ How to generate a random unitary matrix', page 5, for more details. \hypertarget{simulation_8cpp_a02cea4b14014b30c16df780794cd03cc}{\index{simulation.\+cpp@{simulation.\+cpp}!simulate@{simulate}}
+\index{simulate@{simulate}!simulation.\+cpp@{simulation.\+cpp}}
+\subsubsection[{simulate}]{\setlength{\rightskip}{0pt plus 5cm}int simulate (
+\begin{DoxyParamCaption}
+\item[{{\bf Matrix\+Xc}}]{dens, }
+\item[{const {\bf Matrix\+Xc}}]{proj\mbox{[}$\,$\mbox{]}, }
+\item[{const double}]{meas\mbox{[}$\,$\mbox{]}, }
+\item[{int}]{S, }
+\item[{double}]{sim\+\_\+dat\mbox{[}$\,$\mbox{]}, }
+\item[{std\+::mt19937 \&}]{generator}
+\end{DoxyParamCaption}
+)}}\label{simulation_8cpp_a02cea4b14014b30c16df780794cd03cc}
