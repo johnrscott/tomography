@@ -79,8 +79,8 @@ int main() {
 
   // ======= Test parameter ===============================
   int M = 2000;  // Number of purity parameters x to try
-  double x_start = 0; // Specify purity parameter x range
-  double x_end = 1;
+  double x_start = 0.01; // Specify purity parameter x range
+  double x_end = 0.02;
   int N = 500;  // Number of random density matrices per x value
   int S = 500;  // Number of samples of each measurement to
   // simulate for each density matrix 

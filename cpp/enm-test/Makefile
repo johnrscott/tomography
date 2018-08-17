@@ -20,7 +20,7 @@ stats.o: stats.cpp stats.h
 	$(CC) $(CFLAGS) stats.cpp $(LDLIBS)
 
 proj.o: proj.cpp proj.h
-	$(CC) $(CFLAGS) -DDEBUG proj.cpp $(LDLIBS)
+	$(CC) $(CFLAGS) proj.cpp $(LDLIBS)
 
 progress.o: progress.cpp progress.h
 	$(CC) $(CFLAGS) progress.cpp $(LDLIBS)

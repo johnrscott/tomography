@@ -121,9 +121,15 @@ MatrixXc enm_estimate_XYZ(double X_data[],
   // Something that would speed up the algorithm would be
   // to check whether the density matrix is physical here,
   // then skip the optimisation procedure if it is.
-  
+  Eigen::SelfAdjointEigenSolver<MatrixXc> eigenD(dens_lin);
+  if(eigenD.info() != Eigen::Success) abort();
+  if((eigenD.eigenvalues()[0] < 1) && (eigenD.eigenvalues()[0] > 0)) {
+    return dens_lin; // Return dens_est -- no optimisation to do
+  }
+
   // Create an nlop object
-  nlopt::opt opt(nlopt::LD_SLSQP/*LN_NELDERMEAD*/, 4); // 4 optimisation parameters
+  // For some reason SLSQP appears not to work
+  nlopt::opt opt(nlopt::/*LD_SLSQP*/LN_NELDERMEAD, 4); // 4 optimisation parameters
   // Set objective function
   double a{5};
   double* thing{&a};
@@ -147,12 +153,15 @@ MatrixXc enm_estimate_XYZ(double X_data[],
     // Reconstruct the density matrix
     T << x[0], 0, std::complex<double>(x[1],x[2]), x[3];
     dens_enm = T * T.adjoint();
+#define DEBUG
+#define DEBUG_PRINT_ENM_OUTPUT
 #ifdef DEBUG
 #ifdef DEBUG_PRINT_ENM_OUTPUT
     std::cout << "Linear estimator: " << std::endl
 	      << dens_lin << std::endl
 	      << "ENM estimator: " << std::endl
 	      << dens_enm << std::endl;
+    abort();
 #endif
 #endif
   }
