@@ -40,6 +40,23 @@ double distance_op(MatrixXc A, MatrixXc B);
 // (aka Hilbert-Schmidt) norm by
 // default
 //
+// The Hilbert-Schmidt norm is defined
+// in '2013 Sugiyama et al. - Precision guaranteed
+// quantum tomography' as
+//
+//  1/sqrt(2) * tr[ (A - b)^2 ] ^ (1/2) 
+//
+double distance_hs(MatrixXc A, MatrixXc B);
+
+// Distance using the trace norm
+//
+// The trace distance is defined
+// in '2013 Sugiyama et al. - Precision
+// guaranteed quantum tomography' as
+//
+//  1/2 * tr |A - B|
+//
+// where the 
 double distance_trace(MatrixXc A, MatrixXc B);
 
 // Fidelity distance
@@ -60,6 +77,14 @@ double distance_trace(MatrixXc A, MatrixXc B);
 // operation in a different method
 double distance_fid(const MatrixXc A, const MatrixXc B);
 double distance_fid_2(const MatrixXc A, const MatrixXc B);
+
+// Infidelity
+//
+// Compute the infidelity of two states using
+//
+//  F(A,B) = 1 - tr[ sqrt(A) B sqrt(A) ]
+//
+double infidelity(const MatrixXc A, const MatrixXc B);
 
 // Mean calcluator
 //

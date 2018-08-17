@@ -153,8 +153,6 @@ MatrixXc enm_estimate_XYZ(double X_data[],
     // Reconstruct the density matrix
     T << x[0], 0, std::complex<double>(x[1],x[2]), x[3];
     dens_enm = T * T.adjoint();
-#define DEBUG
-#define DEBUG_PRINT_ENM_OUTPUT
 #ifdef DEBUG
 #ifdef DEBUG_PRINT_ENM_OUTPUT
     std::cout << "Linear estimator: " << std::endl

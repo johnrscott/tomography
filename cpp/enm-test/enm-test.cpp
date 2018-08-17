@@ -79,8 +79,8 @@ int main() {
 
   // ======= Test parameter ===============================
   int M = 2000;  // Number of purity parameters x to try
-  double x_start = 0.01; // Specify purity parameter x range
-  double x_end = 0.02;
+  double x_start = 0; // Specify purity parameter x range
+  double x_end = 1;
   int N = 500;  // Number of random density matrices per x value
   int S = 500;  // Number of samples of each measurement to
   // simulate for each density matrix 
@@ -105,7 +105,7 @@ int main() {
        << S << std::endl
        << std::endl;
   
-  file << "PURITY, \tOPERATOR, \tTRACE, \t\tFIDELITY, \tNON PHYSICAL";
+  file << "PURITY, \tHILBERT-SCHMIDT, \tTRACE, \t\tINFIDELITY, \tNON PHYSICAL";
   // Set precision
   file << std::fixed << std::setprecision(5) << std::endl;
 
@@ -135,9 +135,9 @@ int main() {
   //
 
   // Variables to store the estimation error distances
-  double dist_op[N];
+  double dist_hs[N];
   double dist_trace[N];
-  double dist_fid[N];
+  double infid[N];
 
   //int dp = 5; // Decimal places for printing
   double x = 0; // Purity parameter
@@ -206,9 +206,9 @@ int main() {
       // and true density matrix using the
       // different distance fuctions.
       //
-      dist_op[n] = distance_op(dens_est, dens);
+      dist_hs[n] = distance_hs(dens_est, dens);
       dist_trace[n] = distance_trace(dens_est, dens);
-      dist_fid[n] = distance_fid_2(dens_est, dens);
+      infid[n] = infidelity(dens_est, dens);
 
       // Count the number of non-physical matrices
       //
@@ -234,9 +234,9 @@ int main() {
     // matrices for each value of X, and consequently N distances to
     // compute. Therefore the mean is computed over N points.
     //
-    double mean_op = mean(dist_op, N);
+    double mean_hs = mean(dist_hs, N);
     double mean_trace = mean(dist_trace, N);
-    double mean_fid = mean(dist_fid, N);
+    double mean_infid = mean(infid, N);
     non_physical[k] = non_physical_count/N;
 
 #ifdef SHOW_PROGRESS
@@ -249,18 +249,18 @@ int main() {
 #ifdef DEBUG
 #ifdef DEBUG_PRINT_DISTANCE_AVERAGES
     std::cout << std::endl
-	      << "The average operator distance is: " << mean_op << std::endl    
+	      << "The average operator distance is: " << mean_hs << std::endl    
 	      << "The average trace distance is: " << mean_trace << std::endl
-	      << "The average fidelity distance is: " << mean_fid << std::endl;
+	      << "The average fidelity distance is: " << mean_infid << std::endl;
 #endif
 #endif
     
     // Step 6: Write the results to a file
     //
     file << x << ",\t"
-	 << mean_op << ",\t"
+	 << mean_hs << ",\t"
 	 << mean_trace << ",\t"
-	 << mean_fid << ",\t"
+	 << mean_infid << ",\t"
 	 << non_physical[k]
 	 << std::endl;
 
