@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3
+#!/usr/bin/env python3.5
 #############################################################
 # Title: Plot simulation data
 #
@@ -100,16 +100,17 @@ ax1.plot(x_values, av_distances[:,0], '.',color='tab:red')
 ax1.plot(x_values, av_distances[:,1], '.',color='tab:green')
 ax1.plot(x_values, av_distances[:,2], '.',color='tab:blue')
 ax1.legend(['Hilbert-Schmidt','Trace distance','Infidelity'])
-
-ax2=ax1.twinx()
-ax2.set_ylabel('Probability of non-physical estimate')
-ax2.plot(x_values,non_physical, '+', color='tab:brown')
 atext = AnchoredText("Number of purity parameters: " + str(M) + "\n"
                      +"Density matrices: "+ str(N) + "\n"
                      +"Samples per measurement: " + str(S) + "\n"
                      +"Total running time:  " + str(total_time),
                      loc=2)
-ax2.add_artist(atext)
+ax1.add_artist(atext)
+
+
+ax2=ax1.twinx()
+ax2.set_ylabel('Probability of non-physical estimate')
+ax2.plot(x_values,non_physical, '+', color='tab:brown')
 
 fig.tight_layout()
 plt.show()
