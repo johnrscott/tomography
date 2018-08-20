@@ -28,5 +28,6 @@ Setting the ftol parameter from 10e-1 and 10e-5: the parameter doesn't make that
 Now the optimisation works on every purity value, including the ones that are already physical. This should give the same results as above but just takes a bit longer. In reality the middle purity values seem to have more variance. This might be solved by decreasing ftol a bit.
 * enm-test-more-optimise-ftol=1e-6.dat
 Decreasing ftol does actually reduce the variance in the middle purity values.
-* enm-test-more-optimise-ftol=1e-7.dat
+* enm-test-more-optimise-ftol=1e-7.dat or more
 Improves the variance even more without substantially many unphysical points.
+Decreasing ftol further improves the variance at the expense of a few more unphysical points. 
