@@ -101,7 +101,7 @@ double d(const std::vector<double> & x, std::vector<double> & grad, void * f_dat
   return distance;
 }
 
-// Constrain data for the trace 1 condition
+// Constraint data for the trace 1 condition
 double cons(const std::vector<double> & x, std::vector<double> & grad, void * f_data) {
   double value = x[0]*x[0] + x[1]*x[1] + x[2]*x[2] + x[3]*x[3] - 1;
   return value;
@@ -142,12 +142,12 @@ MatrixXc enm_estimate_XYZ(double X_data[],
   try {
     // Create an nlop object
     // For some reason SLSQP appears not to work
-    nlopt::opt opt(nlopt::/*LD_SLSQP*/LN_NELDERMEAD, 4); // 4 optimisation parameters
+    nlopt::opt opt(nlopt::LN_COBYLA/*LD_SLSQP*//*LN_NELDERMEAD*/, 4); // 4 optimisation parameters
     // Set objective function
     opt.set_min_objective(d, &dens_lin);
     // Add trace 1 constraint
-    opt.add_equality_constraint(cons, &dens_lin);
-    opt.set_ftol_rel(1e-8);
+    opt.add_equality_constraint(cons, &dens_lin, 1e-8);
+    opt.set_ftol_rel(1e-5);
     double ftol_rel = opt.get_ftol_rel();
     //std::cout << ftol_rel;
     //abort();
