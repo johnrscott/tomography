@@ -1,0 +1,2 @@
+* linear-test-new-norms
+This is the linear estimator using the new norms from Pet's paper.

@@ -177,11 +177,6 @@ int main() {
       //
       x = x_start + k * (x_end - x_start)/M;
       MatrixXc dens = random_density(x, gen);
-      //std::cout << "The actual density matrix is:\n\n" << dens << std::endl;
-      //Eigen::SelfAdjointEigenSolver<MatrixXc> eig1(dens);
-      //std::cout << "Eig1: " << eig1.eigenvalues()[0] << std::endl; 
-      //std::cout << "Eig2: " << eig1.eigenvalues()[1] << std::endl;
-      
       //MatrixXc dens(2,2); dens << 1,0,0,0;
       
       // Step 2: Generate measurement data

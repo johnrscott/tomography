@@ -91,13 +91,12 @@ MatrixXc linear_estimate_XYZ(double X_data[],
 // parametrised by X and Y.
 //
 // The last parameter void * is expected to be MatrixXc *
-double d(const std::vector<double> & x, std::vector<double> & grad, void * f_data) {
+double d(const std::vector<double> & x, std::vector<double> & grad, void * f_data ) {
   // x specifies dens = T T^
   MatrixXc T(2,2); T << x[0], 0, std::complex<double>(x[1],x[2]), x[3];
   MatrixXc dens_1 = T * T.adjoint();
   MatrixXc dens_2 = * static_cast<MatrixXc * >(f_data);
-  //std::cout << "The linear_estimate is:\n\n" << dens_2 << std::endl;
-  double distance = distance_l2norm(dens_1, dens_2);
+  double distance = distance_trace(dens_1, dens_2);
   return distance;
 }
 
@@ -118,23 +117,24 @@ MatrixXc enm_estimate_XYZ(double X_data[],
 			  int S) {  
   // Estimate the density matrix with the linear estimator
   MatrixXc dens_lin = linear_estimate_XYZ(X_data, Y_data, Z_data, S);
-  //std::cout << "The linear_estimate is:\n\n" << dens_lin << std::endl;
 
   // Something that would speed up the algorithm would be
   // to check whether the density matrix is physical here,
   // then skip the optimisation procedure if it is.
-  //Eigen::SelfAdjointEigenSolver<MatrixXc> eigenD(dens_lin);
-  //if(eigenD.info() != Eigen::Success) abort();
-  //if((eigenD.eigenvalues()[0] < 1) && (eigenD.eigenvalues()[0] > 0)) {
-  //  return dens_lin; // Return dens_est -- no optimisation to do
-  //}
+  Eigen::SelfAdjointEigenSolver<MatrixXc> eigenD(dens_lin);
+  if(eigenD.info() != Eigen::Success) abort();
+  if((eigenD.eigenvalues()[0] < 1) && (eigenD.eigenvalues()[0] > 0)) {
+    return dens_lin; // Return dens_est -- no optimisation to do
+  }
 
   // Create an nlop object
   // For some reason SLSQP appears not to work
-  nlopt::opt opt(nlopt::/*LD_SLSQP*/LN_NELDERMEAD, 4); // 4 optimisation parameters
+  nlopt::opt opt(nlopt::LD_SLSQP/*LN_NELDERMEAD*/, 4); // 4 optimisation parameters
   // Set objective function
+  double a{5};
+  double* thing{&a};
   opt.set_min_objective(d, &dens_lin);
-  opt.set_ftol_rel(1e-8);
+  opt.set_ftol_rel(1e-10);
   double ftol_rel = opt.get_ftol_rel();
   //std::cout << ftol_rel;
   //abort();
@@ -153,22 +153,15 @@ MatrixXc enm_estimate_XYZ(double X_data[],
     // Reconstruct the density matrix
     T << x[0], 0, std::complex<double>(x[1],x[2]), x[3];
     dens_enm = T * T.adjoint();
-    #ifdef DEBUG
-    #ifdef DEBUG_PRINT_ENM_OUTPUT
+#ifdef DEBUG
+#ifdef DEBUG_PRINT_ENM_OUTPUT
     std::cout << "Linear estimator: " << std::endl
-	      << dens_lin << std::endl;
-    Eigen::SelfAdjointEigenSolver<MatrixXc> eig1(dens_lin);
-    std::cout << "Eig1: " << eig1.eigenvalues()[0] << std::endl; 
-    std::cout << "Eig2: " << eig1.eigenvalues()[1] << std::endl;
-    
-    std::cout << "ENM estimator: " << std::endl
+	      << dens_lin << std::endl
+	      << "ENM estimator: " << std::endl
 	      << dens_enm << std::endl;
-    Eigen::SelfAdjointEigenSolver<MatrixXc> eig2(dens_enm);
-    std::cout << "Eig1: " << eig2.eigenvalues()[0] << std::endl; 
-    std::cout << "Eig2: " << eig2.eigenvalues()[1] << std::endl;
     abort();
-    #endif
-    #endif
+#endif
+#endif
   }
   catch (std::exception & e) {
     std::cout << "nlopt failed: " << e.what() << std::endl;

@@ -37,26 +37,6 @@ double distance_trace(MatrixXc A, MatrixXc B) {
   return distance;
 }
 
-// Distance using the l2 norm
-//
-// The l2 distance is the square root of the
-// sum of the squares of the difference of
-// the matrices
-//
-double distance_l2norm(MatrixXc A, MatrixXc B) {
-  //MatrixXc C = (A - B).norm();
-  double distance  = (A - B).norm();
-  
-#ifdef DEBUG
-#ifdef DEBUG_PRINT_DISTANCES
-  std::cout << "The l2 distance is: " << distance << std::endl;
-#endif
-#endif
-  
-  return distance;
-}
-
-
 // Distance using the Hilbert-Schmidt norm
 //
 // The Hilbert-Schmidt distance is defined
@@ -78,41 +58,17 @@ double distance_hs(MatrixXc A, MatrixXc B){
   return distance;
 }
 
-// chopit
-//
-//
-int chopit(MatrixXc & input) {
-  int rows = input.rows();
-  int cols = input.cols();
-  for(int r=0; r<rows; r++) {
-    for(int c=0; c<cols; c++) {
-      if(std::abs(input(r,c).real()) < 1e-15) input(r,c) = std::complex<double>(0,input(r,c).imag());
-      if(std::abs(input(r,c).imag()) < 1e-15) input(r,c) = std::complex<double>(input(r,c).real(),0);
-    }
-  }
-    return 0;
-}
-
 // Infidelity
 //
 // Compute the infidelity of two states using
 //
-//  F(A,B) = 1 - tr[ sqrt(sqrt(A) B sqrt(A)) ]^2
+//  F(A,B) = 1 - tr[ sqrt(A) B sqrt(A) ]
 //
 double infidelity(const MatrixXc A, const MatrixXc B) {
   Eigen::SelfAdjointEigenSolver<MatrixXc> eigen1(A);
   MatrixXc sqrtA = eigen1.operatorSqrt();
-  //std::cout << "A is: \n\n" << sqrtA << "\n\n";
-  //std::cout << "B is: \n\n" << B << "\n\n";
   Eigen::SelfAdjointEigenSolver<MatrixXc> eigen2(sqrtA * B * sqrtA);
-  //MatrixXc thingy = sqrtA * B * sqrtA;
   MatrixXc D = eigen2.operatorSqrt();
-  //chopit(D);
-  //std::cout << "Next is: \n\n" << D << "\n\n";
-  //Eigen::SelfAdjointEigenSolver<MatrixXc> eig1(D);
-  //std::cout << "Eig1: " << eig1.eigenvalues()[0] << std::endl; 
-  //std::cout << "Eig2: " << eig1.eigenvalues()[1] << std::endl;
-  //abort();
   //MatrixXc C = sqrtA * B * sqrtA;
   double infidelity = 1 - std::pow(std::real(D.trace()),2);
   return infidelity;

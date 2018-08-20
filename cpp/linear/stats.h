@@ -59,14 +59,6 @@ double distance_hs(MatrixXc A, MatrixXc B);
 // where the 
 double distance_trace(MatrixXc A, MatrixXc B);
 
-// Distance using the l2 norm
-//
-// The l2 distance is the square root of the
-// sum of the squares of the difference of
-// the matrices
-//
-double distance_l2norm(MatrixXc A, MatrixXc B);
-
 // Fidelity distance
 //
 // The fidelity distance d is
