@@ -101,6 +101,20 @@ double d(const std::vector<double> & x, std::vector<double> & grad, void * f_dat
   return distance;
 }
 
+// The objective function is the distance with a lagrange multiplier included
+//
+// The last parameter void * is expected to be MatrixXc *
+double func(const std::vector<double> & x, std::vector<double> & grad, void * f_data) {
+  // x specifies dens = T T^
+  MatrixXc T(2,2); T << x[0], 0, std::complex<double>(x[1],x[2]), x[3];
+  MatrixXc dens_1 = T * T.adjoint();
+  MatrixXc dens_2 = * static_cast<MatrixXc * >(f_data);
+  //std::cout << "The linear_estimate is:\n\n" << dens_2 << std::endl;
+  double distance = distance_l2norm(dens_1, dens_2);
+  double result = distance + x[4] * (x[0]*x[0] + x[1]*x[1] + x[2]*x[2] + x[3]*x[3] - 1);
+  return result;
+}
+
 // Constraint data for the trace 1 condition
 double cons(const std::vector<double> & x, std::vector<double> & grad, void * f_data) {
   double value = x[0]*x[0] + x[1]*x[1] + x[2]*x[2] + x[3]*x[3] - 1;
@@ -126,65 +140,91 @@ MatrixXc enm_estimate_XYZ(double X_data[],
   MatrixXc dens_lin = linear_estimate_XYZ(X_data, Y_data, Z_data, S);
   //std::cout << "The linear_estimate is:\n\n" << dens_lin << std::endl;
 
+  // Declare dens_enm
+  MatrixXc dens_enm;
+  
+  // Specify stopping conditions
+  double cons_tol = 1e-5;
+  double ftol = 1e-6;
+  double local_ftol = 1e-6;
+  
+  // Specify lower and upper bounds
+  std::vector<double> lb{-1, -1, -1, -1};
+  std::vector<double> ub{1, 1, 1, 1};
+    
   // Something that would speed up the algorithm would be
   // to check whether the density matrix is physical here,
   // then skip the optimisation procedure if it is.
-  //Eigen::SelfAdjointEigenSolver<MatrixXc> eigenD(dens_lin);
-  //if(eigenD.info() != Eigen::Success) abort();
-  //if((eigenD.eigenvalues()[0] < 1) && (eigenD.eigenvalues()[0] > 0)) {
-  //  return dens_lin; // Return dens_est -- no optimisation to do
-  //}
-
-  // Declare variables outside try
-  MatrixXc T(2,2); 
-  MatrixXc dens_enm;
+  Eigen::SelfAdjointEigenSolver<MatrixXc> eigenD(dens_lin);
+  if(eigenD.info() != Eigen::Success) abort();
+  if((eigenD.eigenvalues()[0] < 1) && (eigenD.eigenvalues()[0] > 0)) {
+    dens_enm =  dens_lin; // Return dens_est -- no optimisation to do
+  } else {
   
-  try {
     // Create an nlop object
     // For some reason SLSQP appears not to work
-    nlopt::opt opt(nlopt::LN_COBYLA/*LD_SLSQP*//*LN_NELDERMEAD*/, 4); // 4 optimisation parameters
+    nlopt::opt opt(nlopt::AUGLAG/*GN_DIRECT*//*GN_ISRES*//*LN_COBYLA*//*LN_BOBYQA*//*LD_SLSQP*//*LN_NELDERMEAD*/, 4); // 5 optimisation parameters
+    // Create local optimiser for AUGLAG
+    nlopt::opt local_opt(nlopt::/*LN_NELDERMEAD*//*LD_SLSQP*//*LN_COBYLA*/LN_BOBYQA/*LN_PRAXIS*/, 4);
+    local_opt.set_ftol_rel(local_ftol);
+    opt.set_local_optimizer(local_opt);
     // Set objective function
     opt.set_min_objective(d, &dens_lin);
+    // Set bounds on the parameters
+    //opt.set_lower_bounds(lb);
+    //opt.set_upper_bounds(ub);
     // Add trace 1 constraint
-    opt.add_equality_constraint(cons, &dens_lin, 1e-8);
-    opt.set_ftol_rel(1e-5);
+    opt.add_equality_constraint(cons, &dens_lin, cons_tol);
+    opt.set_ftol_rel(ftol);
     double ftol_rel = opt.get_ftol_rel();
     //std::cout << ftol_rel;
     //abort();
-    std::vector<double> x{0,0,0,0};
+    std::vector<double> x{1,0,0,0};
   
     // Variable to contain the minimum of the function
     double minf;
+
+    // Declare variables outside try
+    MatrixXc T(2,2);
     
-    // Do the optimisation
-    nlopt::result result = opt.optimize(x,minf);
+    try{
+      // Do the optimisation
+      nlopt::result result = opt.optimize(x,minf);
+      //std::cout << "Trace is: " << x[0]*x[0] + x[1]*x[1] + x[2]*x[2] + x[3]*x[3] << std::endl;
+    }
+    catch (std::exception & e) {
+      std::cout << "nlopt failed: " << e.what() << std::endl;
+      //abort();
+    }
+
     // Reconstruct the density matrix
     T << x[0], 0, std::complex<double>(x[1],x[2]), x[3];
-    dens_enm = T * T.adjoint();
-    //#ifdef DEBUG
-    //#ifdef DEBUG_PRINT_ENM_OUTPUT
-    std::cout << "Linear estimator: " << std::endl
-	      << dens_lin << std::endl;
-    Eigen::SelfAdjointEigenSolver<MatrixXc> eig1(dens_lin);
-    std::cout << "Eig1: " << eig1.eigenvalues()[0] << std::endl; 
-    std::cout << "Eig2: " << eig1.eigenvalues()[1] << std::endl;
-    
-    std::cout << "ENM estimator: " << std::endl
-	      << dens_enm << std::endl;
-    Eigen::SelfAdjointEigenSolver<MatrixXc> eig2(dens_enm);
-    std::cout << "Eig1: " << eig2.eigenvalues()[0] << std::endl; 
-    std::cout << "Eig2: " << eig2.eigenvalues()[1] << std::endl;
-    abort();
-    //#endif
-    //#endif
+    dens_enm = T * T.adjoint();  
   }
-  catch (std::exception & e) {
-    std::cout << "nlopt failed: " << e.what() << std::endl;
+  
+  #ifdef DEBUG
+  #ifdef DEBUG_PRINT_ENM_OUTPUT
+  std::cout << "Linear estimator: " << std::endl
+	    << dens_lin << std::endl;
+  Eigen::SelfAdjointEigenSolver<MatrixXc> eig1(dens_lin);
+  std::cout << "Eig1: " << eig1.eigenvalues()[0] << std::endl; 
+  std::cout << "Eig2: " << eig1.eigenvalues()[1] << std::endl;
+  
+  std::cout << "ENM estimator: " << std::endl
+	    << dens_enm << std::endl;
+  Eigen::SelfAdjointEigenSolver<MatrixXc> eig2(dens_enm);
+  std::cout << "Eig1: " << eig2.eigenvalues()[0] << std::endl; 
+  std::cout << "Eig2: " << eig2.eigenvalues()[1] << std::endl;
+  #endif
+  #endif
+  
+  if(std::abs(dens_enm.trace()-std::complex<double>(1,0)) > cons_tol) {
+    std::cout << "nlopt failed to satisfy constraint\n";
     abort();
   }
-    
+  //abort();
+  
   return dens_enm;
-    
 }
 
 // The likelihood function is used by the maximum likelihood

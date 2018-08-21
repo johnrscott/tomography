@@ -31,3 +31,7 @@ Decreasing ftol does actually reduce the variance in the middle purity values.
 * enm-test-more-optimise-ftol=1e-7.dat or more
 Improves the variance even more without substantially many unphysical points.
 Decreasing ftol further improves the variance at the expense of a few more unphysical points. 
+* enm-test-trace1-bobyqa-ftol=1e-6.dat
+This test uses the AUGLAG with local optimiser BOBYQA and all ftols set to 1e-6, but with the constrain tol set to 1e-5. It doesn't look right, but it ran fast enough (because I only ran the optimiser for non-physical matrices.)
+* enm-test-trace1-bobyqa-2-ftol=1e-6.dat
+This uses a new implementation of the fidelity which takes the absolute value of the matrix eigenvalues (assuming they're close to positive.) The graph looks similar to the others.

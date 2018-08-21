@@ -213,7 +213,7 @@ int main() {
       //
       dist_hs[n] = distance_hs(dens_est, dens);
       dist_trace[n] = distance_trace(dens_est, dens);
-      infid[n] = infidelity(dens_est, dens);
+      infid[n] = infidelity2(dens_est, dens);
 
       // Count the number of non-physical matrices
       //
@@ -227,7 +227,8 @@ int main() {
 		<< std::endl;
 #endif
 #endif
-      if ((eigenD.eigenvalues()[0] < 0) || (eigenD.eigenvalues()[1] < 0)) {
+      double tol=1e-6;
+      if ((eigenD.eigenvalues()[0] < -tol) || (eigenD.eigenvalues()[1] < -tol)) {
 	non_physical_count = non_physical_count + 1;
       }
       

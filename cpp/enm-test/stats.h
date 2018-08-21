@@ -94,6 +94,15 @@ double distance_fid_2(const MatrixXc A, const MatrixXc B);
 //
 double infidelity(const MatrixXc A, const MatrixXc B);
 
+// Infidelity2
+//
+// Compute the infidelity of two states using
+//
+//  F(A,B) = 1 - tr[ sqrt(sqrt(A) B sqrt(A)) ]^2
+//
+// Computed using diagonalisation tricks
+double infidelity2(const MatrixXc A, const MatrixXc B);
+
 // Mean calcluator
 //
 // Compute the mean of an array

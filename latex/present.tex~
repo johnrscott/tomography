@@ -1,0 +1,55 @@
+\documentclass{beamer}
+
+\title{Comparison of estimators in quantum tomography}
+\author{John Scott}
+\date{\today}
+
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Introduction}
+  \begin{itemize}
+  \item \textbf{The original motivation:} converting classical signal processing to quantum signal processing (originality: $100\%$)
+  \item \textbf{The plan for project B:} time varying quantum tomography (originality: $80\%$)
+  \item \textbf{Step one of the plan:} look into estimators for steady state quantum tomography (originality: $20\%$)
+  \item \textbf{What I actually did:} look into estimators for quantum state tomography with one qubit (originality: $0\%$)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{What is quantum state tomography}
+  State estimation. You need many copies of the state because you need to be able to make repeated measurements and build up statistics.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Using expectation values to estimate the density matrix}
+  The simplest way to do tomography is to just compute a density matrix from expectation values:
+  \begin{equation}
+    \rho = \frac{1}{2} (I + aX + bY + cZ) = \frac{1}{2}\begin{bmatrix} 1 + c & a - ib \\ a + ib & 1 -c\end{bmatrix}    
+  \end{equation}
+  The matrix will come out Hermitian and trace 1, but might not have positive eigenvalues (so it isn't `physical'). This problem gets worse depending on how pure the state is. 
+\end{frame}
+
+\begin{frame}
+  \frametitle{Quality of the esimate (loss functions): distance measures and fidelity}
+  Pete's paper has three: the trace distance, the Hilbert-Schmidt distance, and the infidelity:
+  \begin{equation}trace = \frac{1}{2} Tr|A - B|\end{equation}
+  \begin{equation}HS = \frac{1}{\sqrt{2}} \left[tr(A - B)^2\right]^{\frac{1}{2}}\end{equation}
+  \begin{equation}IF = 1 - \left[tr\sqrt{A^{\frac{1}{2}}BA^{\frac{1}{2}}}\right]^2\end{equation}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Extended norm minimisation: producing a physical density matrix}
+  
+\end{frame}
+
+\begin{frame}
+  \frametitle{Other methods: maximum likelihood}
+\end{frame}
+
+
+
+\end{document}
