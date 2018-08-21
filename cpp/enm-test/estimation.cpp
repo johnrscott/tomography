@@ -144,9 +144,9 @@ MatrixXc enm_estimate_XYZ(double X_data[],
   MatrixXc dens_enm;
   
   // Specify stopping conditions
-  double cons_tol = 1e-5;
-  double ftol = 1e-6;
-  double local_ftol = 1e-6;
+  double cons_tol = 1e-3;
+  double ftol = 1e-3;
+  double local_ftol = 1e-3;
   
   // Specify lower and upper bounds
   std::vector<double> lb{-1, -1, -1, -1};
