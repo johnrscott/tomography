@@ -246,23 +246,25 @@ double L(const std::vector<double> & x, std::vector<double> & grad, void * f_dat
   std::vector<MatrixXc> list = * static_cast<std::vector<MatrixXc> * >(f_data);
   //std::cout << "The linear_estimate is:\n\n" << dens_2 << std::endl;
 
-  // Compute the likelihood function
-  double L = 1;
+  // Compute the log likelihood function
+  // The usual likelihood functions (the product) is unusable
+  // because it produces underflow and overflow errors
+  double L = 0;
   int N = list.size();
   double check;
   int count = 0;
-  for(int k=0; k<N; k++) {
-    check = std::abs((dens_1*list[k]).trace());
-    std::cout << "value: " << std::abs((dens_1*list[k]).trace()) << std::endl;
-    if(check == 0) {
+  for(int k=0; k<N; k=k+10) {
+    //check = std::abs((dens_1*list[k]).trace());
+    //std::cout << "value: " << std::abs((dens_1*list[k]).trace()) << std::endl;
+    //if(check == 0) {
       //std::cout << "Here\n";
-      count++;
+      //count++;
       //abort();
-    }
-    L = L*std::abs((dens_1*list[k]).trace());
+    //}
+    L = L + std::log(std::abs((dens_1*list[k]).trace()));
   }
-  std::cout << "L is: " << L << std::endl;
-  std::cout << "zero terms: " << count << " out of " << N << std::endl;
+  //std::cout << "L is: " << L << std::endl;
+  //std::cout << "zero terms: " << count << " out of " << N << std::endl;
   return L;
 }
 
@@ -278,7 +280,7 @@ MatrixXc ml_estimate_XYZ(double X_data[],
 			  double Z_data[],
 			  int S) {
 
-  std::cout << "Here I am 1" << std::endl;
+  //std::cout << "Here I am 1" << std::endl;
   
   // Preliminaries: define measurement operators
   MatrixXc X(2,2); X << 0, 1, 1, 0;
@@ -311,15 +313,15 @@ MatrixXc ml_estimate_XYZ(double X_data[],
     if(Z_data[k] == outcomes_Z[0]) list.push_back(proj_Z[0]);
     else list.push_back(proj_Z[1]);
   }
-  std::cout << "Here I am 2" << std::endl;
+  //std::cout << "Here I am 2" << std::endl;
   
   // Declare dens_ml
   MatrixXc dens_ml;
   
   // Specify stopping conditions
-  double cons_tol = 1e-3;
-  double ftol = 1e-3;
-  double local_ftol = 1e-3;
+  double cons_tol = 1e-4;
+  double ftol = 1e-4;
+  double local_ftol = 1e-4;
   
   // Specify lower and upper bounds
   std::vector<double> lb{-1, -1, -1, -1};
@@ -343,7 +345,7 @@ MatrixXc ml_estimate_XYZ(double X_data[],
   double ftol_rel = opt.get_ftol_rel();
   //std::cout << ftol_rel;
   //abort();
-  std::vector<double> x{1,1,0,0};
+  std::vector<double> x{1,0,0,0};
   
   // Variable to contain the minimum of the function
   double minf;
@@ -365,21 +367,21 @@ MatrixXc ml_estimate_XYZ(double X_data[],
   T << x[0], 0, std::complex<double>(x[1],x[2]), x[3];
   dens_ml = T * T.adjoint();
   
-  //#ifdef DEBUG
-  //#ifdef DEBUG_PRINT_ENM_OUTPUT
+  #ifdef DEBUG
+  #ifdef DEBUG_PRINT_ENM_OUTPUT
   std::cout << "ML estimator: " << std::endl
 	    << dens_ml << std::endl;
   Eigen::SelfAdjointEigenSolver<MatrixXc> eig2(dens_ml);
   std::cout << "Eig1: " << eig2.eigenvalues()[0] << std::endl; 
   std::cout << "Eig2: " << eig2.eigenvalues()[1] << std::endl;
-  //#endif
-  //#endif
+  #endif
+  #endif
 
   if(std::abs(dens_ml.trace()-std::complex<double>(1,0)) > cons_tol) {
     std::cout << "nlopt failed to satisfy constraint\n";
     abort();
   }
-  abort();
+  //abort();
 
   return dens_ml;
 }
