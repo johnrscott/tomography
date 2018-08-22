@@ -1,0 +1,14 @@
+file=$1
+gnuplot << EOF
+set term dumb
+unset key
+set xlabel 'Purity'
+set ylabel 'Error distance'
+set grid
+plot '$file' using 1:3 
+set term png
+set output 'test.png'
+replot
+EOF
+
+display test.png

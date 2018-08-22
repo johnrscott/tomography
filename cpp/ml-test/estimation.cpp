@@ -247,12 +247,22 @@ double L(const std::vector<double> & x, std::vector<double> & grad, void * f_dat
   //std::cout << "The linear_estimate is:\n\n" << dens_2 << std::endl;
 
   // Compute the likelihood function
-  double L = 0;
+  double L = 1;
   int N = list.size();
+  double check;
+  int count = 0;
   for(int k=0; k<N; k++) {
+    check = std::abs((dens_1*list[k]).trace());
+    std::cout << "value: " << std::abs((dens_1*list[k]).trace()) << std::endl;
+    if(check == 0) {
+      //std::cout << "Here\n";
+      count++;
+      //abort();
+    }
     L = L*std::abs((dens_1*list[k]).trace());
   }
-  
+  std::cout << "L is: " << L << std::endl;
+  std::cout << "zero terms: " << count << " out of " << N << std::endl;
   return L;
 }
 
@@ -267,6 +277,8 @@ MatrixXc ml_estimate_XYZ(double X_data[],
 			  double Y_data[],
 			  double Z_data[],
 			  int S) {
+
+  std::cout << "Here I am 1" << std::endl;
   
   // Preliminaries: define measurement operators
   MatrixXc X(2,2); X << 0, 1, 1, 0;
@@ -290,16 +302,17 @@ MatrixXc ml_estimate_XYZ(double X_data[],
   std::vector<MatrixXc> list;
   
   for(int k=0; k<S; k++){
-    if(X_data[k] == outcomes_X[0]) list[k] = proj_X[0];
-    else list[k] = proj_X[1];
+    if(X_data[k] == outcomes_X[0]) list.push_back(proj_X[0]);
+    else list.push_back(proj_X[1]);
 
-    if(Y_data[k] == outcomes_Y[0]) list[S+k] = proj_Y[0];
-    else list[S+k] = proj_Y[1];
+    if(Y_data[k] == outcomes_Y[0]) list.push_back(proj_Y[0]);
+    else list.push_back(proj_Y[1]);
 
-    if(Z_data[k] == outcomes_Z[0]) list[2*S+k] = proj_Z[0];
-    else list[2*S+k] = proj_Z[1];
-
-
+    if(Z_data[k] == outcomes_Z[0]) list.push_back(proj_Z[0]);
+    else list.push_back(proj_Z[1]);
+  }
+  std::cout << "Here I am 2" << std::endl;
+  
   // Declare dens_ml
   MatrixXc dens_ml;
   
@@ -316,21 +329,21 @@ MatrixXc ml_estimate_XYZ(double X_data[],
   // For some reason SLSQP appears not to work
   nlopt::opt opt(nlopt::AUGLAG/*GN_DIRECT*//*GN_ISRES*//*LN_COBYLA*//*LN_BOBYQA*//*LD_SLSQP*//*LN_NELDERMEAD*/, 4); // 5 optimisation parameters
   // Create local optimiser for AUGLAG
-  nlopt::opt local_opt(nlopt::/*LN_NELDERMEAD*//*LD_SLSQP*//*LN_COBYLA*/LN_BOBYQA/*LN_PRAXIS*/, 4);
+  nlopt::opt local_opt(nlopt::LN_NELDERMEAD/*LD_SLSQP*//*LN_COBYLA*//*LN_BOBYQA*//*LN_PRAXIS*/, 4);
   local_opt.set_ftol_rel(local_ftol);
   opt.set_local_optimizer(local_opt);
   // Set objective function
   opt.set_max_objective(L, &list);
   // Set bounds on the parameters
-  //opt.set_lower_bounds(lb);
-  //opt.set_upper_bounds(ub);
+  opt.set_lower_bounds(lb);
+  opt.set_upper_bounds(ub);
   // Add trace 1 constraint
   opt.add_equality_constraint(cons, NULL, cons_tol);
   opt.set_ftol_rel(ftol);
   double ftol_rel = opt.get_ftol_rel();
   //std::cout << ftol_rel;
   //abort();
-  std::vector<double> x{1,0,0,0};
+  std::vector<double> x{1,1,0,0};
   
   // Variable to contain the minimum of the function
   double minf;
@@ -354,15 +367,9 @@ MatrixXc ml_estimate_XYZ(double X_data[],
   
   //#ifdef DEBUG
   //#ifdef DEBUG_PRINT_ENM_OUTPUT
-  std::cout << "Linear estimator: " << std::endl
-	    << dens_lin << std::endl;
-  Eigen::SelfAdjointEigenSolver<MatrixXc> eig1(dens_lin);
-  std::cout << "Eig1: " << eig1.eigenvalues()[0] << std::endl; 
-  std::cout << "Eig2: " << eig1.eigenvalues()[1] << std::endl;
-
-  std::cout << "ENM estimator: " << std::endl
-	    << dens_enm << std::endl;
-  Eigen::SelfAdjointEigenSolver<MatrixXc> eig2(dens_enm);
+  std::cout << "ML estimator: " << std::endl
+	    << dens_ml << std::endl;
+  Eigen::SelfAdjointEigenSolver<MatrixXc> eig2(dens_ml);
   std::cout << "Eig1: " << eig2.eigenvalues()[0] << std::endl; 
   std::cout << "Eig2: " << eig2.eigenvalues()[1] << std::endl;
   //#endif
@@ -372,8 +379,7 @@ MatrixXc ml_estimate_XYZ(double X_data[],
     std::cout << "nlopt failed to satisfy constraint\n";
     abort();
   }
-  //abort();
+  abort();
 
   return dens_ml;
-  }
 }

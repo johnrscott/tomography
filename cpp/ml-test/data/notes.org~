@@ -1,0 +1,28 @@
+* enm-test-new-norms.dat
+Data for three norms in Pete's paper.
+* enm-test-new-norms-2.dat
+Data from enm-test after changing ftol_rel to 1e-10 instead of 1e-5. Seems to make no difference. Still using Nelder-Mead.
+* enm-test-new-norms-3.dat
+Changed to SLSQP with ftol_rel = 1e-10 still. Now the trace distance also has a larger error.
+* enm-test-new-norms-3.dat
+Changed to SLSQP with ftol_rel = 1e-15. The trace distance still has really high error. I think SLSQP is being weird. It seems like it isn't giving the correct answers
+* enm-test-new-optimise.dat
+This tests the enm optimiser with the l2 distance instead of the trace distance (as it should be!)
+* enm-test-new-optimise-2.dat
+Tested SLSQP with the nex l2 distance. The graph is clearly wrong.
+* enm-test-new-optimise-ftol=1e-5.dat
+Gone back to Nelder-Mead using ftol_rel = 1e-5. 
+* enm-test-new-optimise-ftol=1e-6.dat
+  Still works.
+* enm-test-new-optimise-ftol=1e-8.dat
+Still works kind of. There are a few unphysical points
+* enm-test-new-optimise-ftol=1e-10.dat
+Still works kind of. There are a few unphysical points
+* enm-test-new-optimise-ftol=1e-12.dat
+Doesn't really work. There are loads of unphysical points.
+* enm-test-new-optimise-ftol=1e-14.dat
+Definitely terrible.
+* enm-test-new-optimise-ftol=1e-5.dat or less
+Setting the ftol parameter from 10e-1 and 10e-5: the parameter doesn't make that much difference until you get down to 10e-2 and 1-e-1, where it starts to affect the trace and HS distances (not really the infidelity). By 10e-1 it doesn't really converge.
+* enm-test-more-optimise-ftol=1e-5.dat
+Now the optimisation works on every purity value, including the ones that are already physical. This should give the same results as above but just takes a bit longer. In reality the middle purity values seem to have more variance. This might be solved by decreasing ftol a bit.

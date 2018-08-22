@@ -1,0 +1,5 @@
+* When using AUGLAG
+** Nelder-Mead seems to work as the local optimiser. But the code takes a while to run (about an hour). Also it doesn't seem robust (it fails in the first few percent for some reason.)
+** COBYLA occasionally outputs zero density matrix. It is always zero in the case where the eigenvalues are positive. If they are negative the algorithm seems to work fine. So if I could fix whatever is causing it to fail then it might be a contender. The error also coincides with when it says the answer is round off limited. This is probably my fault. Perhaps I can fix the problem by having the optimiser skip the physical cases as I did before.
+** BOBYQA has a similar problem -- it fails when the eigenvalues of the density matrix are negative and returns a roundoff limit error. Removing the bounds doesn't change the problem.
+** PRAXIS seems to randomly hang.

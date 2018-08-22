@@ -70,3 +70,15 @@ MatrixXc enm_estimate_XYZ(double X_data[],
 			  double Y_data[],
 			  double Z_data[],
 			  int S); 
+
+// Function: ml_estimate_XYZ(X_data, Y_data, Z_data)
+//
+// This function estimates the density matrix using
+// the maximum likelihood method
+//
+// The maximum likelihood method using a likelihood
+// function to determine
+MatrixXc ml_estimate_XYZ(double X_data[],
+			 double Y_data[],
+			 double Z_data[],
+			 int S);
