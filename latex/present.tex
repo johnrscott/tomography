@@ -9,6 +9,7 @@
   \titlepage
 \end{frame}
 
+
 \begin{frame}
   \frametitle{Introduction}
   \begin{itemize}
@@ -21,7 +22,11 @@
 
 \begin{frame}
   \frametitle{What is quantum state tomography}
-  State estimation. You need many copies of the state because you need to be able to make repeated measurements and build up statistics.
+  \begin{itemize}
+  \item State estimation. You need many copies of the state because you need to be able to make repeated measurements and build up statistics.
+  \item You can use it for characterizing the results from experiments (levels of entanglement, etc.)
+  \item 
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -35,10 +40,15 @@
 
 \begin{frame}
   \frametitle{Quality of the esimate (loss functions): distance measures and fidelity}
-  Pete's paper has three: the trace distance, the Hilbert-Schmidt distance, and the infidelity:
-  \begin{equation}trace(A,B) = \frac{1}{2} Tr|A - B|\end{equation}
-  \begin{equation}HS(A,B) = \frac{1}{\sqrt{2}} \left[tr(A - B)^2\right]^{\frac{1}{2}}\end{equation}
-  \begin{equation}infidelity(A,B) = 1 - \left[tr\sqrt{A^{\frac{1}{2}}BA^{\frac{1}{2}}}\right]^2\end{equation}
+  \begin{itemize}
+  \item{
+      Pete's paper has three: the trace distance, the Hilbert-Schmidt distance, and the infidelity:
+      \begin{equation}T(A,B) = \frac{1}{2} Tr|A - B|\end{equation}
+      \begin{equation}HS(A,B) = \frac{1}{\sqrt{2}} \left[tr(A - B)^2\right]^{\frac{1}{2}}\end{equation}
+      \begin{equation}IF(A,B) = 1 - \left[tr\sqrt{A^{\frac{1}{2}}BA^{\frac{1}{2}}}\right]^2\end{equation}
+    }
+  \item{There are many others: operator norm, fidelity-derived distance, etc.}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -48,7 +58,21 @@
 
 \begin{frame}
   \frametitle{Extended norm minimisation: producing a physical density matrix}
-  If you want physical estimates you can try to obtain them somehow. The simplest method is to take the linear estimate and project it onto the space of physical states. That's called extended norm minimisation (cite Pete and co.) There's some fancy confidence interval for the estimate which I haven't got working yet.
+  \begin{itemize}
+  \item If you want physical estimates you can try to obtain them from the linear estimate somehow.
+  \item The simplest method is to take the linear estimate and project it onto the space of physical states. That's called extended norm minimisation (cite Pete and co.)
+  \item There's some fancy confidence interval for the estimate which I haven't got working yet.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Extended norm minimisation: producing a physical density matrix}
+  \begin{itemize}
+  \item First obtain the linear estimate $\rho_1$
+  \item Then find the closest physical density matrix $\rho_2$ using $$\rho_2 = \min_{\rho} \lVert \rho - \rho_1\rVert_2$$
+  \item This result of this estimator is always physical
+  \item There is a confidence interval for the estimated density matrix: $$thing$$ 
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
