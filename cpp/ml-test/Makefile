@@ -1,7 +1,7 @@
 CC = g++
 LDLIBS = -I../ -L/usr/local/lib/ -lnlopt
-CFLAGS = -std=c++11 -O3 -c
-LFLAGS = -std=c++11 -O3
+CFLAGS = -std=c++11 -O2 -c
+LFLAGS = -std=c++11 -O2
 BINARY = ml-test
 
 ml-test: ml-test.o simulation.o estimation.o stats.o proj.o progress.o ml-test.h
