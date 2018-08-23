@@ -1,12 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=latex 2018.8.7)  23 AUG 2018 09:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.8.7)  23 AUG 2018 18:27
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
-**present.tex
-(./present.tex
-LaTeX2e <2016/02/01>
-Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
-(/usr/share/texlive/texmf-dist/tex/latex/beamer/beamer.cls
+**\input present.tex
+(./present.tex (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamer.cls
 (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbasercs.sty
 Package: beamerbasercs 2015/03/08 (rcs-revision 368aa9ba9d38)
 )
@@ -28,7 +26,7 @@ Package: beamerbasedecode 2010/05/01 (rcs-revision efa082c6111d)
 )
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
 Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is not detected.
+Package ifpdf Info: pdfTeX in PDF mode is detected.
 )
 \headheight=\dimen102
 \headdp=\dimen103
@@ -122,10 +120,18 @@ Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
 File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
 )
-Package graphics Info: Driver file: dvips.def on input line 95.
+Package graphics Info: Driver file: pdftex.def on input line 95.
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/dvips.def
-File: dvips.def 2015/12/30 v3.0k Driver-dependent file (DPC,SPQR)
+(/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count105
 ))
 \Gin@req@height=\dimen127
 \Gin@req@width=\dimen128
@@ -167,25 +173,24 @@ ex
 \pgf@yc=\dimen138
 \w@pgf@writea=\write3
 \r@pgf@reada=\read1
-\c@pgf@counta=\count105
-\c@pgf@countb=\count106
-\c@pgf@countc=\count107
-\c@pgf@countd=\count108
+\c@pgf@counta=\count106
+\c@pgf@countb=\count107
+\c@pgf@countc=\count108
+\c@pgf@countd=\count109
 \t@pgf@toka=\toks20
 \t@pgf@tokb=\toks21
 \t@pgf@tokc=\toks22
  (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
 )
-Driver file for pgf: pgfsys-dvips.def
+Driver file for pgf: pgfsys-pdftex.def
 
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-dvips.def
-File: pgfsys-dvips.def 2014/07/09  (rcs-revision 1.25)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+File: pgfsys-pdftex.def 2014/10/11  (rcs-revision 1.35)
 
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-postsc
-ript.def
-File: pgfsys-common-postscript.def 2008/10/01  (rcs-revision 1.22)
-\pgf@objectcount=\count109
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.de
+f
+File: pgfsys-common-pdf.def 2013/10/10  (rcs-revision 1.13)
 )))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.
 tex
@@ -202,8 +207,9 @@ Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
-Package xcolor Info: Driver file: dvips.def on input line 225.
+Package xcolor Info: Driver file: pdftex.def on input line 225.
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
 Package xcolor Info: Model `RGB' extended on input line 1353.
 Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
 Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
@@ -343,13 +349,7 @@ Package: xxcolor 2003/10/24 ver 0.1
 )
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/atbegshi.sty
 Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
-Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 )
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
-Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
-))
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
 
@@ -379,7 +379,7 @@ Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode is ignored in DVI mode.
+Package pdftexcmds Info: \pdfdraftmode found.
 Package: pdfescape 2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
 Package: bigintcalc 2012/04/08 v1.3 Expandable calculations on big integers (HO
 )
@@ -451,26 +451,18 @@ Package hyperref Message: Stopped early.
 
 )
 
-Package hyperref Message: Driver (default): hdvips.
+Package hyperref Message: Driver (autodetected): hpdftex.
 
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hdvips.def
-File: hdvips.def 2012/11/06 v6.83m Hyperref driver for dvips
-
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pdfmark.def
-File: pdfmark.def 2012/11/06 v6.83m Hyperref definitions for pdfmark specials
-\pdf@docset=\toks26
-\pdf@box=\box40
-\pdf@toks=\toks27
-\pdf@defaulttoks=\toks28
-\HyField@AnnotCount=\count124
-\Fld@listcount=\count125
-\c@bookmark@seq@number=\count126
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
+\Fld@listcount=\count124
+\c@bookmark@seq@number=\count125
 
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
-)))
+))
 (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbaserequires.sty
 Package: beamerbaserequires 2010/05/01  (rcs-revision efa082c6111d)
 
@@ -485,7 +477,7 @@ Package: amssymb 2013/01/14 v3.01 AMS font symbols
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
-\@emptytoks=\toks29
+\@emptytoks=\toks26
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
@@ -513,37 +505,37 @@ Package: beamerbasetwoscreens 2010/05/01  (rcs-revision efa082c6111d)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbaseoverlay.sty
 Package: beamerbaseoverlay 2013/12/25  (rcs-revision f6bd5e3805da)
-\beamer@argscount=\count127
+\beamer@argscount=\count126
 \beamer@lastskipcover=\skip44
-\beamer@trivlistdepth=\count128
+\beamer@trivlistdepth=\count127
 )
 (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbasetitle.sty
 Package: beamerbasetitle 2010/09/21  (rcs-revision f0446ed0b6ae)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbasesection.sty
 Package: beamerbasesection 2013/06/07  (rcs-revision 60b9fe0f342f)
-\c@lecture=\count129
-\c@part=\count130
-\c@section=\count131
-\c@subsection=\count132
-\c@subsubsection=\count133
+\c@lecture=\count128
+\c@part=\count129
+\c@section=\count130
+\c@subsection=\count131
+\c@subsubsection=\count132
 )
 (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbaseframe.sty
 Package: beamerbaseframe 2014/02/20  (rcs-revision 4b8ceeeff434)
-\beamer@framebox=\box41
-\beamer@frametitlebox=\box42
-\beamer@zoombox=\box43
-\beamer@zoomcount=\count134
-\beamer@zoomframecount=\count135
+\beamer@framebox=\box40
+\beamer@frametitlebox=\box41
+\beamer@zoombox=\box42
+\beamer@zoomcount=\count133
+\beamer@zoomframecount=\count134
 \beamer@frametextheight=\dimen168
-\c@subsectionslide=\count136
+\c@subsectionslide=\count135
 \beamer@frametopskip=\skip45
 \beamer@framebottomskip=\skip46
 \beamer@frametopskipautobreak=\skip47
 \beamer@framebottomskipautobreak=\skip48
-\beamer@envbody=\toks30
+\beamer@envbody=\toks27
 \framewidth=\dimen169
-\c@framenumber=\count137
+\c@framenumber=\count136
 )
 (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbaseverbatim.sty
 Package: beamerbaseverbatim 2015/01/05  (rcs-revision 431510bb5890)
@@ -551,40 +543,40 @@ Package: beamerbaseverbatim 2015/01/05  (rcs-revision 431510bb5890)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbaseframesize.sty
 Package: beamerbaseframesize 2011/09/12  (rcs-revision 70f9d8411e54)
-\beamer@splitbox=\box44
-\beamer@autobreakcount=\count138
+\beamer@splitbox=\box43
+\beamer@autobreakcount=\count137
 \beamer@autobreaklastheight=\dimen170
-\beamer@frametitletoks=\toks31
-\beamer@framesubtitletoks=\toks32
+\beamer@frametitletoks=\toks28
+\beamer@framesubtitletoks=\toks29
 )
 (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbaseframecomponents.sty
 Package: beamerbaseframecomponents 2013/10/18  (rcs-revision 5cf6c5555a45)
-\beamer@footins=\box45
+\beamer@footins=\box44
 )
 (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbasecolor.sty
 Package: beamerbasecolor 2015/02/21  (rcs-revision d944b04ee2d5)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbasenotes.sty
 Package: beamerbasenotes 2012/12/19  (rcs-revision 1686da3db3c9)
-\beamer@frameboxcopy=\box46
+\beamer@frameboxcopy=\box45
 )
 (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbasetoc.sty
 Package: beamerbasetoc 2015/03/08  (rcs-revision 7270298bbaae)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbasetemplates.sty
 Package: beamerbasetemplates 2010/05/01  (rcs-revision efa082c6111d)
-\beamer@sbttoks=\toks33
+\beamer@sbttoks=\toks30
 
 (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbaseauxtemplates.sty
 Package: beamerbaseauxtemplates 2014/06/30  (rcs-revision 580088513a67)
 
 (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbaseboxes.sty
 Package: beamerbaseboxes 2012/05/13  (rcs-revision 56972908a390)
-\bmb@box=\box47
-\bmb@colorbox=\box48
-\bmb@boxshadow=\box49
-\bmb@boxshadowball=\box50
-\bmb@boxshadowballlarge=\box51
+\bmb@box=\box46
+\bmb@colorbox=\box47
+\bmb@boxshadow=\box48
+\bmb@boxshadowball=\box49
+\bmb@boxshadowballlarge=\box50
 \bmb@temp=\dimen171
 \bmb@dima=\dimen172
 \bmb@dimb=\dimen173
@@ -597,10 +589,10 @@ Package: beamerbaselocalstructure 2014/09/10  (rcs-revision 393f6dcff371)
 
 (/usr/share/texlive/texmf-dist/tex/latex/tools/enumerate.sty
 Package: enumerate 2015/07/23 v3.00 enumerate extensions (DPC)
-\@enLab=\toks34
+\@enLab=\toks31
 )
-\c@figure=\count139
-\c@table=\count140
+\c@figure=\count138
+\c@table=\count139
 \abovecaptionskip=\skip49
 \belowcaptionskip=\skip50
 )
@@ -621,7 +613,7 @@ Package: amstext 2000/06/29 v2.01 AMS text
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks35
+\@emptytoks=\toks32
 \ex@=\dimen177
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
@@ -631,57 +623,57 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
-\inf@bad=\count141
+\inf@bad=\count140
 LaTeX Info: Redefining \frac on input line 199.
-\uproot@=\count142
-\leftroot@=\count143
+\uproot@=\count141
+\leftroot@=\count142
 LaTeX Info: Redefining \overline on input line 297.
-\classnum@=\count144
-\DOTSCASE@=\count145
+\classnum@=\count143
+\DOTSCASE@=\count144
 LaTeX Info: Redefining \ldots on input line 394.
 LaTeX Info: Redefining \dots on input line 397.
 LaTeX Info: Redefining \cdots on input line 518.
-\Mathstrutbox@=\box52
-\strutbox@=\box53
+\Mathstrutbox@=\box51
+\strutbox@=\box52
 \big@size=\dimen179
 LaTeX Font Info:    Redeclaring font encoding OML on input line 630.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 631.
-\macc@depth=\count146
-\c@MaxMatrixCols=\count147
+\macc@depth=\count145
+\c@MaxMatrixCols=\count146
 \dotsspace@=\muskip11
-\c@parentequation=\count148
-\dspbrk@lvl=\count149
-\tag@help=\toks36
-\row@=\count150
-\column@=\count151
-\maxfields@=\count152
-\andhelp@=\toks37
+\c@parentequation=\count147
+\dspbrk@lvl=\count148
+\tag@help=\toks33
+\row@=\count149
+\column@=\count150
+\maxfields@=\count151
+\andhelp@=\toks34
 \eqnshift@=\dimen180
 \alignsep@=\dimen181
 \tagshift@=\dimen182
 \tagwidth@=\dimen183
 \totwidth@=\dimen184
 \lineht@=\dimen185
-\@envbody=\toks38
+\@envbody=\toks35
 \multlinegap=\skip52
 \multlinetaggap=\skip53
-\mathdisplay@stack=\toks39
+\mathdisplay@stack=\toks36
 LaTeX Info: Redefining \[ on input line 2735.
 LaTeX Info: Redefining \] on input line 2736.
 )
 (/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty
 Package: amsthm 2015/03/04 v2.20.2
-\thm@style=\toks40
-\thm@bodyfont=\toks41
-\thm@headfont=\toks42
-\thm@notefont=\toks43
-\thm@headpunct=\toks44
+\thm@style=\toks37
+\thm@bodyfont=\toks38
+\thm@headfont=\toks39
+\thm@notefont=\toks40
+\thm@headpunct=\toks41
 \thm@preskip=\skip54
 \thm@postskip=\skip55
 \thm@headsep=\skip56
-\dth@everypar=\toks45
+\dth@everypar=\toks42
 )
-\c@theorem=\count153
+\c@theorem=\count152
 )
 (/usr/share/texlive/texmf-dist/tex/latex/beamer/beamerbasethemes.sty
 Package: beamerbasethemes 2010/05/01  (rcs-revision efa082c6111d)
@@ -707,28 +699,433 @@ Package: beamerinnerthemedefault 2014/06/30  (rcs-revision 580088513a67)
 (/usr/share/texlive/texmf-dist/tex/latex/beamer/themes/outer/beamerouterthemede
 fault.sty
 Package: beamerouterthemedefault 2012/12/19  (rcs-revision 1686da3db3c9)
-))) (./present.aux)
+))) (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.sty
+Package: biblatex 2016/03/03 v3.3 programmable bibliographies (PK/JW/AB)
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex_.sty
+Package: biblatex_ 2016/03/03 v3.3 programmable bibliographies (biber) (PK/JW/A
+B)
+
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2015/08/02 v2.2a e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count153
+)
+(/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.sty
+Package: logreq 2010/08/04 v1.0 xml request logger
+\lrq@indent=\count154
+
+(/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.def
+File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
+))
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\c@tabx@nest=\count155
+\c@listtotal=\count156
+\c@listcount=\count157
+\c@liststart=\count158
+\c@liststop=\count159
+\c@citecount=\count160
+\c@citetotal=\count161
+\c@multicitecount=\count162
+\c@multicitetotal=\count163
+\c@instcount=\count164
+\c@maxnames=\count165
+\c@minnames=\count166
+\c@maxitems=\count167
+\c@minitems=\count168
+\c@citecounter=\count169
+\c@savedcitecounter=\count170
+\c@uniquelist=\count171
+\c@uniquename=\count172
+\c@refsection=\count173
+\c@refsegment=\count174
+\c@maxextratitle=\count175
+\c@maxextratitleyear=\count176
+\c@maxextrayear=\count177
+\c@maxextraalpha=\count178
+\c@abbrvpenalty=\count179
+\c@highnamepenalty=\count180
+\c@lownamepenalty=\count181
+\c@maxparens=\count182
+\c@parenlevel=\count183
+\blx@tempcnta=\count184
+\blx@tempcntb=\count185
+\blx@tempcntc=\count186
+\blx@maxsection=\count187
+\blx@maxsegment@0=\count188
+\blx@notetype=\count189
+\blx@parenlevel@text=\count190
+\blx@parenlevel@foot=\count191
+\blx@sectionciteorder@0=\count192
+\labelnumberwidth=\skip57
+\labelalphawidth=\skip58
+\biblabelsep=\skip59
+\bibitemsep=\skip60
+\bibnamesep=\skip61
+\bibinitsep=\skip62
+\bibparsep=\skip63
+\bibhang=\skip64
+\blx@bcfin=\read2
+\blx@bcfout=\write5
+\c@mincomprange=\count193
+\c@maxcomprange=\count194
+\c@mincompwidth=\count195
+Package biblatex Info: Trying to load biblatex default data model...
+Package biblatex Info: ... file 'blx-dm.def' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-dm.def)
+Package biblatex Info: Trying to load biblatex style data model...
+Package biblatex Info: ... file 'verbose.dbx' not found.
+Package biblatex Info: Trying to load biblatex custom data model...
+Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
+\c@afterword=\count196
+\c@savedafterword=\count197
+\c@annotator=\count198
+\c@savedannotator=\count199
+\c@author=\count266
+\c@savedauthor=\count267
+\c@bookauthor=\count268
+\c@savedbookauthor=\count269
+\c@commentator=\count270
+\c@savedcommentator=\count271
+\c@editor=\count272
+\c@savededitor=\count273
+\c@editora=\count274
+\c@savededitora=\count275
+\c@editorb=\count276
+\c@savededitorb=\count277
+\c@editorc=\count278
+\c@savededitorc=\count279
+\c@foreword=\count280
+\c@savedforeword=\count281
+\c@holder=\count282
+\c@savedholder=\count283
+\c@introduction=\count284
+\c@savedintroduction=\count285
+\c@namea=\count286
+\c@savednamea=\count287
+\c@nameb=\count288
+\c@savednameb=\count289
+\c@namec=\count290
+\c@savednamec=\count291
+\c@translator=\count292
+\c@savedtranslator=\count293
+\c@shortauthor=\count294
+\c@savedshortauthor=\count295
+\c@shorteditor=\count296
+\c@savedshorteditor=\count297
+\c@labelname=\count298
+\c@savedlabelname=\count299
+\c@institution=\count300
+\c@savedinstitution=\count301
+\c@lista=\count302
+\c@savedlista=\count303
+\c@listb=\count304
+\c@savedlistb=\count305
+\c@listc=\count306
+\c@savedlistc=\count307
+\c@listd=\count308
+\c@savedlistd=\count309
+\c@liste=\count310
+\c@savedliste=\count311
+\c@listf=\count312
+\c@savedlistf=\count313
+\c@location=\count314
+\c@savedlocation=\count315
+\c@organization=\count316
+\c@savedorganization=\count317
+\c@origlocation=\count318
+\c@savedoriglocation=\count319
+\c@origpublisher=\count320
+\c@savedorigpublisher=\count321
+\c@publisher=\count322
+\c@savedpublisher=\count323
+\c@language=\count324
+\c@savedlanguage=\count325
+\c@pageref=\count326
+\c@savedpageref=\count327
+\shorthandwidth=\skip65
+\shortjournalwidth=\skip66
+\shortserieswidth=\skip67
+\shorttitlewidth=\skip68
+\shortauthorwidth=\skip69
+\shorteditorwidth=\skip70
+Package biblatex Info: Trying to load compatibility code...
+Package biblatex Info: ... file 'blx-compat.def' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-compat.def
+File: blx-compat.def 2016/03/03 v3.3 biblatex compatibility (PK/JW/AB)
+)
+Package biblatex Info: Trying to load generic definitions...
+Package biblatex Info: ... file 'biblatex_.def' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex_.def
+File: biblatex_.def 
+\c@textcitecount=\count328
+\c@textcitetotal=\count329
+\c@textcitemaxnames=\count330
+\c@biburlnumpenalty=\count331
+\c@biburlucpenalty=\count332
+\c@biburllcpenalty=\count333
+\c@smartand=\count334
+)
+Package biblatex Info: Trying to load bibliography style 'verbose'...
+Package biblatex Info: ... file 'verbose.bbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/verbose.bbx
+File: verbose.bbx 2016/03/03 v3.3 biblatex bibliography style (PK/JW/AB)
+Package biblatex Info: Trying to load bibliography style 'authortitle'...
+Package biblatex Info: ... file 'authortitle.bbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/authortitle.bbx
+File: authortitle.bbx 2016/03/03 v3.3 biblatex bibliography style (PK/JW/AB)
+Package biblatex Info: Trying to load bibliography style 'standard'...
+Package biblatex Info: ... file 'standard.bbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
+File: standard.bbx 2016/03/03 v3.3 biblatex bibliography style (PK/JW/AB)
+\c@bbx:relatedcount=\count335
+\c@bbx:relatedtotal=\count336
+)))
+Package biblatex Info: Trying to load citation style 'verbose'...
+Package biblatex Info: ... file 'verbose.cbx' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/cbx/verbose.cbx
+File: verbose.cbx 2016/03/03 v3.3 biblatex citation style (PK/JW/AB)
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\footcite'.
+Package biblatex Info: Redefining '\footcitetext'.
+Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\textcite'.
+Package biblatex Info: Redefining '\textcites'.
+)
+Package biblatex Info: Trying to load configuration file...
+Package biblatex Info: ... file 'biblatex.cfg' found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.cfg
+File: biblatex.cfg 
+)))
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+Package: pgf 2015/08/07 v3.0.1a (rcs-revision 1.15)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2014/03/21  (rcs-revision 1.35)
+\pgfnodeparttextbox=\box53
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2015/08/03  (rcs-revision 1.13)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
+.sty
+Package: pgfcomp-version-0-65 2007/07/03 v3.0.1a (rcs-revision 1.7)
+\pgf@nodesepstart=\dimen188
+\pgf@nodesepend=\dimen189
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
+.sty
+Package: pgfcomp-version-1-18 2007/07/23 v3.0.1a (rcs-revision 1.1)
+)) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2013/12/13 v3.0.1a (rcs-revision 1.25)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
+\pgffor@iter=\dimen190
+\pgffor@skip=\dimen191
+\pgffor@stack=\toks43
+\pgffor@toks=\toks44
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+Package: tikz 2015/08/07 v3.0.1a (rcs-revision 1.151)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers
+.code.tex
+File: pgflibraryplothandlers.code.tex 2013/08/31 v3.0.1a (rcs-revision 1.20)
+\pgf@plot@mark@count=\count337
+\pgfplotmarksize=\dimen192
+)
+\tikz@lastx=\dimen193
+\tikz@lasty=\dimen194
+\tikz@lastxsaved=\dimen195
+\tikz@lastysaved=\dimen196
+\tikzleveldistance=\dimen197
+\tikzsiblingdistance=\dimen198
+\tikz@figbox=\box54
+\tikz@figbox@bg=\box55
+\tikz@tempbox=\box56
+\tikz@tempbox@bg=\box57
+\tikztreelevel=\count338
+\tikznumberofchildren=\count339
+\tikznumberofcurrentchild=\count340
+\tikz@fig@count=\count341
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+File: pgfmodulematrix.code.tex 2013/09/17  (rcs-revision 1.8)
+\pgfmatrixcurrentrow=\count342
+\pgfmatrixcurrentcolumn=\count343
+\pgf@matrix@numberofcolumns=\count344
+)
+\tikz@expandcount=\count345
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2008/06/17 v3.0.1a (rcs-revision 1.2)
+)))
+(/usr/share/texlive/texmf-dist/tex/latex/pgfplots/pgfplots.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
+Package: pgfplots 2016/01/06 v1.13 Data Visualization (1.13)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
+\t@pgfplots@toka=\toks45
+\t@pgfplots@tokb=\toks46
+\t@pgfplots@tokc=\toks47
+\pgfplots@tmpa=\dimen199
+\c@pgfplots@coordindex=\count346
+\c@pgfplots@scanlineindex=\count347
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric.code
+.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.code.t
+ex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldp
+gfsupp_loader.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex
+)
+Package pgfplots: loading complementary arithmetics for your pgf version...
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldp
+gfsupp_pgflibraryfpu.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldp
+gfsupp_pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count348
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotslists
+tructure.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotslists
+tructureext.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsarray
+.code.tex
+\c@pgfplotsarray@tmp=\count349
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatri
+x.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshare
+d.code.tex
+\c@pgfplotstable@counta=\count350
+\t@pgfplotstable@a=\toks48
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.te
+x
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.co
+de.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.sur
+fshading.code.tex
+\c@pgfplotslibrarysurf@no=\count351
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surf
+shading.pgfsys-pdftex.def)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.code.
+tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.code.tex
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.code.t
+ex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.code.t
+ex
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandler.cod
+e.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotimage.code.
+tex)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessing.cod
+e.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.code.tex
+) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.tex
+) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarydecorations.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.cod
+e.tex
+\pgfdecoratedcompleteddistance=\dimen256
+\pgfdecoratedremainingdistance=\dimen257
+\pgfdecoratedinputsegmentcompleteddistance=\dimen258
+\pgfdecoratedinputsegmentremainingdistance=\dimen259
+\pgf@decorate@distancetomove=\dimen260
+\pgf@decorate@repeatstate=\count352
+\pgfdecorationsegmentamplitude=\dimen261
+\pgfdecorationsegmentlength=\dimen262
+)
+\tikz@lib@dec@box=\box58
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarydecorations.pathmorphing.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrary
+decorations.pathmorphing.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarydecorations.pathreplacing.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrary
+decorations.pathreplacing.code.tex))
+\pgfplots@numplots=\count353
+\pgfplots@xmin@reg=\dimen263
+\pgfplots@xmax@reg=\dimen264
+\pgfplots@ymin@reg=\dimen265
+\pgfplots@ymax@reg=\dimen266
+\pgfplots@zmin@reg=\dimen267
+\pgfplots@zmax@reg=\dimen268
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryplotmarks.code.tex
+File: tikzlibraryplotmarks.code.tex 2008/01/09 v3.0.1a (rcs-revision 1.1)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.co
+de.tex
+File: pgflibraryplotmarks.code.tex 2015/08/03 v3.0.1a (rcs-revision 1.14)
+)))
+Package biblatex Info: Trying to load language 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
+ (/usr/share/texlive/texmf-dist/tex/latex/biblatex/lbx/english.lbx
+File: english.lbx 2016/03/03 v3.3 biblatex localization (PK/JW/AB)
+)
+
+Package biblatex Warning: Patching footnotes failed.
+(biblatex)                Footnote detection will not work.
+
+\@quotelevel=\count354
+\@quotereset=\count355
+(./present.aux)
 \openout1 = `present.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
 
 *geometry* driver: auto-detecting
-*geometry* detected driver: dvips
+*geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
-* driver: dvips
+* driver: pdftex
 * paper: custom
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
@@ -759,9 +1156,37 @@ LaTeX Font Info:    ... okay on input line 7.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count356
+\scratchdimen=\dimen269
+\scratchbox=\box59
+\nofMPsegments=\count357
+\nofMParguments=\count358
+\everyMPshowfont=\toks49
+\MPscratchCnt=\count359
+\MPscratchDim=\dimen270
+\MPnumerator=\count360
+\makeMPintoPDFobject=\count361
+\everyMPtoPDFconversion=\toks50
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+)
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
 ABD: EveryShipout initializing macros
-\AtBeginShipoutBox=\box54
-Package hyperref Info: Link coloring OFF on input line 7.
+\AtBeginShipoutBox=\box60
+Package hyperref Info: Link coloring OFF on input line 14.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -769,72 +1194,68 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count154
+\c@section@level=\count362
 )
-LaTeX Info: Redefining \ref on input line 7.
-LaTeX Info: Redefining \pageref on input line 7.
-LaTeX Info: Redefining \nameref on input line 7.
+LaTeX Info: Redefining \ref on input line 14.
+LaTeX Info: Redefining \pageref on input line 14.
+LaTeX Info: Redefining \nameref on input line 14.
 
 (./present.out) (./present.out)
-\@outlinefile=\write5
-\openout5 = `present.out'.
-
-
-
-Package hyperref Warning: Rerun to get /PageLabels entry.
+\@outlinefile=\write6
+\openout6 = `present.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 7.
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 14.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 7.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 14.
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 7.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 7.
+(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 14.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 14.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 7.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 14.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 7.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 7.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 14.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 14.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 7.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 14.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 7.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 7.
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 14.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 14.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 7.
+(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 14.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 7.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 7.
+(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 14.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 14.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 7.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 14.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 7.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 14.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 7.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 14.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 7.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 14.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmr/bx/n on input line 7.
+(Font)                  OT1/cmss/bx/n --> OT1/cmr/bx/n on input line 14.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmss/bx/n on input line 7.
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/bx/n on input line 14.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 7.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 14.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 7.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 14.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/bx/n on input line 7.
-LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 7.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/bx/n on input line 14.
+LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 14.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `normal'
-(Font)                  OT1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 7
-.
+(Font)                  OT1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 1
+4.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
 (Font)                  OT1/cmss/bx/it --> OT1/mathkerncmss/m/sl on input line 
-7.
+14.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
 (Font)                  OT1/mathkerncmss/m/sl --> OT1/mathkerncmss/bx/sl on inp
-ut line 7.
+ut line 14.
 
 (/usr/share/texlive/texmf-dist/tex/latex/beamer/translator/dicts/translator-bas
 ic-dictionary/translator-basic-dictionary-English.dict
@@ -860,26 +1281,42 @@ Dictionary: translator-numbers-dictionary, Language: English
 orem-dictionary/translator-theorem-dictionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 )
-LaTeX Info: Redefining \includegraphics on input line 7.
- (./present.nav)
+LaTeX Info: Redefining \includegraphics on input line 14.
+Package biblatex Info: No input encoding detected.
+(biblatex)             Assuming 'ascii'.
+Package biblatex Info: Automatic encoding selection.
+(biblatex)             Assuming data encoding 'ascii'.
+\openout5 = `present.bcf'.
+
+Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file 'present.bbl' found.
+ (./present.bbl)
+Package biblatex Info: Reference section=0 on input line 14.
+Package biblatex Info: Reference segment=0 on input line 14.
+
+Package pgfplots notification 'compat/show suggested version=true': you might b
+enefit from \pgfplotsset{compat=1.13} (current compat level: 1.4).
+
+(./present.nav)
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
-(Font)              size <5> substituted on input line 10.
+(Font)              size <5> substituted on input line 17.
 
 [1
 
-]
-LaTeX Font Info:    Try loading font information for U+msa on input line 21.
- (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+LaTeX Font Info:    Try loading font information for U+msa on input line 28.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 21.
+LaTeX Font Info:    Try loading font information for U+msb on input line 28.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Try loading font information for OT1+mathkerncmss on input 
-line 21.
+line 28.
 
 (/usr/share/texlive/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2013/03/27 Fontinst v1.933 font definitions for OT1/ma
@@ -895,29 +1332,509 @@ thkerncmss.
 
 ] [6
 
-] [7
+]
+PGFPlots: reading {linear-data-example.dat}
+PGFPlots: reading {linear-data-example.dat}
+PGFPlots: reading {linear-data-example.dat}
 
-] [8
+NOTE: coordinate (0.00000,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.00050,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.00100,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.00150,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.00200,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.00250,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.00300,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.00350,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.00400,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.00450,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.00500,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.00550,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.00600,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.00650,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.00700,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.00750,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.00800,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.00850,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.00900,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.00950,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.01000,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.01050,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.01100,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.01150,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.01200,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.01250,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.01300,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.01350,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.01400,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.01450,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.01500,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.01550,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.01600,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.01650,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.01700,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.01750,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.01800,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.01850,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.01900,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.01950,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.02000,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.02050,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.02100,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.02150,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.02200,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.02250,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.02300,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.02350,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.02400,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.02450,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.02500,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.02550,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.02600,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.02650,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.02700,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.02750,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.02800,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.02850,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.02900,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.02950,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.03000,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.03050,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.03100,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.03150,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.03200,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.03250,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.03300,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.03350,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.03400,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.03450,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.03500,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.03550,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.03600,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.03650,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.03700,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.03750,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.03800,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.03850,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.03900,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.03950,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.04000,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.04050,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.04100,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.04150,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.04200,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.04250,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.04300,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.04350,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.04450,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.04500,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.04550,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.04600,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.04650,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.04750,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.04850,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.04950,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.05200,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.05400,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.05450,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.05500,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.05600,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.05750,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.07000,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.93950,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.94100,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.94350,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.94650,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.94700,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.94750,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.94800,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.94950,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.95000,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.95100,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.95300,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.95400,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.95450,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.95500,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.95550,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.95600,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.95650,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.95700,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.95750,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.95800,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.95850,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.95900,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.95950,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.96000,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.96050,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.96100,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.96150,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.96200,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.96250,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.96300,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.96350,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.96400,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.96450,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.96500,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.96550,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.96600,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.96650,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.96700,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.96750,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.96800,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.96850,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.96900,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.96950,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.97000,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.97050,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.97100,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.97150,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.97200,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.97250,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.97300,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.97350,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.97400,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.97450,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.97500,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.97550,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.97600,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.97650,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.97700,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.97750,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.97800,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.97850,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.97900,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.97950,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.98000,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.98050,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.98100,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.98150,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.98200,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.98250,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.98300,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.98350,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.98400,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.98450,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.98500,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.98550,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.98600,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.98650,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.98700,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.98750,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.98800,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.98850,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.98900,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.98950,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.99000,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.99050,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.99100,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.99150,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.99200,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.99250,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.99300,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.99350,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.99400,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.99450,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.99500,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.99550,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.99600,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.99650,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.99700,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.99750,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.99800,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.99850,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.99900,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+NOTE: coordinate (0.99950,nan) has been dropped because it is unbounded (in y).
+ (see also unbounded coords=jump). 
+[7
+
+]
+PGFPlots: reading {linear-data-example.dat}
+ [8
 
 ] [9
 
 ] [10
 
 ]
-\tf@nav=\write6
-\openout6 = `present.nav'.
+PGFPlots: reading {enm-data-example.dat}
 
-\tf@toc=\write7
-\openout7 = `present.toc'.
 
-\tf@snm=\write8
-\openout8 = `present.snm'.
+./present.tex:210: Package PGF Math Error: Could not parse input 'Total running
+ time = 44130ms' as a floating point number, sorry. The unreadable part was nea
+r 'Total running time = 44130ms'..
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 100.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 100.
+See the PGF Math package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.210 \end{frame}
+                 ^^M
+This error message was generated by an \errmessage
+command, so I can't give any explicit help.
+Pretend that you're Hercule Poirot: Examine all clues,
+and deduce the truth by order and method.
+
+NOTE: coordinate (Total running time = 44130ms,0.01297) has been dropped becaus
+e it is unbounded (in x). (see also unbounded coords=jump). 
+PGFPlots: reading {enm-data-example.dat}
+
+./present.tex:210: Package PGF Math Error: Could not parse input 'Total running
+ time = 44130ms' as a floating point number, sorry. The unreadable part was nea
+r 'Total running time = 44130ms'..
+
+See the PGF Math package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.210 \end{frame}
+                 ^^M
+(That was another \errmessage.)
+
+NOTE: coordinate (Total running time = 44130ms,0.00132) has been dropped becaus
+e it is unbounded (in x). (see also unbounded coords=jump). 
+PGFPlots: reading {enm-data-example.dat}
+NOTE: coordinate (0.00000,-nan) has been dropped because it is unbounded (in y)
+. (see also unbounded coords=jump). 
+
+./present.tex:210: Package PGF Math Error: Could not parse input 'Total running
+ time = 44130ms' as a floating point number, sorry. The unreadable part was nea
+r 'Total running time = 44130ms'..
+
+See the PGF Math package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.210 \end{frame}
+                 ^^M
+(That was another \errmessage.)
+
+NOTE: coordinate (Total running time = 44130ms,0.00454) has been dropped becaus
+e it is unbounded (in x). (see also unbounded coords=jump). 
+[11
+
+] [12
+
+] [13
+
+]
+\tf@nav=\write7
+\openout7 = `present.nav'.
+
+\tf@toc=\write8
+\openout8 = `present.toc'.
+
+\tf@snm=\write9
+\openout9 = `present.snm'.
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 228.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 228.
  (./present.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 100.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 100.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 228.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 228.
 Package rerunfilecheck Info: File `present.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
@@ -925,15 +1842,40 @@ Package rerunfilecheck Info: File `present.out' has not changed.
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 100.
+
+Package biblatex Warning: Please rerun LaTeX.
+(biblatex)                Page breaks have changed.
+
+Package logreq Info: Writing requests to 'present.run.xml'.
+\openout1 = `present.run.xml'.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 228.
  ) 
 Here is how much of TeX's memory you used:
- 16064 strings out of 493030
- 309073 string characters out of 6136261
- 386254 words of memory out of 5000000
- 19229 multiletter control sequences out of 15000+600000
- 11724 words of font info for 43 fonts, out of 8000000 for 9000
+ 34819 strings out of 493029
+ 813688 string characters out of 6136235
+ 3682975 words of memory out of 5000000
+ 37682 multiletter control sequences out of 15000+600000
+ 14695 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 56i,14n,55p,387b,551s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,18n,102p,942b,2280s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmss9.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmssi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmssi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+sy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam
+10.pfb>
+Output written on present.pdf (13 pages, 1054473 bytes).
+PDF statistics:
+ 152 PDF objects out of 1000 (max. 8388607)
+ 116 compressed objects within 2 object streams
+ 32 named destinations out of 1000 (max. 500000)
+ 43 words of extra memory for PDF output out of 10000 (max. 10000000)
 
-Output written on present.dvi (10 pages, 95328 bytes).

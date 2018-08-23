@@ -1,4 +1,11 @@
 \documentclass{beamer}
+\beamertemplatenavigationsymbolsempty
+\usepackage[style=verbose,backend=biber,url=false,doi=false,giveninits=true]{biblatex}
+\bibliography{ref.bib}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.4}
+\setbeamertemplate{bibliography item}{}
 
 \title{Comparison of estimators in quantum tomography}
 \author{John Scott}
@@ -30,12 +37,39 @@
 \end{frame}
 
 \begin{frame}
+  \frametitle{Simulating quantum tomography}
+  \begin{itemize}
+  \item{ Simulate data
+      \begin{enumerate}
+      \item Generate a density matrix representing a state
+      \item Pick a measurement basis
+      \item Simulate measurement data based on the density matrix
+      \end{enumerate}
+    }
+  \item{State tomography
+      \begin{enumerate}
+      \item Use the simulated measurement data to obtain an estimate of the density matrix
+      \end{enumerate}
+    }
+  \item{Check the quality of the estimate
+      \begin{enumerate}
+      \item Compare the estimated density matrix with the original density matrix
+      \end{enumerate}
+    }
+  \end{itemize}
+  \end{frame}
+
+
+\begin{frame}
   \frametitle{Using expectation values to estimate the density matrix}
-  The simplest way to do tomography is to just compute a density matrix from expectation values:
-  \begin{equation}
-    \rho = \frac{1}{2} (I + aX + bY + cZ) = \frac{1}{2}\begin{bmatrix} 1 + c & a - ib \\ a + ib & 1 -c\end{bmatrix}    
-  \end{equation}
-  The matrix will come out Hermitian and trace 1, but might not have positive eigenvalues (so it isn't `physical'). This problem gets worse depending on how pure the state is. 
+  \begin{itemize}
+  \item {The simplest way to do tomography is to just compute a density matrix from expectation values:
+    \begin{equation}
+      \rho = \frac{1}{2} (I + aX + bY + cZ) = \frac{1}{2}\begin{bmatrix} 1 + c & a - ib \\ a + ib & 1 -c\end{bmatrix}    
+    \end{equation}
+  }
+\item The matrix will come out Hermitian and trace 1, but might not have positive eigenvalues (so it isn't `physical'). This problem gets worse depending on how pure the state is.
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -53,46 +87,140 @@
 
 \begin{frame}
   \frametitle{Quality of the linear estimate}
-  Put a fancy graph here
+  \begin{figure}
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}[
+        xlabel={Purity},
+        axis x line = bottom,
+        enlarge x limits={rel=0.1},
+        ylabel={Error},
+        axis y line = left,
+        enlarge y limits={rel=0.2},
+        grid=both,
+        grid style={dotted,gray!70!white!},
+        width=0.9\textwidth,
+        height=0.8\textheight,
+        scaled ticks=false,
+        yticklabel style = {/pgf/number format/.cd,fixed,fixed zerofill, precision=3},
+        legend style={font=\small,at={(0.7,0.4)},anchor=center},
+        legend image post style={scale=5},
+        legend cell align={left}
+        ]
+        \addplot[red,only marks,mark size=0.3] table [x={PURITY}, y={TRACE}, col sep=comma] {linear-data-example.dat};
+        \addlegendentry{Trace}
+        \addplot[green,only marks,mark size=0.3] table [x={PURITY}, y={HILBERT-SCHMIDT}, col sep=comma] {linear-data-example.dat};
+        \addlegendentry{Hilbert-Schmidt}
+        \addplot[blue,only marks,mark size=0.3] table [x={PURITY}, y={INFIDELITY}, col sep=comma] {linear-data-example.dat};
+        \addlegendentry{Infidelity}
+      \end{axis}
+
+    \end{tikzpicture}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Quality of the linear estimate}
+  \begin{figure}
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}[
+        xlabel={Purity},
+        axis x line = bottom,
+        enlarge x limits={rel=0.1},
+        ylabel={Probability},
+        axis y line = left,
+        enlarge y limits={rel=0.2},
+        grid=both,
+        grid style={dotted,gray!70!white!},
+        width=0.9\textwidth,
+        height=0.8\textheight,
+        scaled ticks=false,
+        yticklabel style = {/pgf/number format/.cd,fixed,fixed zerofill, precision=3},
+        legend style={font=\small,at={(0.7,0.4)},anchor=center},
+        legend image post style={scale=5},
+        legend cell align={left}
+        ]
+        \addplot[brown,only marks,mark size=0.3] table [x={PURITY}, y={NON PHYSICAL}, col sep=comma] {linear-data-example.dat};
+        \addlegendentry{Non-physical}
+      \end{axis}
+
+    \end{tikzpicture}
+  \end{figure}
 \end{frame}
 
 \begin{frame}
   \frametitle{Extended norm minimisation: producing a physical density matrix}
   \begin{itemize}
   \item If you want physical estimates you can try to obtain them from the linear estimate somehow.
-  \item The simplest method is to take the linear estimate and project it onto the space of physical states. That's called extended norm minimisation (cite Pete and co.)
-  \item There's some fancy confidence interval for the estimate which I haven't got working yet.
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Extended norm minimisation: producing a physical density matrix}
-  \begin{itemize}
+  \item The simplest method is to take the linear estimate and project it onto the space of physical states. That's called extended norm minimisation \footcite{PhysRevLett.111.160406}
   \item First obtain the linear estimate $\rho_1$
   \item Then find the closest physical density matrix $\rho_2$ using $$\rho_2 = \min_{\rho} \lVert \rho - \rho_1\rVert_2$$
   \item This result of this estimator is always physical
-  \item There is a confidence interval for the estimated density matrix: $$thing$$ 
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Doing ENM}
-  You need to find an optimiser which will minimise the L2 distance between your (fixed) linear estimate and a (varying) physical density matrix. Parametrizing the space of physical density matrices can be done by writing (cite whichever paper it came from)
+  \frametitle{Doing ENM in practice}
+  You need to find an optimiser which will minimise the $L^2$ distance between your (fixed) linear estimate and a (varying) physical density matrix. Parametrizing the space of physical density matrices can be done by writing \footcite{banaszek1999maximum}
   \begin{equation}
     T = \begin{bmatrix}w&x+iy\\0&z\end{bmatrix}
   \end{equation}
   \begin{equation}
     \rho = T^\dagger T
   \end{equation}
-  Then $\rho$ is positive and hermitian. The trace 1 condition is given by requiring that
+  Then $\rho$ is positive and hermitian. The trace 1 condition (physicality) is given by requiring that
   \begin{equation}
     w^2+x^2+y^2+z^2=1
   \end{equation}
 \end{frame}
 
 \begin{frame}
+  \frametitle{Quality of the linear estimate}
+  \begin{figure}
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}[
+        xlabel={Purity},
+        axis x line = bottom,
+        enlarge x limits={rel=0.1},
+        ylabel={Error},
+        axis y line = left,
+        enlarge y limits={rel=0.2},
+        grid=both,
+        grid style={dotted,gray!70!white!},
+        width=0.9\textwidth,
+        height=0.8\textheight,
+        scaled ticks=false,
+        yticklabel style = {/pgf/number format/.cd,fixed,fixed zerofill, precision=3},
+        legend style={font=\small,at={(0.7,0.4)},anchor=center},
+        legend image post style={scale=5},
+        legend cell align={left}
+        ]
+        \addplot[red,only marks,mark size=0.3] table [x={PURITY}, y={TRACE}, col sep=comma] {enm-data-example.dat};
+        \addlegendentry{Trace}
+        \addplot[green,only marks,mark size=0.3] table [x={PURITY}, y={HILBERT-SCHMIDT}, col sep=comma] {enm-data-example.dat};
+        \addlegendentry{Hilbert-Schmidt}
+        \addplot[blue,only marks,mark size=0.3] table [x={PURITY}, y={INFIDELITY}, col sep=comma] {enm-data-example.dat};
+        \addlegendentry{Infidelity}
+      \end{axis}
+
+    \end{tikzpicture}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
   \frametitle{Other methods: maximum likelihood}
-  You can also use maximum likelihood to get physical estimates. But I didn't.
+  \begin{itemize}
+  \item You can also use maximum likelihood to get physical estimates.
+  \item Maximum likelihood estimation uses a likelihood function which depends on the data and 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{References}
+% This prints the bibliography on the slide
+\printbibliography
 \end{frame}
 
 

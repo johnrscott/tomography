@@ -1,0 +1,107 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.6 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist[entry]{nty/global}
+    \entry{banaszek1999maximum}{article}{}
+      \name{author}{4}{}{%
+        {{hash=7ee5728d8a3c4c9c2fd3345703522932}{%
+           family={Banaszek},
+           family_i={B\bibinitperiod},
+           given={K},
+           given_i={K\bibinitperiod}}}%
+        {{hash=0144406426c82598e8f61eec5fcb5d7e}{%
+           family={D\x{fffd}\x{fffd}\x{fffd}ariano},
+           family_i={D\bibinitperiod},
+           given={GM},
+           given_i={G\bibinitperiod}}}%
+        {{hash=2bc8594400eb90db0f0e5a9951514ec0}{%
+           family={Paris},
+           family_i={P\bibinitperiod},
+           given={MGA},
+           given_i={M\bibinitperiod}}}%
+        {{hash=a2f87390601bb4e2ef5380f51f84080f}{%
+           family={Sacchi},
+           family_i={S\bibinitperiod},
+           given={MF},
+           given_i={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {APS}%
+      }
+      \strng{namehash}{0502341368030d3e59bd4f2272018c55}
+      \strng{fullhash}{f5e4bfd9e6d7b818956054a8ac519934}
+      \field{sortinit}{B}
+      \field{sortinithash}{4ecbea03efd0532989d3836d1a048c32}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Physical Review A}
+      \field{number}{1}
+      \field{title}{Maximum-likelihood estimation of the density matrix}
+      \field{volume}{61}
+      \field{year}{1999}
+      \field{pages}{010304}
+      \range{pages}{1}
+    \endentry
+    \entry{PhysRevLett.111.160406}{article}{}
+      \name{author}{3}{}{%
+        {{hash=a6eec1c111f25af03377aaaa98d5e381}{%
+           family={Sugiyama},
+           family_i={S\bibinitperiod},
+           given={{T}akanori},
+           given_i={T\bibinitperiod}}}%
+        {{hash=6e693ee75b537f18156fd05b4bd6ef7b}{%
+           family={Turner},
+           family_i={T\bibinitperiod},
+           given={Peter\bibnamedelima S.},
+           given_i={P\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=77c64f3e4807f56e1f33a11a37c0f49e}{%
+           family={Murao},
+           family_i={M\bibinitperiod},
+           given={Mio},
+           given_i={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Physical Society}%
+      }
+      \strng{namehash}{97b18254389f53921e8c037b5f7720cc}
+      \strng{fullhash}{97b18254389f53921e8c037b5f7720cc}
+      \field{sortinit}{S}
+      \field{sortinithash}{fd1e7c5ab79596b13dbbb67f8d70fb5a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issue}{16}
+      \field{journaltitle}{Phys. Rev. Lett.}
+      \field{month}{10}
+      \field{title}{Precision-Guaranteed Quantum Tomography}
+      \field{volume}{111}
+      \field{year}{2013}
+      \field{pages}{160406}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1103/PhysRevLett.111.160406
+      \endverb
+      \verb{url}
+      \verb https://link.aps.org/doi/10.1103/PhysRevLett.111.160406
+      \endverb
+    \endentry
+  \endsortlist
+\endrefsection
+\endinput
+

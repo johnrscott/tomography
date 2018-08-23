@@ -1,5 +1,5 @@
 * enm-test-new-norms.dat
-Data for three norms in Pete's paper.
+  Data for three norms in Pete's paper.
 * enm-test-new-norms-2.dat
 Data from enm-test after changing ftol_rel to 1e-10 instead of 1e-5. Seems to make no difference. Still using Nelder-Mead.
 * enm-test-new-norms-3.dat

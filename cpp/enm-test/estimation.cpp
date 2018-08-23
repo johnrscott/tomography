@@ -144,9 +144,9 @@ MatrixXc enm_estimate_XYZ(double X_data[],
   MatrixXc dens_enm;
   
   // Specify stopping conditions
-  double cons_tol = 1e-3;
-  double ftol = 1e-3;
-  double local_ftol = 1e-3;
+  double cons_tol = 1e-6;
+  double ftol = 1e-6;
+  double local_ftol = 1e-6;
   
   // Specify lower and upper bounds
   std::vector<double> lb{-1, -1, -1, -1};
@@ -202,8 +202,8 @@ MatrixXc enm_estimate_XYZ(double X_data[],
     dens_enm = T * T.adjoint();  
   }
   
-  #ifdef DEBUG
-  #ifdef DEBUG_PRINT_ENM_OUTPUT
+  //#ifdef DEBUG
+  //#ifdef DEBUG_PRINT_ENM_OUTPUT
   std::cout << "Linear estimator: " << std::endl
 	    << dens_lin << std::endl;
   Eigen::SelfAdjointEigenSolver<MatrixXc> eig1(dens_lin);
@@ -215,14 +215,14 @@ MatrixXc enm_estimate_XYZ(double X_data[],
   Eigen::SelfAdjointEigenSolver<MatrixXc> eig2(dens_enm);
   std::cout << "Eig1: " << eig2.eigenvalues()[0] << std::endl; 
   std::cout << "Eig2: " << eig2.eigenvalues()[1] << std::endl;
-  #endif
-  #endif
+  //#endif
+  //#endif
   
   if(std::abs(dens_enm.trace()-std::complex<double>(1,0)) > cons_tol) {
     std::cout << "nlopt failed to satisfy constraint\n";
     abort();
   }
-  //abort();
+  abort();
   
   return dens_enm;
 }
@@ -352,8 +352,8 @@ MatrixXc ml_estimate_XYZ(double X_data[],
   T << x[0], 0, std::complex<double>(x[1],x[2]), x[3];
   dens_ml = T * T.adjoint();
   
-  //#ifdef DEBUG
-  //#ifdef DEBUG_PRINT_ENM_OUTPUT
+  #ifdef DEBUG
+  #ifdef DEBUG_PRINT_ENM_OUTPUT
   std::cout << "Linear estimator: " << std::endl
 	    << dens_lin << std::endl;
   Eigen::SelfAdjointEigenSolver<MatrixXc> eig1(dens_lin);
@@ -365,8 +365,8 @@ MatrixXc ml_estimate_XYZ(double X_data[],
   Eigen::SelfAdjointEigenSolver<MatrixXc> eig2(dens_enm);
   std::cout << "Eig1: " << eig2.eigenvalues()[0] << std::endl; 
   std::cout << "Eig2: " << eig2.eigenvalues()[1] << std::endl;
-  //#endif
-  //#endif
+  #endif
+  #endif
 
   if(std::abs(dens_ml.trace()-std::complex<double>(1,0)) > cons_tol) {
     std::cout << "nlopt failed to satisfy constraint\n";
