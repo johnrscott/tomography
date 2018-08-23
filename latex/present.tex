@@ -2,6 +2,7 @@
 \beamertemplatenavigationsymbolsempty
 \usepackage[style=verbose,backend=biber,url=false,doi=false,giveninits=true]{biblatex}
 \bibliography{ref.bib}
+\usepackage{color}
 \usepackage{tikz}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.4}
@@ -32,7 +33,13 @@
   \begin{itemize}
   \item State estimation. You need many copies of the state because you need to be able to make repeated measurements and build up statistics.
   \item You can use it for characterizing the results from experiments (levels of entanglement, etc.)
-  \item 
+  \item It can also be used to obtain information about quantum processes or channels:
+    \begin{enumerate}
+    \item Put a known state into the process
+    \item Do quantum state tomography on the output
+    \item Infer the process
+    \end{enumerate}
+    \item This is called quantum process tomography
   \end{itemize}
 \end{frame}
 
@@ -45,17 +52,48 @@
       \item Pick a measurement basis
       \item Simulate measurement data based on the density matrix
       \end{enumerate}
-    }
+  }
   \item{State tomography
-      \begin{enumerate}
-      \item Use the simulated measurement data to obtain an estimate of the density matrix
+    \begin{enumerate}
+        \setcounter{enumi}{3}
+      \item {\color{blue}Use the simulated measurement data to obtain an estimate of the density matrix}
       \end{enumerate}
     }
   \item{Check the quality of the estimate
-      \begin{enumerate}
+    \begin{enumerate}
+        \setcounter{enumi}{4}
       \item Compare the estimated density matrix with the original density matrix
       \end{enumerate}
     }
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Quality of the esimate (loss functions): distance measures and fidelity}
+  \begin{itemize}
+  \item{
+      I looked into the trace distance, the Hilbert-Schmidt distance, and the infidelity\footcite{PhysRevLett.111.160406}:
+      \begin{equation}T(A,B) = \frac{1}{2} Tr|A - B|\end{equation}
+      \begin{equation}HS(A,B) = \frac{1}{\sqrt{2}} \left[tr(A - B)^2\right]^{\frac{1}{2}}\end{equation}
+      \begin{equation}IF(A,B) = 1 - \left[tr\sqrt{A^{\frac{1}{2}}BA^{\frac{1}{2}}}\right]^2\end{equation}
+    }
+  \item{There are many others: operator norm, fidelity-derived distance, etc.}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Practical aspects of the simulation}
+  \begin{itemize}
+  \item{Simulation details:
+      \begin{enumerate}
+      \item Divided purity values into {\color{blue}2000} steps, and generated {\color{blue}500} single-qubit density matrices for each value
+      \item Simulated {\color{blue}500} measurements each of X, Y and Z
+      \item Use the simulated measurement data to obtain an estimate of the density matrix -- repeat for each of the matrices
+      \item Compute the three loss functions between each matrix, and average for each purity
+      \end{enumerate}
+  }
+  \item C++\footnote{Or FORTRAN}, not python! (There are 1 million density matrix estimations. That takes a while if each of them involves an optimisation). 
+  \item 
   \end{itemize}
   \end{frame}
 
@@ -69,19 +107,6 @@
     \end{equation}
   }
 \item The matrix will come out Hermitian and trace 1, but might not have positive eigenvalues (so it isn't `physical'). This problem gets worse depending on how pure the state is.
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Quality of the esimate (loss functions): distance measures and fidelity}
-  \begin{itemize}
-  \item{
-      Pete's paper has three: the trace distance, the Hilbert-Schmidt distance, and the infidelity:
-      \begin{equation}T(A,B) = \frac{1}{2} Tr|A - B|\end{equation}
-      \begin{equation}HS(A,B) = \frac{1}{\sqrt{2}} \left[tr(A - B)^2\right]^{\frac{1}{2}}\end{equation}
-      \begin{equation}IF(A,B) = 1 - \left[tr\sqrt{A^{\frac{1}{2}}BA^{\frac{1}{2}}}\right]^2\end{equation}
-    }
-  \item{There are many others: operator norm, fidelity-derived distance, etc.}
   \end{itemize}
 \end{frame}
 
@@ -120,7 +145,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Quality of the linear estimate}
+  \frametitle{Physicality of the linear estimate}
   \begin{figure}
     \centering
     \begin{tikzpicture}
@@ -176,7 +201,7 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Quality of the linear estimate}
+  \frametitle{Quality of the ENM estimate}
   \begin{figure}
     \centering
     \begin{tikzpicture}
@@ -210,11 +235,65 @@
 \end{frame}
 
 \begin{frame}
+  \frametitle{Physicality of the ENM estimate}
+  \begin{figure}
+    \centering
+    \begin{tikzpicture}
+      \begin{axis}[
+        xlabel={Purity},
+        axis x line = bottom,
+        enlarge x limits={rel=0.1},
+        ylabel={Probability},
+        axis y line = left,
+        enlarge y limits={rel=0.2},
+        grid=both,
+        grid style={dotted,gray!70!white!},
+        width=0.9\textwidth,
+        height=0.8\textheight,
+        scaled ticks=false,
+        yticklabel style = {/pgf/number format/.cd,fixed,fixed zerofill, precision=3},
+        legend style={font=\small,at={(0.7,0.4)},anchor=center},
+        legend image post style={scale=5},
+        legend cell align={left}
+        ]
+        \addplot[brown,only marks,mark size=0.3] table [x={PURITY}, y={NON PHYSICAL}, col sep=comma] {enm-data-example.dat};
+        \addlegendentry{Non-physical}
+      \end{axis}
+
+    \end{tikzpicture}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
   \frametitle{Other methods: maximum likelihood}
   \begin{itemize}
   \item You can also use maximum likelihood to get physical estimates.
-  \item Maximum likelihood estimation uses a likelihood function which depends on the data and 
+  \item Maximum likelihood estimation uses a likelihood function $L(\rho)$ which assesses how well a given density matrix $\rho$ explains measured data: $$L(\rho) = \prod_k tr(\rho \Pi_k)^{n_k}$$
+  \item Taking the logarithm of the above expression is a good idea, to reduce the dynamic range of the expression.
+    \item I didn't implement the maximum likelihood method
   \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Conclusions}
+\begin{itemize}
+\item There are plenty of ways to assess quality of estimates, which aren't necessarily correlated
+\item The simplest method of tomography (the linear estimate) also produced the closest estimates
+\item More advanced techniques involving optimisation are harder to implement and did not produce better estimates than the linear case.
+\item The ENM estimator is good because it comes with a confidence interval for the estimate
+\item Compiled languages are better for tomography because life is too short for python!
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Future work}
+\begin{itemize}
+\item There are plenty of ways to assess quality of estimates, which aren't necessarily correlated
+\item The simplest method of tomography (the linear estimate) also produced the closest estimates
+\item More advanced techniques involving optimisation are harder to implement and did not produce better estimates than the linear case.
+\item The ENM estimator is good because it comes with a confidence interval for the estimate
+\item Compiled languages are better for tomography simulation because life is too short for python!
+\end{itemize}
 \end{frame}
 
 \begin{frame}
